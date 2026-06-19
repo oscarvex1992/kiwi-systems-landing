@@ -482,31 +482,43 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <div class="franq-box">
         <h3>Solicita información</h3>
         <p>Cuéntanos sobre tu negocio y te contactamos en menos de 24 horas.</p>
-        <div class="fg">
-          <label>Nombre completo</label>
-          <input type="text" placeholder="Tu nombre">
+        <div id="form-success" style="display:none;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px">
+          <div style="font-size:24px;margin-bottom:6px">✅</div>
+          <div style="font-size:14px;font-weight:700;color:var(--cyan)">¡Mensaje enviado!</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">Te contactamos en menos de 24 horas.</div>
         </div>
-        <div class="fg">
-          <label>WhatsApp</label>
-          <input type="tel" placeholder="+52 81 24804827">
+        <div id="form-fields">
+          <div class="fg">
+            <label>Nombre completo</label>
+            <input id="f-nombre" type="text" placeholder="Tu nombre">
+          </div>
+          <div class="fg">
+            <label>Correo electrónico</label>
+            <input id="f-correo" type="email" placeholder="correo@empresa.com">
+          </div>
+          <div class="fg">
+            <label>WhatsApp</label>
+            <input id="f-whatsapp" type="tel" placeholder="+52 81 0000 0000">
+          </div>
+          <div class="fg">
+            <label>Ciudad</label>
+            <input id="f-ciudad" type="text" placeholder="Monterrey, NL">
+          </div>
+          <div class="fg">
+            <label>¿Cuántos cobradores tienes?</label>
+            <select id="f-cobradores">
+              <option value="">Seleccionar</option>
+              <option>1 — 5</option>
+              <option>6 — 15</option>
+              <option>16 — 50</option>
+              <option>Más de 50</option>
+            </select>
+          </div>
+          <div id="form-error" style="display:none;color:#ff6b6b;font-size:12px;margin-bottom:10px;text-align:center"></div>
+          <button onclick="window._enviarContacto()" class="btn-p" style="width:100%;text-align:center;margin-top:6px;border:none;cursor:pointer">
+            Enviar solicitud →
+          </button>
         </div>
-        <div class="fg">
-          <label>Ciudad</label>
-          <input type="text" placeholder="Monterrey, NL">
-        </div>
-        <div class="fg">
-          <label>¿Cuántos cobradores tienes?</label>
-          <select>
-            <option value="">Seleccionar</option>
-            <option>1 — 5</option>
-            <option>6 — 15</option>
-            <option>16 — 50</option>
-            <option>Más de 50</option>
-          </select>
-        </div>
-        <a class="btn-p" href="https://wa.me/528124804827?text=Hola%2C%20quiero%20información%20sobre%20KIWI%20SYSTEMS" style="display:block;text-align:center;margin-top:6px">
-          Enviar por WhatsApp →
-        </a>
       </div>
     </div>
   </div>
@@ -627,6 +639,59 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }) }
   })
 })
+
+// Formspree + WhatsApp
+window._enviarContacto = async function() {
+  const nombre    = document.getElementById('f-nombre')?.value.trim()
+  const correo    = document.getElementById('f-correo')?.value.trim()
+  const whatsapp  = document.getElementById('f-whatsapp')?.value.trim()
+  const ciudad    = document.getElementById('f-ciudad')?.value.trim()
+  const cobradores= document.getElementById('f-cobradores')?.value
+  const errEl     = document.getElementById('form-error')
+  const btn       = document.querySelector('[onclick="_enviarContacto()"]') ||
+                    document.querySelector('button[onclick="window._enviarContacto()"]')
+
+  errEl.style.display = 'none'
+
+  if (!nombre || !correo || !whatsapp) {
+    errEl.textContent = 'Por favor completa nombre, correo y WhatsApp.'
+    errEl.style.display = 'block'
+    return
+  }
+
+  if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true }
+
+  try {
+    const res = await fetch('https://formspree.io/f/meewyzgy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ nombre, email: correo, whatsapp, ciudad, cobradores })
+    })
+
+    if (res.ok) {
+      // Mostrar éxito
+      document.getElementById('form-fields').style.display = 'none'
+      document.getElementById('form-success').style.display = 'block'
+      // Abrir WhatsApp con los datos
+      const msg = encodeURIComponent(
+        '¡Hola! Me interesa KIWI SYSTEMS.\n\n' +
+        '👤 Nombre: ' + nombre + '\n' +
+        '📧 Correo: ' + correo + '\n' +
+        '📍 Ciudad: ' + (ciudad || '—') + '\n' +
+        '👥 Cobradores: ' + (cobradores || '—')
+      )
+      setTimeout(() => window.open('https://wa.me/528124804827?text=' + msg, '_blank'), 800)
+    } else {
+      errEl.textContent = 'Error al enviar. Intenta de nuevo.'
+      errEl.style.display = 'block'
+      if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
+    }
+  } catch(e) {
+    errEl.textContent = 'Sin conexión. Intenta de nuevo.'
+    errEl.style.display = 'block'
+    if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
+  }
+}
 
 // Scroll reveal
 const observer = new IntersectionObserver(entries => {
