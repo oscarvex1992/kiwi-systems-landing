@@ -482,23 +482,27 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <div class="franq-box">
         <h3>Solicita información</h3>
         <p>Cuéntanos sobre tu negocio y te contactamos en menos de 24 horas.</p>
-        <div id="form-success" style="display:none;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px">
-          <div style="font-size:24px;margin-bottom:6px">✅</div>
-          <div style="font-size:14px;font-weight:700;color:var(--cyan)">¡Mensaje enviado!</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:4px">Te contactamos en menos de 24 horas.</div>
+        <div id="form-success" style="display:none;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:12px;padding:20px;text-align:center;margin-bottom:16px">
+          <div style="font-size:28px;margin-bottom:8px">✅</div>
+          <div style="font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:4px">¡Mensaje enviado!</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Te contactamos en menos de 24 horas.</div>
+          <a id="wa-btn-success" href="#" target="_blank"
+            style="display:none;padding:11px 22px;background:#25D366;color:white;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.2px">
+            📲 Continuar por WhatsApp
+          </a>
         </div>
         <div id="form-fields">
           <div class="fg">
             <label>Nombre completo</label>
-            <input id="f-nombre" type="text" placeholder="Nombre completo">
+            <input id="f-nombre" type="text" placeholder="Tu nombre">
           </div>
           <div class="fg">
             <label>Correo electrónico</label>
-            <input id="f-correo" type="email" placeholder="Correo">
+            <input id="f-correo" type="email" placeholder="correo@empresa.com">
           </div>
           <div class="fg">
             <label>WhatsApp</label>
-            <input id="f-whatsapp" type="tel" placeholder="+52 81000000">
+            <input id="f-whatsapp" type="tel" placeholder="+52 81 0000 0000">
           </div>
           <div class="fg">
             <label>Ciudad</label>
@@ -680,7 +684,8 @@ window._enviarContacto = async function() {
         '📍 Ciudad: ' + (ciudad || '—') + '\n' +
         '👥 Cobradores: ' + (cobradores || '—')
       )
-      setTimeout(() => window.open('https://wa.me/528124804827?text=' + msg, '_blank'), 800)
+      const waBtn = document.getElementById('wa-btn-success')
+      if (waBtn) { waBtn.href = 'https://wa.me/528124804827?text=' + msg; waBtn.style.display = 'inline-block' }
     } else {
       errEl.textContent = 'Error al enviar. Intenta de nuevo.'
       errEl.style.display = 'block'
