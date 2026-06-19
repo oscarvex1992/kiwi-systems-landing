@@ -7,6 +7,7 @@
 <meta name="description" content="Plataforma SaaS para digitalizar y escalar operaciones de cobranza y crédito. KIWI PAY, KIWI AGENDA, KIWI TRACK y KIWI PORTAL.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -592,6 +593,48 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
   </div>
 </section>
 
+<!-- CANALES DE CONTACTO -->
+<section style="background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:72px 7%">
+  <div class="center reveal">
+    <span class="tag">Contáctanos ahora</span>
+    <h2 class="h2" style="margin-bottom:12px">¿Listo para empezar?</h2>
+    <p class="sub" style="margin:0 auto 48px">Elige el canal que prefieras. Respondemos en menos de 24 horas.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto" class="reveal">
+
+    <!-- WhatsApp directo -->
+    <div style="background:rgba(37,211,102,.05);border:1px solid rgba(37,211,102,.18);border-radius:18px;padding:28px 24px;text-align:center">
+      <div style="font-size:36px;margin-bottom:12px">📲</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px">WhatsApp directo</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Escríbenos ahora y te respondemos al momento.</div>
+      <a href="https://wa.me/528124804827?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20KIWI%20SYSTEMS" target="_blank"
+        style="display:inline-block;padding:12px 24px;background:#25D366;color:white;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px">
+        Abrir WhatsApp →
+      </a>
+    </div>
+
+    <!-- QR WhatsApp -->
+    <div style="background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:18px;padding:28px 24px;text-align:center">
+      <div style="font-size:36px;margin-bottom:12px">📱</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px">Escanea el QR</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Apunta tu cámara y abre WhatsApp directo.</div>
+      <div id="qr-whatsapp" style="display:inline-block;background:white;padding:10px;border-radius:10px"></div>
+    </div>
+
+    <!-- Correo -->
+    <div style="background:rgba(99,102,241,.05);border:1px solid rgba(99,102,241,.18);border-radius:18px;padding:28px 24px;text-align:center">
+      <div style="font-size:36px;margin-bottom:12px">✉️</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px">Correo electrónico</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Para consultas formales o propuestas de franquicia.</div>
+      <a href="mailto:kiwisystems.dev@gmail.com"
+        style="display:inline-block;padding:12px 24px;background:var(--indigo);color:white;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px">
+        Enviar correo →
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="ft-grid">
@@ -696,6 +739,30 @@ window._enviarContacto = async function() {
     errEl.style.display = 'block'
     if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
   }
+}
+
+// Generar QR WhatsApp
+if (typeof QRCode !== 'undefined') {
+  new QRCode(document.getElementById('qr-whatsapp'), {
+    text: 'https://wa.me/528124804827?text=Hola%2C%20me%20interesa%20KIWI%20SYSTEMS',
+    width: 120,
+    height: 120,
+    colorDark: '#050D18',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  })
+} else {
+  // Fallback si no carga la librería
+  window.addEventListener('load', () => {
+    if (typeof QRCode !== 'undefined') {
+      new QRCode(document.getElementById('qr-whatsapp'), {
+        text: 'https://wa.me/528124804827?text=Hola%2C%20me%20interesa%20KIWI%20SYSTEMS',
+        width: 120, height: 120,
+        colorDark: '#050D18', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      })
+    }
+  })
 }
 
 // Scroll reveal
