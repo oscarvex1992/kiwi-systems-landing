@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KIWI SYSTEMS — Ecosistema tecnológico para cobranza y crédito</title>
-<meta name="description" content="Plataforma SaaS para digitalizar y escalar operaciones de cobranza y crédito. KIWI PAY, KIWI AGENDA, KIWI TRACK y KIWI PORTAL.">
+<meta name="description" content="Plataforma SaaS para digitalizar y escalar operaciones de cobranza y crédito. KIWI PAY, KIWI AGENDA MANAGER, KIWI TRACK, KIWI PORTAL y KIWI IA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -78,6 +77,8 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .eco-card:hover{border-color:rgba(0,212,255,.2);transform:translateY(-3px);background:rgba(0,212,255,.02)}
 .eco-card:hover::before{opacity:1}
 .eco-card.live{border-color:rgba(0,212,255,.15);background:rgba(0,212,255,.025)}
+.eco-card.beta{border-color:rgba(212,175,55,.15);background:rgba(212,175,55,.02)}
+.eco-card.wide{grid-column:1/-1}
 .eco-card.live::before{opacity:.6}
 .eco-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
 .eco-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px}
@@ -85,9 +86,11 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .ic-agenda{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.18)}
 .ic-track{background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2)}
 .ic-portal{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.18)}
+.ic-ia{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2)}
 .eco-badge{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 10px;border-radius:100px}
 .b-live{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
 .b-soon{background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.08)}
+.b-beta{background:rgba(212,175,55,.1);color:var(--gold);border:1px solid rgba(212,175,55,.2)}
 .eco-name{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;margin-bottom:8px;letter-spacing:-.3px}
 .eco-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px}
 .eco-pills{display:flex;flex-wrap:wrap;gap:6px}
@@ -163,6 +166,7 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .rb-done{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
 .rb-wip{background:rgba(212,175,55,.1);color:var(--gold);border:1px solid rgba(212,175,55,.2)}
 .rb-future{background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid var(--border)}
+.rb-beta{background:rgba(212,175,55,.1);color:var(--gold);border:1px solid rgba(212,175,55,.2)}
 
 /* ── CTA FINAL ── */
 .cta-final{background:var(--bg);text-align:center;padding:100px 7%}
@@ -281,7 +285,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 <section class="eco" id="ecosistema">
   <div class="center reveal">
     <span class="tag">Ecosistema KIWI SYSTEMS</span>
-    <h2 class="h2">Una plataforma.<br>Cuatro productos.</h2>
+    <h2 class="h2">Una plataforma.<br>Cinco productos.</h2>
     <p class="sub" style="margin:0 auto">Cada producto funciona de manera independiente o integrada dentro del ecosistema. Tú decides qué activar.</p>
   </div>
   <div class="eco-grid reveal">
@@ -292,12 +296,12 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
         <span class="eco-badge b-live">● Disponible</span>
       </div>
       <div class="eco-name">KIWI PAY</div>
-      <div class="eco-desc">Sistema de cobranza y crédito en campo. Digitaliza toda tu operación desde el primer día y mantén control total de tu cartera.</div>
+      <div class="eco-desc">Sistema de cobranza y crédito en campo. Tu equipo cobra con o sin señal: la app guarda todo en el teléfono y sincroniza al volver la conexión.</div>
       <div class="eco-pills">
         <span class="pill">Gestión de créditos</span>
         <span class="pill">Control de cartera</span>
-        <span class="pill">Pagos digitales</span>
-        <span class="pill">Comprobantes</span>
+        <span class="pill">Funciona sin internet</span>
+        <span class="pill">Comprobantes impresos</span>
       </div>
     </div>
 
@@ -306,7 +310,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
         <div class="eco-icon ic-agenda">📅</div>
         <span class="eco-badge b-live">● Disponible</span>
       </div>
-      <div class="eco-name">KIWI AGENDA</div>
+      <div class="eco-name">KIWI AGENDA MANAGER</div>
       <div class="eco-desc">Seguimiento de visitas, prospectos y programación de actividades para tu equipo en campo. Todo sincronizado en tiempo real.</div>
       <div class="eco-pills">
         <span class="pill">Calendario de visitas</span>
@@ -315,31 +319,45 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       </div>
     </div>
 
-    <div class="eco-card">
+    <div class="eco-card live">
       <div class="eco-top">
         <div class="eco-icon ic-track">📍</div>
-        <span class="eco-badge b-soon">Próximamente</span>
+        <span class="eco-badge b-live">● Disponible</span>
       </div>
       <div class="eco-name">KIWI TRACK</div>
-      <div class="eco-desc">Control de rutas, cobertura operativa y seguimiento del equipo en campo con geolocalización en tiempo real.</div>
+      <div class="eco-desc">Cada cobro queda marcado con el lugar donde ocurrió, y el mapa del día muestra por dónde anduvo cada cobrador. Deja de ser tu palabra contra la suya.</div>
       <div class="eco-pills">
-        <span class="pill">Geolocalización</span>
-        <span class="pill">Rutas en tiempo real</span>
-        <span class="pill">Cobertura de cartera</span>
+        <span class="pill">Geoevidencia de cada cobro</span>
+        <span class="pill">Mapa del día por cobrador</span>
+        <span class="pill">Última posición del equipo</span>
       </div>
     </div>
 
-    <div class="eco-card">
+    <div class="eco-card beta">
       <div class="eco-top">
         <div class="eco-icon ic-portal">🌐</div>
-        <span class="eco-badge b-soon">Próximamente</span>
+        <span class="eco-badge b-beta">Piloto</span>
       </div>
       <div class="eco-name">KIWI PORTAL</div>
-      <div class="eco-desc">Portal digital para que tus clientes consulten su saldo, historial de pagos y realicen pagos en línea de forma autónoma.</div>
+      <div class="eco-desc">Tu empresa con presencia web propia: un sitio público donde un prospecto solicita su crédito en línea y un cliente consulta su saldo e historial sin llamar a nadie.</div>
       <div class="eco-pills">
-        <span class="pill">Consulta de saldo</span>
-        <span class="pill">Pago en línea</span>
-        <span class="pill">Historial de pagos</span>
+        <span class="pill">Sitio propio por empresa</span>
+        <span class="pill">Solicitud de crédito en línea</span>
+        <span class="pill">Consulta de saldo e historial</span>
+      </div>
+    </div>
+
+    <div class="eco-card beta wide">
+      <div class="eco-top">
+        <div class="eco-icon ic-ia">🤖</div>
+        <span class="eco-badge b-beta">Beta</span>
+      </div>
+      <div class="eco-name">KIWI IA</div>
+      <div class="eco-desc">Pregúntale a tu cartera en palabras normales. «¿Quién no ha pagado esta semana?», «¿cómo va la ruta de Juárez?» — y responde con los datos de tu operación, no con generalidades.</div>
+      <div class="eco-pills">
+        <span class="pill">Preguntas en lenguaje natural</span>
+        <span class="pill">Responde con tus datos</span>
+        <span class="pill">Disponible por voz</span>
       </div>
     </div>
 
@@ -532,8 +550,8 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 <!-- ROADMAP -->
 <section class="roadmap" id="roadmap">
   <div class="center reveal">
-    <span class="tag">Lo que viene</span>
-    <h2 class="h2">Ecosistema KIWI<br>en construcción</h2>
+    <span class="tag">Dónde estamos</span>
+    <h2 class="h2">Ecosistema KIWI<br>hoy</h2>
     <p class="sub" style="margin:0 auto">Construimos una plataforma completa para la industria de cobranza y crédito en Latinoamérica.</p>
   </div>
   <div class="rm-track reveal">
@@ -548,34 +566,34 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
     <div class="rm-item">
       <div class="rm-dot d-done">✅</div>
       <div class="rm-info">
-        <div class="rm-name">KIWI AGENDA</div>
+        <div class="rm-name">KIWI AGENDA MANAGER</div>
         <div class="rm-sub">Visitas, prospectos y seguimiento</div>
+      </div>
+      <span class="rm-badge rb-done">En producción</span>
+    </div>
+    <div class="rm-item">
+      <div class="rm-dot d-done">✅</div>
+      <div class="rm-info">
+        <div class="rm-name">KIWI TRACK</div>
+        <div class="rm-sub">Geoevidencia de cobros y mapa de ruta</div>
       </div>
       <span class="rm-badge rb-done">En producción</span>
     </div>
     <div class="rm-item">
       <div class="rm-dot d-wip">🚧</div>
       <div class="rm-info">
-        <div class="rm-name">KIWI TRACK</div>
-        <div class="rm-sub">Rutas y cobertura en tiempo real</div>
-      </div>
-      <span class="rm-badge rb-wip">En desarrollo</span>
-    </div>
-    <div class="rm-item">
-      <div class="rm-dot d-wip">🚧</div>
-      <div class="rm-info">
         <div class="rm-name">KIWI PORTAL</div>
-        <div class="rm-sub">Portal digital para clientes finales</div>
+        <div class="rm-sub">Sitio público y solicitud en línea</div>
       </div>
-      <span class="rm-badge rb-wip">En desarrollo</span>
+      <span class="rm-badge rb-beta">Piloto</span>
     </div>
     <div class="rm-item">
-      <div class="rm-dot d-future">🔮</div>
+      <div class="rm-dot d-wip">🤖</div>
       <div class="rm-info">
         <div class="rm-name">KIWI IA</div>
-        <div class="rm-sub">Inteligencia de cartera y riesgo crediticio</div>
+        <div class="rm-sub">Asistente que responde sobre tu cartera</div>
       </div>
-      <span class="rm-badge rb-future">Próximamente</span>
+      <span class="rm-badge rb-beta">Beta</span>
     </div>
   </div>
 </section>
@@ -593,48 +611,6 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
   </div>
 </section>
 
-<!-- CANALES DE CONTACTO -->
-<section style="background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:72px 7%">
-  <div class="center reveal">
-    <span class="tag">Contáctanos ahora</span>
-    <h2 class="h2" style="margin-bottom:12px">¿Listo para empezar?</h2>
-    <p class="sub" style="margin:0 auto 48px">Elige el canal que prefieras. Respondemos en menos de 24 horas.</p>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto" class="reveal">
-
-    <!-- WhatsApp directo -->
-    <div style="background:rgba(37,211,102,.05);border:1px solid rgba(37,211,102,.18);border-radius:18px;padding:28px 24px;text-align:center">
-      <div style="font-size:36px;margin-bottom:12px">📲</div>
-      <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px">WhatsApp directo</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Escríbenos ahora y te respondemos al momento.</div>
-      <a href="https://wa.me/528124804827?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20KIWI%20SYSTEMS" target="_blank"
-        style="display:inline-block;padding:12px 24px;background:#25D366;color:white;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px">
-        Abrir WhatsApp →
-      </a>
-    </div>
-
-    <!-- QR WhatsApp -->
-    <div style="background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:18px;padding:28px 24px;text-align:center">
-      <div style="font-size:36px;margin-bottom:12px">📱</div>
-      <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px">Escanea el QR</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6">Apunta tu cámara y abre WhatsApp directo.</div>
-      <div id="qr-whatsapp" style="display:inline-block;background:white;padding:10px;border-radius:10px"></div>
-    </div>
-
-    <!-- Correo -->
-    <div style="background:rgba(99,102,241,.05);border:1px solid rgba(99,102,241,.18);border-radius:18px;padding:28px 24px;text-align:center">
-      <div style="font-size:36px;margin-bottom:12px">✉️</div>
-      <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px">Correo electrónico</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Para consultas formales o propuestas de franquicia.</div>
-      <a href="mailto:kiwisystems.dev@gmail.com"
-        style="display:inline-block;padding:12px 24px;background:var(--indigo);color:white;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px">
-        Enviar correo →
-      </a>
-    </div>
-
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="ft-grid">
@@ -649,9 +625,10 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <h4>Productos</h4>
       <ul>
         <li><a href="#ecosistema">KIWI PAY</a></li>
-        <li><a href="#ecosistema">KIWI AGENDA</a></li>
-        <li><a href="#roadmap">KIWI TRACK</a></li>
-        <li><a href="#roadmap">KIWI PORTAL</a></li>
+        <li><a href="#ecosistema">KIWI AGENDA MANAGER</a></li>
+        <li><a href="#ecosistema">KIWI TRACK</a></li>
+        <li><a href="#ecosistema">KIWI PORTAL</a></li>
+        <li><a href="#ecosistema">KIWI IA</a></li>
       </ul>
     </div>
     <div class="fc">
@@ -739,30 +716,6 @@ window._enviarContacto = async function() {
     errEl.style.display = 'block'
     if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
   }
-}
-
-// Generar QR WhatsApp
-if (typeof QRCode !== 'undefined') {
-  new QRCode(document.getElementById('qr-whatsapp'), {
-    text: 'https://wa.me/528124804827?text=Hola%2C%20me%20interesa%20KIWI%20SYSTEMS',
-    width: 120,
-    height: 120,
-    colorDark: '#050D18',
-    colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.M
-  })
-} else {
-  // Fallback si no carga la librería
-  window.addEventListener('load', () => {
-    if (typeof QRCode !== 'undefined') {
-      new QRCode(document.getElementById('qr-whatsapp'), {
-        text: 'https://wa.me/528124804827?text=Hola%2C%20me%20interesa%20KIWI%20SYSTEMS',
-        width: 120, height: 120,
-        colorDark: '#050D18', colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.M
-      })
-    }
-  })
 }
 
 // Scroll reveal
