@@ -114,6 +114,16 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;position:relative;max-width:900px;margin-left:auto;margin-right:auto}
 .steps::before{content:'';position:absolute;top:26px;left:calc(12.5% + 24px);right:calc(12.5% + 24px);height:1px;background:linear-gradient(90deg,var(--cyan),var(--indigo));opacity:.25;z-index:0}
 .step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.origen{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.org-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;max-width:980px;margin:56px auto 0}
+.org-p{font-size:clamp(15px,1.5vw,17px);color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:18px}
+.org-p strong{color:#fff;font-weight:600}
+.org-cierre{font-family:'Montserrat',sans-serif;font-size:clamp(17px,1.9vw,20px);font-weight:700;line-height:1.5;color:#fff;border-left:2px solid var(--cyan);padding-left:20px;margin-top:26px}
+.mv{display:flex;flex-direction:column;gap:20px}
+.mv-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:26px 24px}
+.mv-card .tag{margin-bottom:12px;display:inline-block}
+.mv-card p{font-size:15px;color:rgba(255,255,255,.72);line-height:1.7;margin:0}
+.mv-card p strong{color:#fff;font-weight:600}
 .step-num{width:52px;height:52px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;color:var(--cyan);position:relative}
 .step-num::after{content:'';position:absolute;inset:-4px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%)}
 .step-title{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:-.2px}
@@ -199,6 +209,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
   .eco-grid{grid-template-columns:1fr}
   .eq-grid{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr;gap:32px}
+  .org-grid{grid-template-columns:1fr;gap:38px}
   .steps::before{display:none}
   .caso-inner{grid-template-columns:1fr;gap:32px}
   .franq-inner{grid-template-columns:1fr;gap:40px}
@@ -236,6 +247,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
     <li><a href="#equipo">Para tu equipo</a></li>
     <li><a href="#como">Cómo funciona</a></li>
     <li><a href="#caso">Caso real</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#franquicias">Franquicias</a></li>
   </ul>
   <a class="btn-nav" href="#franquicias">Solicitar demo</a>
@@ -459,6 +471,42 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
   </div>
 </section>
 
+<!-- QUIENES SOMOS -->
+<section class="origen" id="nosotros">
+  <div class="center reveal">
+    <span class="tag">Quiénes somos</span>
+    <h2 class="h2">Nace en la calle, no en una oficina</h2>
+    <p class="sub" style="margin:0 auto">Cada función de este ecosistema fue antes un problema real de una operación real.</p>
+  </div>
+  <div class="org-grid reveal">
+    <div>
+      <p class="org-p">Un cobrador sin señal a media ruta. Un ticket que no imprimía. Un cierre de caja
+        que no cuadraba a las ocho de la noche. <strong>Ninguna de esas funciones salió de un brief:
+        salieron de un día de trabajo.</strong></p>
+      <p class="org-p">Construimos herramientas para negocios de campo en México y Latinoamérica
+        —microcrédito, cobranza, agenda comercial y logística— y las probamos donde se usan:
+        <strong>en la ruta, con dinero de verdad</strong> y con gente que no puede esperar a que se
+        arregle mañana.</p>
+      <p class="org-cierre">No vendemos una promesa de transformación digital.<br>
+        Vendemos herramientas que aguantan un día de trabajo.</p>
+    </div>
+    <div class="mv">
+      <div class="mv-card">
+        <span class="tag">Misión</span>
+        <p>Poner en manos de una operación pequeña <strong>el mismo control que hasta ahora solo
+          tenían las grandes</strong>: información confiable, dinero cuadrado y evidencia de cada
+          gestión — funcione o no funcione el internet.</p>
+      </div>
+      <div class="mv-card">
+        <span class="tag">Visión</span>
+        <p>Un ecosistema donde cada negocio de campo opere sobre un mismo núcleo y lo haga suyo:
+          su vocabulario, sus reglas y sus políticas. <strong>Nosotros construimos la herramienta;
+          cada empresa decide cómo la usa.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FRANQUICIAS -->
 <section class="franq" id="franquicias">
   <div class="franq-inner">
@@ -637,6 +685,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
         <li><a href="#ecosistema">Productos</a></li>
         <li><a href="#franquicias">Franquicias</a></li>
         <li><a href="#caso">Caso real</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#franquicias">Contacto</a></li>
       </ul>
     </div>
