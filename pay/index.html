@@ -150,6 +150,60 @@ section{padding:88px 0;position:relative}
 .paso p b{color:var(--kp-text-primary);font-weight:600}
 .img .tel{width:100%;max-width:262px;margin:0 auto}
 
+/* kiwi ia */
+.ia{position:relative;overflow:hidden}
+.ia::before{content:'';position:absolute;top:-180px;left:50%;transform:translateX(-50%);
+  width:820px;height:520px;background:radial-gradient(ellipse,rgba(99,216,59,.09),transparent 66%);pointer-events:none}
+.ia-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;position:relative;z-index:2}
+@media(max-width:900px){.ia-grid{grid-template-columns:1fr;gap:44px}}
+.ia-h{font-size:clamp(30px,3.6vw,46px);font-weight:800;line-height:1.05;letter-spacing:-.035em;margin-bottom:18px}
+.ia-h .v{color:var(--kp-primary)}
+.ia-p{font-size:16px;color:var(--kp-text-secondary);max-width:480px;margin-bottom:28px}
+.ia-p b{color:var(--kp-text-primary);font-weight:600}
+.burbujas{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px}
+.bu{font-size:14px;color:var(--kp-text-secondary);background:rgba(99,216,59,.09);
+  border:1px solid rgba(99,216,59,.22);border-radius:999px;padding:9px 16px;line-height:1.3}
+.bu-mas{color:var(--kp-text-muted);background:transparent;border-style:dashed;border-color:var(--kp-border)}
+.ia-rem{font-size:15px;color:var(--kp-text-secondary);line-height:1.65;padding-left:20px;
+  border-left:3px solid var(--kp-primary);max-width:520px}
+.ia-rem b{color:var(--kp-text-primary);font-weight:600}
+.ia-foto{display:flex;justify-content:center}
+.ia-foto .tel{width:100%;max-width:262px}
+
+/* origenes de cartera */
+.orig{background:var(--kp-bg-secondary);border-top:1px solid var(--kp-border);border-bottom:1px solid var(--kp-border)}
+.orig-grid{max-width:760px;margin:0 auto}
+@media(max-width:900px){.orig-grid{grid-template-columns:1fr;gap:38px}}
+.orig-lead{font-size:clamp(16px,1.6vw,18.5px);color:var(--kp-text-secondary);line-height:1.7;margin-bottom:30px}
+.orig-lead b{color:var(--kp-text-primary);font-weight:600}
+.orig-golpe{font-size:clamp(19px,2.1vw,25px);font-weight:700;line-height:1.35;letter-spacing:-.02em;
+  color:var(--kp-text-primary);margin:26px 0 24px;padding-left:20px;border-left:3px solid var(--kp-primary)}
+.orig-golpe .v{color:var(--kp-primary)}
+.orig-pts{display:flex;flex-direction:column;gap:15px}
+.orig-pt{display:flex;gap:13px;align-items:flex-start}
+.orig-pt .pc{flex:none;width:26px;height:26px;border-radius:8px;background:var(--kp-primary-soft);
+  display:flex;align-items:center;justify-content:center;margin-top:1px}
+.orig-pt .pc svg{width:14px;height:14px;stroke:var(--kp-primary);fill:none;stroke-width:2}
+.orig-pt p{font-size:15px;color:var(--kp-text-secondary);line-height:1.55}
+.orig-pt b{color:var(--kp-text-primary);font-weight:600}
+.orig-nota{margin-top:32px;padding:18px 20px;border-radius:var(--kp-radius-md);
+  background:var(--kp-primary-soft);border:1px solid rgba(99,216,59,.20);
+  font-size:14.5px;color:var(--kp-text-secondary);line-height:1.6;font-style:italic}
+.orig-nota b{color:var(--kp-primary);font-style:normal;font-weight:700}
+/* tres origenes */
+.tres{display:flex;flex-direction:column;gap:12px}
+.tr{display:flex;align-items:center;gap:15px;background:var(--kp-surface);border:1px solid var(--kp-border);
+  border-radius:var(--kp-radius-lg);padding:19px 21px;transition:all .2s}
+.tr:hover{border-color:rgba(99,216,59,.28);background:var(--kp-surface-hover)}
+.tr .ti{flex:none;width:40px;height:40px;border-radius:11px;background:var(--kp-primary-soft);
+  display:flex;align-items:center;justify-content:center}
+.tr .ti svg{width:20px;height:20px;stroke:var(--kp-primary);fill:none;stroke-width:1.6}
+.tr .tt{font-size:15px;font-weight:700;margin-bottom:2px}
+.tr .td{font-size:13.5px;color:var(--kp-text-muted)}
+.tr-flecha{margin-left:auto;color:var(--kp-text-muted);font-size:18px}
+.tr-cart{margin-top:6px;text-align:center;font-size:13px;color:var(--kp-text-muted);letter-spacing:.3px}
+.tr-cart b{color:var(--kp-primary);font-weight:700}
+
 /* para quien */
 .quien{margin-top:40px}
 .qsi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -346,14 +400,75 @@ footer a:hover{color:var(--kp-text-secondary)}
       <div class="img"><div class="tel"><img src="/pay/img/05-resumen.jpg" alt="Resumen diario con productividad, meta del día y qué revisar"></div></div>
     </div>
 
-    <div class="paso">
-      <div class="txt">
-        <div class="num">5</div>
-        <h3>Y lo que viene mañana</h3>
-        <p>Agenda de visitas, renovaciones y clientes por atender. <b>Pregúntale a KIWI IA</b> si tu
-        caja cuadra, cuánto entregaste o quiénes quedaron sin pagar — con la voz, si prefieres.</p>
+  </div>
+</section>
+
+<!-- ══ KIWI IA ══ -->
+<section class="ia">
+  <div class="wrap ia-grid">
+    <div>
+      <span class="eyebrow" style="color:var(--kp-primary)">KIWI IA · pregúntale a tu operación</span>
+      <h2 class="ia-h">No busques el dato.<br><span class="v">Pregúntalo.</span></h2>
+      <p class="ia-p">Tu operación genera cientos de movimientos todos los días.
+      <b>KIWI IA los convierte en respuestas.</b></p>
+
+      <div class="burbujas">
+        <span class="bu">¿Cuadra mi caja?</span>
+        <span class="bu">¿Cuánto recaudamos hoy?</span>
+        <span class="bu">¿Quiénes quedaron sin pagar?</span>
+        <span class="bu">¿Qué clientes están atrasados?</span>
+        <span class="bu">¿Cuánto dinero tengo colocado?</span>
+        <span class="bu">¿Qué tengo pendiente mañana?</span>
+        <span class="bu">¿Cómo va mi ruta?</span>
+        <span class="bu bu-mas">…y todo lo que se te ocurra</span>
       </div>
-      <div class="img"><div class="tel"><img src="/pay/img/07-kiwi-ia.jpg" alt="KIWI IA: preguntas sobre la operación como ¿cuadra mi caja? o ¿quiénes quedaron sin pagar?"></div></div>
+
+      <p class="ia-rem"><b>KIWI IA conoce el contexto de tu operación</b> y te ayuda a entender qué
+      está pasando — sin recorrer pantallas, filtros y reportes.</p>
+    </div>
+
+    <div class="ia-foto">
+      <div class="tel"><img src="/pay/img/07-kiwi-ia.jpg" alt="KIWI IA respondiendo preguntas sobre la operación del día"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ORÍGENES DE CARTERA ══ -->
+<section class="orig">
+  <div class="wrap">
+    <div style="max-width:640px;margin-bottom:52px">
+      <span class="eyebrow" style="color:var(--kp-primary)">Cobranza, ventas y servicios</span>
+      <h2 class="h2">Tu cartera no siempre<br>nace de un préstamo.</h2>
+    </div>
+
+    <div class="orig-grid">
+      <div>
+        <p class="orig-lead">Tal vez prestas dinero. Tal vez vendes motos, electrodomésticos o
+        mercancía a plazos. Tal vez cobras servicios por cuotas.</p>
+        <p class="orig-golpe">El origen cambia.<br><span class="v">El reto es el mismo:</span>
+        saber quién debe, cuánto debe, qué toca cobrar hoy y dónde está tu dinero.</p>
+        <p class="orig-lead" style="margin-bottom:26px">KIWI PAY convierte esa operación en una
+        <b>cartera que puedes controlar de principio a fin</b>.</p>
+
+        <div class="orig-pts">
+          <div class="orig-pt">
+            <span class="pc"><svg viewBox="0 0 24 24"><path d="M21 8v8a2 2 0 0 1-1 1.7l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16V8a2 2 0 0 1 1-1.7l7-4a2 2 0 0 1 2 0l7 4A2 2 0 0 1 21 8z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></span>
+            <p><b>Si vendes a plazos</b> — controla producto, entrega, inventario, cuotas y saldo del cliente.</p>
+          </div>
+          <div class="orig-pt">
+            <span class="pc"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+            <p><b>Si otorgas créditos</b> — administra capital, interés, pagos, renovaciones y cobranza.</p>
+          </div>
+          <div class="orig-pt">
+            <span class="pc"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M17 11h4M19 9v4"/></svg></span>
+            <p><b>Si financias servicios</b> — convierte el valor contratado en un plan de pagos y dale seguimiento hasta liquidarlo.</p>
+          </div>
+        </div>
+
+        <p class="orig-nota">¿Tu operación necesita un campo que no está? <b>Se agrega.</b>
+        La herramienta se acomoda a cómo trabajas — no al revés.</p>
+      </div>
+
     </div>
   </div>
 </section>
