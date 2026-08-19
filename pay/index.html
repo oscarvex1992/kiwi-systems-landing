@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KIWI PAY — Cobra más. Controla mejor.</title>
+<meta name="description" content="La plataforma de gestión de cobranza y crédito que conecta tu operación de campo con el control administrativo. Cobra con o sin señal, imprime el ticket ahí mismo y cuadra tu caja al cerrar.">
+<link rel="icon" href="img/logo-pay.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kp-bg-primary:#06110F; --kp-bg-secondary:#081A16; --kp-bg-elevated:#0D211C;
+  --kp-primary:#63D83B; --kp-primary-hover:#72E64B; --kp-primary-dark:#2FAE37;
+  --kp-primary-soft:rgba(99,216,59,.12);
+  --kp-text-primary:#F7FAF9; --kp-text-secondary:#B7C3BF; --kp-text-muted:#788984;
+  --kp-surface:#0C1816; --kp-surface-hover:#11231F; --kp-border:rgba(255,255,255,.10);
+  --kp-success:#22C55E; --kp-warning:#F59E0B; --kp-danger:#EF4444; --kp-info:#3B82F6;
+  --kp-radius-sm:8px; --kp-radius-md:12px; --kp-radius-lg:18px; --kp-radius-xl:28px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:linear-gradient(135deg,#06110F 0%,#071713 55%,#0A2619 100%);
+  background-attachment:fixed;
+  color:var(--kp-text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+
+/* ── HEADER ── */
+header{
+  height:72px;position:sticky;top:0;z-index:400;
+  background:rgba(6,17,15,.82);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--kp-border);
+}
+.hd{height:72px;display:flex;align-items:center;gap:16px}
+.madre{font-size:13.5px;font-weight:600;color:var(--kp-text-muted);letter-spacing:.2px;white-space:nowrap}
+.madre:hover{color:var(--kp-text-secondary)}
+.sep{width:1px;height:20px;background:var(--kp-border)}
+.marca{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15.5px;letter-spacing:-.2px}
+.marca img{width:28px;height:28px;border-radius:8px}
+.marca span{color:var(--kp-primary)}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{font-size:13.5px;font-weight:500;color:var(--kp-text-secondary)}
+.nav a:hover{color:var(--kp-text-primary)}
+.cta-hd{background:var(--kp-primary);color:#06110F;font-weight:700;font-size:13.5px;
+  padding:10px 20px;border-radius:var(--kp-radius-sm);margin-left:22px;white-space:nowrap;transition:background .2s}
+.cta-hd:hover{background:var(--kp-primary-hover)}
+@media(max-width:940px){.nav{display:none}.cta-hd{margin-left:auto}}
+
+/* ── HERO ── */
+.hero{position:relative;padding:76px 0 92px;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-260px;right:-160px;width:900px;height:760px;
+  background:radial-gradient(ellipse,rgba(99,216,59,.10),transparent 66%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-300px;left:-200px;width:720px;height:620px;
+  background:radial-gradient(ellipse,rgba(47,174,55,.07),transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:2}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:52px}}
+.pill{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(99,216,59,.28);
+  background:var(--kp-primary-soft);border-radius:999px;padding:7px 15px;font-size:12.5px;
+  font-weight:600;color:var(--kp-primary);margin-bottom:24px}
+.pt{width:7px;height:7px;border-radius:50%;background:var(--kp-primary)}
+h1{font-size:clamp(42px,5vw,76px);font-weight:800;line-height:.98;letter-spacing:-.035em;margin-bottom:22px}
+h1 .v{color:var(--kp-primary)}
+.lead{font-size:clamp(15.5px,1.5vw,18px);color:var(--kp-text-secondary);max-width:520px;margin-bottom:34px}
+.bene{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px;max-width:540px}
+@media(max-width:560px){.bene{grid-template-columns:repeat(2,1fr)}}
+.bn{display:flex;flex-direction:column;gap:8px}
+.bn svg{width:22px;height:22px;stroke:var(--kp-primary);fill:none;stroke-width:1.6}
+.bn span{font-size:12.5px;color:var(--kp-text-secondary);line-height:1.35}
+.btns{display:flex;gap:13px;flex-wrap:wrap}
+.b1{background:var(--kp-primary);color:#06110F;font-weight:700;font-size:14.5px;
+  padding:15px 28px;border-radius:var(--kp-radius-md);display:inline-flex;align-items:center;gap:10px;transition:all .2s}
+.b1:hover{background:var(--kp-primary-hover);transform:translateY(-1px);box-shadow:0 8px 28px rgba(99,216,59,.22)}
+.b2{border:1px solid var(--kp-border);color:var(--kp-text-primary);font-weight:600;font-size:14.5px;
+  padding:15px 28px;border-radius:var(--kp-radius-md);display:inline-flex;align-items:center;gap:10px;transition:all .2s}
+.b2:hover{border-color:rgba(99,216,59,.4);background:var(--kp-surface-hover)}
+
+/* teléfonos */
+.fotos{position:relative;display:flex;justify-content:center;align-items:flex-end;min-height:560px}
+.tel{border-radius:34px;border:9px solid #10201C;background:#10201C;
+  box-shadow:0 30px 70px rgba(0,0,0,.55);overflow:hidden;position:relative}
+.tel img{display:block;width:100%;height:auto}
+.tel-a{width:266px;z-index:3}
+.tel-b{width:224px;position:absolute;right:2%;bottom:52px;z-index:2;opacity:.94}
+@media(max-width:980px){.fotos{min-height:520px}.tel-b{right:6%}}
+@media(max-width:560px){.tel-a{width:224px}.tel-b{width:180px;right:0;bottom:40px}}
+
+/* ── SECCIONES ── */
+section{padding:88px 0;position:relative}
+.claro{background:#F4F7F6;color:#0B1F1A;border-radius:var(--kp-radius-xl) var(--kp-radius-xl) 0 0}
+.claro .h2{color:#0B1F1A}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;
+  letter-spacing:1.3px;text-transform:uppercase;color:var(--kp-primary-dark);margin-bottom:14px}
+.eyebrow::before{content:'';width:3px;height:14px;background:var(--kp-primary);border-radius:2px}
+.h2{font-size:clamp(28px,3.4vw,44px);font-weight:800;line-height:1.06;letter-spacing:-.03em;margin-bottom:14px}
+.h2 .v{color:var(--kp-primary-dark)}
+.dosc{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:end;margin-bottom:44px}
+@media(max-width:860px){.dosc{grid-template-columns:1fr;gap:16px}}
+.dosc p{color:#4A5C57;font-size:15.5px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));gap:16px}
+.card{background:#fff;border:1px solid rgba(11,31,26,.08);border-radius:var(--kp-radius-lg);padding:24px 22px;transition:all .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(11,31,26,.08)}
+.ci{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.ci svg{width:19px;height:19px;fill:none;stroke-width:1.8}
+.card h3{font-size:15px;font-weight:700;margin-bottom:7px;color:#0B1F1A}
+.card p{font-size:14px;color:#5A6D68;line-height:1.55}
+
+/* hechos */
+.hechos{background:var(--kp-bg-elevated);border:1px solid var(--kp-border);border-radius:var(--kp-radius-lg);
+  padding:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px}
+@media(max-width:860px){.hechos{grid-template-columns:repeat(2,1fr)}}
+.hecho{text-align:center}
+.hecho .t{font-size:17px;font-weight:800;color:var(--kp-primary);margin-bottom:5px;line-height:1.25}
+.hecho .d{font-size:12.5px;color:var(--kp-text-muted);line-height:1.45}
+
+/* recorrido */
+.paso{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center;margin-bottom:76px}
+.paso:nth-child(even){grid-template-columns:300px 1fr}
+.paso:nth-child(even) .txt{order:2}
+.paso:nth-child(even) .img{order:1}
+@media(max-width:860px){.paso,.paso:nth-child(even){grid-template-columns:1fr;gap:26px}
+  .paso:nth-child(even) .txt,.paso:nth-child(even) .img{order:0}}
+.num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;
+  border-radius:9px;background:var(--kp-primary-soft);color:var(--kp-primary);
+  font-weight:800;font-size:13.5px;margin-bottom:14px}
+.paso h3{font-size:clamp(20px,2.2vw,27px);font-weight:800;letter-spacing:-.02em;margin-bottom:11px}
+.paso p{color:var(--kp-text-secondary);font-size:15.5px;max-width:520px}
+.paso p b{color:var(--kp-text-primary);font-weight:600}
+.img .tel{width:100%;max-width:262px;margin:0 auto}
+
+/* para quien */
+.quien{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+@media(max-width:760px){.quien{grid-template-columns:1fr}}
+.qb{border-radius:var(--kp-radius-lg);padding:28px 26px}
+.qb h3{font-size:15.5px;font-weight:700;margin-bottom:16px}
+.qb li{list-style:none;font-size:14.5px;padding:7px 0 7px 26px;position:relative;color:var(--kp-text-secondary)}
+.qsi{border:1px solid rgba(99,216,59,.24);background:var(--kp-primary-soft)}
+.qsi li::before{content:'✓';position:absolute;left:0;color:var(--kp-primary);font-weight:800}
+.qno{border:1px solid var(--kp-border);background:var(--kp-surface)}
+.qno li::before{content:'—';position:absolute;left:0;color:var(--kp-text-muted)}
+
+/* cierre */
+.cierre{text-align:center;padding:96px 0 104px}
+.cierre .h2{margin-bottom:16px}
+.cierre p{color:var(--kp-text-secondary);max-width:560px;margin:0 auto 32px;font-size:16px}
+footer{border-top:1px solid var(--kp-border);padding:34px 0;font-size:13.5px;color:var(--kp-text-muted)}
+.ft{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:var(--kp-text-secondary)}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="wrap hd">
+    <a class="madre" href="/">KIWI SYSTEMS</a>
+    <div class="sep"></div>
+    <a class="marca" href="/pay">
+      <img src="img/logo-pay.png" alt="">
+      KIWI <span>PAY</span>
+    </a>
+    <nav class="nav">
+      <a href="#plataforma">Plataforma</a>
+      <a href="#recorrido">Cómo se usa</a>
+      <a href="#quien">Para quién</a>
+    </nav>
+    <a class="cta-hd" href="/#franquicias">Solicitar demo</a>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><span class="pt"></span> En producción · operación real desde junio de 2026</span>
+      <h1>Cobra más.<br><span class="v">Controla mejor.</span></h1>
+      <p class="lead">La plataforma de gestión de cobranza y crédito que conecta tu operación de
+      campo con el control administrativo en una sola plataforma.</p>
+
+      <div class="bene">
+        <div class="bn">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span>Cobranza<br>en campo</span>
+        </div>
+        <div class="bn">
+          <svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></svg>
+          <span>Créditos<br>y pagos</span>
+        </div>
+        <div class="bn">
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2M3 12A9 9 0 0 1 18.5 5.8"/><path d="M3 4.5V9h4.5M21 19.5V15h-4.5"/></svg>
+          <span>Operación<br>offline-first</span>
+        </div>
+        <div class="bn">
+          <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+          <span>Reportes<br>y control</span>
+        </div>
+      </div>
+
+      <div class="btns">
+        <a class="b1" href="/#franquicias">Solicitar demo →</a>
+        <a class="b2" href="#recorrido">Conocer KIWI PAY</a>
+      </div>
+    </div>
+
+    <div class="fotos">
+      <div class="tel tel-a"><img src="img/01-mi-ruta.jpg" alt="Pantalla de inicio del cobrador en KIWI PAY: su ruta, lo cobrado del día, su caja y la meta"></div>
+      <div class="tel tel-b"><img src="img/02-creditos.jpg" alt="Panel de créditos: activos, cobrados hoy, prestado y liquidados"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ UNA SOLA PLATAFORMA ══ -->
+<section class="claro" id="plataforma">
+  <div class="wrap">
+    <div class="dosc">
+      <div>
+        <span class="eyebrow">Todo lo que tu equipo necesita</span>
+        <h2 class="h2">Una sola plataforma,<br><span class="v">todos los procesos.</span></h2>
+      </div>
+      <p>Desde la ruta del cobrador hasta los reportes del administrador. KIWI PAY conecta tu
+      operación y te da el control que necesitas.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ci" style="background:#FEE2E2"><svg viewBox="0 0 24 24" stroke="#DC2626"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+        <h3>Cobradores en campo</h3>
+        <p>App móvil para cobrar más y mejor, <b>incluso sin conexión</b>. Rutas, clientes, pagos y seguimiento desde el teléfono.</p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#DCFCE7"><svg viewBox="0 0 24 24" stroke="#16A34A"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></svg></div>
+        <h3>Créditos y pagos</h3>
+        <p>Control de créditos, cuotas, abonos parciales, multas, atrasos, refinanciaciones y liquidaciones.</p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#EDE9FE"><svg viewBox="0 0 24 24" stroke="#7C3AED"><path d="M21 12a9 9 0 0 1-15.5 6.2M3 12A9 9 0 0 1 18.5 5.8"/><path d="M3 4.5V9h4.5M21 19.5V15h-4.5"/></svg></div>
+        <h3>Sincronización total</h3>
+        <p>Lo que se cobra sin señal sube solo al volver el internet. <b>Sin dobles capturas</b> y sin hojas sueltas.</p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#FEF3C7"><svg viewBox="0 0 24 24" stroke="#D97706"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Reportes y cierre</h3>
+        <p>Recaudo del día, metas, mora y cuadre de caja por cobrador. <b>Sabes cuánto trae cada quien sin llamarlo.</b></p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#DBEAFE"><svg viewBox="0 0 24 24" stroke="#2563EB"><path d="M12 3l7.5 3.4v5c0 4.5-3.1 8.5-7.5 9.8-4.4-1.3-7.5-5.3-7.5-9.8v-5z"/></svg></div>
+        <h3>Roles y seguridad</h3>
+        <p>Cada quien ve lo suyo: cobrador, supervisor, admin, promotora. Con evidencia de dónde se cobró cada peso.</p>
+      </div>
+    </div>
+
+    <!-- HECHOS verificables — nada de cifras infladas -->
+    <div class="hechos">
+      <div class="hecho"><div class="t">Junio 2026</div><div class="d">Operando cartera real desde entonces</div></div>
+      <div class="hecho"><div class="t">Con o sin señal</div><div class="d">La ruta vive en el teléfono</div></div>
+      <div class="hecho"><div class="t">Ticket al instante</div><div class="d">Impresora térmica o WhatsApp</div></div>
+      <div class="hecho"><div class="t">Cierre diario</div><div class="d">Cuadre de caja por cobrador</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RECORRIDO ══ -->
+<section id="recorrido">
+  <div class="wrap">
+    <div style="max-width:640px;margin-bottom:64px">
+      <span class="eyebrow" style="color:var(--kp-primary)">Cómo se usa</span>
+      <h2 class="h2">El día de un cobrador,<br>de principio a fin.</h2>
+      <p style="color:var(--kp-text-secondary);font-size:15.5px">No es una pantalla de escritorio
+      encogida. Está hecha para la calle.</p>
+    </div>
+
+    <div class="paso">
+      <div class="txt">
+        <div class="num">1</div>
+        <h3>Abre su día y sale con todo cargado</h3>
+        <p>Ve su ruta, su meta y cuántos clientes le tocan. <b>Su cartera queda guardada en el
+        teléfono</b>, así que a partir de ahí el internet deja de ser un requisito.</p>
+      </div>
+      <div class="img"><div class="tel"><img src="img/01-mi-ruta.jpg" alt="Mi Ruta: cobrado hoy, sin pago, cobrados, mi caja y meta del día"></div></div>
+    </div>
+
+    <div class="paso">
+      <div class="txt">
+        <div class="num">2</div>
+        <h3>Cobra, aunque no haya señal</h3>
+        <p>Registra pagos, abonos parciales, multas y descuentos. Marca al que no pagó y por qué.
+        <b>Todo queda con la ubicación donde ocurrió</b>, y sube solo al recuperar la conexión.</p>
+      </div>
+      <div class="img"><div class="tel"><img src="img/03-recaudo.jpg" alt="Recaudo del día, meta por cuotas, avance y desglose"></div></div>
+    </div>
+
+    <div class="paso">
+      <div class="txt">
+        <div class="num">3</div>
+        <h3>Su caja, viva todo el día</h3>
+        <p>Lo que cobró, lo que prestó, lo que gastó y lo que le queda encima. <b>Retiros, gastos y
+        fondo de multas</b> en el mismo lugar — y el administrador lo ve sin llamarlo.</p>
+      </div>
+      <div class="img"><div class="tel"><img src="img/04-mi-caja.jpg" alt="Mi caja: saldo, fondo de multas y operaciones de retiro, gastos e historial"></div></div>
+    </div>
+
+    <div class="paso">
+      <div class="txt">
+        <div class="num">4</div>
+        <h3>Cierra y cuadra</h3>
+        <p>El sistema dice cuánto debería traer, él cuenta lo que trae y la diferencia queda
+        registrada. <b>Productividad, recaudo y lo que hay que revisar</b>, en una sola pantalla.</p>
+      </div>
+      <div class="img"><div class="tel"><img src="img/05-resumen.jpg" alt="Resumen diario con productividad, meta del día y qué revisar"></div></div>
+    </div>
+
+    <div class="paso">
+      <div class="txt">
+        <div class="num">5</div>
+        <h3>Y lo que viene mañana</h3>
+        <p>Agenda de visitas, renovaciones y clientes por atender. <b>Pregúntale a KIWI IA</b> si tu
+        caja cuadra, cuánto entregaste o quiénes quedaron sin pagar — con la voz, si prefieres.</p>
+      </div>
+      <div class="img"><div class="tel"><img src="img/07-kiwi-ia.jpg" alt="KIWI IA: preguntas sobre la operación como ¿cuadra mi caja? o ¿quiénes quedaron sin pagar?"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARA QUIÉN ══ -->
+<section class="claro" id="quien" style="border-radius:var(--kp-radius-xl)">
+  <div class="wrap">
+    <div style="max-width:620px">
+      <span class="eyebrow">Antes de que pierdas tiempo</span>
+      <h2 class="h2">Para quién es —<br>y para quién <span class="v">no</span>.</h2>
+    </div>
+    <div class="quien">
+      <div class="qb qsi" style="background:rgba(99,216,59,.10);border-color:rgba(47,174,55,.28)">
+        <h3 style="color:#0B1F1A">Te va a servir si…</h3>
+        <ul>
+          <li style="color:#3C4F4A">Prestas y cobras en la calle, con cobradores en ruta</li>
+          <li style="color:#3C4F4A">Manejas cobro diario, semanal, quincenal o mensual</li>
+          <li style="color:#3C4F4A">Tienes de uno a varias decenas de cobradores</li>
+          <li style="color:#3C4F4A">Trabajas donde el internet falla</li>
+          <li style="color:#3C4F4A">Entregas comprobante al cobrar</li>
+          <li style="color:#3C4F4A">Quieres saber cuánto trae cada quien sin llamarlo</li>
+        </ul>
+      </div>
+      <div class="qb qno" style="background:#EAEFED;border-color:rgba(11,31,26,.10)">
+        <h3 style="color:#0B1F1A">No es para ti si…</h3>
+        <ul>
+          <li style="color:#5A6D68">Tus clientes pagan solo por transferencia o en sucursal</li>
+          <li style="color:#5A6D68">Buscas un sistema contable o de facturación</li>
+          <li style="color:#5A6D68">Necesitas originar crédito en línea sin visita</li>
+          <li style="color:#5A6D68">Quieres que el software decida a quién prestarle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CIERRE ══ -->
+<section class="cierre">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--kp-primary)">Siguiente paso</span>
+    <h2 class="h2">Pruébalo con tu propia cartera</h2>
+    <p>Te mostramos el sistema con una operación real y respondemos lo que quieras preguntar —
+    incluido qué <b style="color:var(--kp-text-primary)">no</b> hace.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="b1" href="/#franquicias">Solicitar demo →</a>
+      <a class="b2" href="/">Ver el ecosistema KIWI SYSTEMS</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft">
+    <div>KIWI PAY es un producto de <a href="/" style="color:var(--kp-text-secondary)">KIWI SYSTEMS</a> · Apodaca, Nuevo León, México 🇲🇽</div>
+    <div>
+      <a href="https://app.kiwisystems.mx/privacidad">Privacidad</a> ·
+      <a href="https://app.kiwisystems.mx/terminos">Términos</a> ·
+      <a href="https://app.kiwisystems.mx/eliminar-datos">Eliminar datos</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
