@@ -106,9 +106,33 @@ h1 .v{color:var(--kp-primary)}
 @media(max-width:980px){.fotos{min-height:520px}.tel-b{right:6%}}
 @media(max-width:560px){.tel-a{width:224px}.tel-b{width:180px;right:0;bottom:40px}}
 
+/* franja de hechos dentro del hero */
+.hechos-hero{margin-top:34px;padding:22px 24px}
+/* frase que rescata el recorrido */
+.sub-calle{font-size:15.5px;color:#5A6D68;margin:-26px 0 34px}
+.sub-calle b{color:#0B1F1A;font-weight:600}
+/* tira: el producto real en una sola pantalla */
+.tira{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px}
+@media(max-width:900px){.tira{grid-template-columns:repeat(2,1fr);gap:26px}}
+@media(max-width:520px){.tira{grid-template-columns:1fr;max-width:280px;margin-left:auto;margin-right:auto}}
+.tira figure{margin:0;text-align:center}
+.tira .tel{display:block;border-radius:22px;border:6px solid #10201C;background:#10201C;
+  box-shadow:0 16px 38px rgba(11,31,26,.18);overflow:hidden}
+.tira .tel img{display:block;width:100%;height:auto}
+.tira figcaption{margin-top:15px;font-size:13.5px;color:#5A6D68;line-height:1.5}
+.tira figcaption b{display:block;font-size:14.5px;color:#0B1F1A;font-weight:700;margin-bottom:3px}
+/* remate, dentro de la ultima seccion */
+.remate{margin-top:56px;padding-top:44px;border-top:1px solid rgba(11,31,26,.10);text-align:center}
+.remate h3{font-size:clamp(24px,2.8vw,34px);font-weight:800;letter-spacing:-.03em;color:#0B1F1A;margin-bottom:10px}
+.remate p{color:#5A6D68;font-size:15.5px;max-width:520px;margin:0 auto 26px}
+.b2-claro{border-color:rgba(11,31,26,.18);color:#0B1F1A}
+.b2-claro:hover{border-color:rgba(47,174,55,.5);background:rgba(99,216,59,.07)}
+.ya-cliente{margin-top:22px;font-size:13.5px;color:#6B7C77}
+.ya-cliente a{color:var(--kp-primary-dark);font-weight:700;text-decoration:none}
+
 /* ── SECCIONES ── */
 section{padding:88px 0;position:relative}
-.claro{background:#F4F7F6;color:#0B1F1A;border-radius:var(--kp-radius-xl) var(--kp-radius-xl) 0 0}
+.claro{background:#F4F7F6;color:#0B1F1A;border-radius:var(--kp-radius-xl)}
 .claro .h2{color:#0B1F1A}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;
   letter-spacing:1.3px;text-transform:uppercase;color:var(--kp-primary-dark);margin-bottom:14px}
@@ -172,6 +196,23 @@ section{padding:88px 0;position:relative}
 
 /* origenes de cartera */
 .orig{background:var(--kp-bg-secondary);border-top:1px solid var(--kp-border);border-bottom:1px solid var(--kp-border)}
+/* «Para quién» cierra la pagina en oscuro: dos secciones claras seguidas se leian
+   como un solo bloque y el remate perdia fuerza. */
+.quien-sec{background:var(--kp-bg-secondary);border-top:1px solid var(--kp-border)}
+.quien-sec .h2{color:var(--kp-text-primary)}
+.quien-sec .eyebrow{color:var(--kp-primary)}
+.quien-sec .qsi-item{background:rgba(99,216,59,.07);border-color:rgba(99,216,59,.18)}
+.quien-sec .qsi-item span:last-child{color:var(--kp-text-secondary)!important}
+.quien-sec .qsi-item .ck{background:var(--kp-primary-dark)}
+.quien-sec .nota-no{border-left-color:var(--kp-border);color:var(--kp-text-muted)}
+.quien-sec .nota-no b{color:var(--kp-text-secondary)}
+.quien-sec .remate{border-top-color:var(--kp-border)}
+.quien-sec .remate h3{color:var(--kp-text-primary)}
+.quien-sec .remate p{color:var(--kp-text-secondary)}
+.quien-sec .b2-claro{border-color:var(--kp-border);color:var(--kp-text-primary)}
+.quien-sec .b2-claro:hover{border-color:rgba(99,216,59,.4);background:var(--kp-surface-hover)}
+.quien-sec .ya-cliente{color:var(--kp-text-muted)}
+.quien-sec .ya-cliente a{color:var(--kp-primary)}
 .orig-grid{max-width:760px;margin:0 auto}
 @media(max-width:900px){.orig-grid{grid-template-columns:1fr;gap:38px}}
 .orig-lead{font-size:clamp(16px,1.6vw,18.5px);color:var(--kp-text-secondary);line-height:1.7;margin-bottom:30px}
@@ -247,8 +288,9 @@ footer a:hover{color:var(--kp-text-secondary)}
       </span>
     </a>
     <nav class="nav">
+      <a href="#cartera">Tu cartera</a>
+      <a href="#ia">KIWI IA</a>
       <a href="#plataforma">Plataforma</a>
-      <a href="#recorrido">Cómo se usa</a>
       <a href="#quien">Para quién</a>
     </nav>
     <a class="entrar" href="https://app.kiwisystems.mx" target="_blank" rel="noopener">
@@ -289,8 +331,29 @@ footer a:hover{color:var(--kp-text-secondary)}
 
       <div class="btns">
         <a class="b1" href="/#franquicias">Solicitar demo →</a>
-        <a class="b2" href="#recorrido">Conocer KIWI PAY</a>
+        <a class="b2" href="#cartera">Conocer KIWI PAY</a>
       </div>
+
+    <!-- Hechos verificables arriba: credibilidad en los primeros segundos -->
+    <div class="hechos hechos-hero">
+      <div class="hecho"><div class="t">Junio 2026</div><div class="d">Operando cartera real desde entonces</div></div>
+      <div class="hecho"><div class="t">Con o sin señal</div><div class="d">La ruta vive en el teléfono</div></div>
+      <div class="hecho"><div class="t">Ticket al instante</div><div class="d">Impresora térmica o WhatsApp</div></div>
+      <div class="hecho"><div class="t">Cierre diario</div><div class="d">Cuadre de caja por cobrador</div></div>
+    </div>
+  </div>
+
+    <!-- El producto real en UNA pantalla, en vez de cuatro bloques alternados -->
+    <div class="tira">
+      <figure><span class="tel"><img src="/pay/img/01-mi-ruta.jpg" alt="Inicio del cobrador: su ruta, lo cobrado y su meta"></span>
+        <figcaption><b>Sale con su ruta cargada</b>Sus clientes viven en el teléfono</figcaption></figure>
+      <figure><span class="tel"><img src="/pay/img/03-recaudo.jpg" alt="Recaudo del día, meta y desglose"></span>
+        <figcaption><b>Cobra con o sin señal</b>Y sube solo al volver el internet</figcaption></figure>
+      <figure><span class="tel"><img src="/pay/img/04-mi-caja.jpg" alt="Mi caja, fondo de multas y operaciones"></span>
+        <figcaption><b>Su efectivo, al día</b>Lo que cobró, prestó y le queda</figcaption></figure>
+      <figure><span class="tel"><img src="/pay/img/05-resumen.jpg" alt="Resumen diario con productividad y cierre"></span>
+        <figcaption><b>Cuadra y cierra</b>Sin hojas de cálculo</figcaption></figure>
+    </div>
     </div>
 
     <div class="fotos">
@@ -300,141 +363,8 @@ footer a:hover{color:var(--kp-text-secondary)}
   </div>
 </section>
 
-<!-- ══ UNA SOLA PLATAFORMA ══ -->
-<section class="claro" id="plataforma">
-  <div class="wrap">
-    <div class="dosc">
-      <div>
-        <span class="eyebrow">Todo lo que tu equipo necesita</span>
-        <h2 class="h2">Una sola plataforma,<br><span class="v">todos los procesos.</span></h2>
-      </div>
-      <p>Desde la ruta del cobrador hasta los reportes del administrador. KIWI PAY conecta tu
-      operación y te da el control que necesitas.</p>
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <div class="ci" style="background:#FEE2E2"><svg viewBox="0 0 24 24" stroke="#DC2626"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
-        <h3>Cobradores en campo</h3>
-        <p>App móvil para cobrar más y mejor, <b>incluso sin conexión</b>. Rutas, clientes, pagos y seguimiento desde el teléfono.</p>
-      </div>
-      <div class="card">
-        <div class="ci" style="background:#DCFCE7"><svg viewBox="0 0 24 24" stroke="#16A34A"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></svg></div>
-        <h3>Créditos y pagos</h3>
-        <p>Control de créditos, cuotas, abonos parciales, multas, atrasos, refinanciaciones y liquidaciones.</p>
-      </div>
-      <div class="card">
-        <div class="ci" style="background:#EDE9FE"><svg viewBox="0 0 24 24" stroke="#7C3AED"><path d="M21 12a9 9 0 0 1-15.5 6.2M3 12A9 9 0 0 1 18.5 5.8"/><path d="M3 4.5V9h4.5M21 19.5V15h-4.5"/></svg></div>
-        <h3>Sincronización total</h3>
-        <p>Lo que se cobra sin señal sube solo al volver el internet. <b>Sin dobles capturas</b> y sin hojas sueltas.</p>
-      </div>
-      <div class="card">
-        <div class="ci" style="background:#FEF3C7"><svg viewBox="0 0 24 24" stroke="#D97706"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-        <h3>Reportes y cierre</h3>
-        <p>Recaudo del día, metas, mora y cuadre de caja por cobrador. <b>Sabes cuánto trae cada quien sin llamarlo.</b></p>
-      </div>
-      <div class="card">
-        <div class="ci" style="background:#DBEAFE"><svg viewBox="0 0 24 24" stroke="#2563EB"><path d="M12 3l7.5 3.4v5c0 4.5-3.1 8.5-7.5 9.8-4.4-1.3-7.5-5.3-7.5-9.8v-5z"/></svg></div>
-        <h3>Roles y seguridad</h3>
-        <p>Cada quien ve lo suyo: cobrador, supervisor, admin, promotora. Con evidencia de dónde se cobró cada peso.</p>
-      </div>
-    </div>
-
-    <!-- HECHOS verificables — nada de cifras infladas -->
-    <div class="hechos">
-      <div class="hecho"><div class="t">Junio 2026</div><div class="d">Operando cartera real desde entonces</div></div>
-      <div class="hecho"><div class="t">Con o sin señal</div><div class="d">La ruta vive en el teléfono</div></div>
-      <div class="hecho"><div class="t">Ticket al instante</div><div class="d">Impresora térmica o WhatsApp</div></div>
-      <div class="hecho"><div class="t">Cierre diario</div><div class="d">Cuadre de caja por cobrador</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ RECORRIDO ══ -->
-<section id="recorrido">
-  <div class="wrap">
-    <div style="max-width:640px;margin-bottom:64px">
-      <span class="eyebrow" style="color:var(--kp-primary)">Cómo se usa</span>
-      <h2 class="h2">El día de un cobrador,<br>de principio a fin.</h2>
-      <p style="color:var(--kp-text-secondary);font-size:15.5px">No es una pantalla de escritorio
-      encogida. Está hecha para la calle.</p>
-    </div>
-
-    <div class="paso">
-      <div class="txt">
-        <div class="num">1</div>
-        <h3>Abre su día y sale con todo cargado</h3>
-        <p>Ve su ruta, su meta y cuántos clientes le tocan. <b>Su cartera queda guardada en el
-        teléfono</b>, así que a partir de ahí el internet deja de ser un requisito.</p>
-      </div>
-      <div class="img"><div class="tel"><img src="/pay/img/01-mi-ruta.jpg" alt="Mi Ruta: cobrado hoy, sin pago, cobrados, mi caja y meta del día"></div></div>
-    </div>
-
-    <div class="paso">
-      <div class="txt">
-        <div class="num">2</div>
-        <h3>Cobra, aunque no haya señal</h3>
-        <p>Registra pagos, abonos parciales, multas y descuentos. Marca al que no pagó y por qué.
-        <b>Todo queda con la ubicación donde ocurrió</b>, y sube solo al recuperar la conexión.</p>
-      </div>
-      <div class="img"><div class="tel"><img src="/pay/img/03-recaudo.jpg" alt="Recaudo del día, meta por cuotas, avance y desglose"></div></div>
-    </div>
-
-    <div class="paso">
-      <div class="txt">
-        <div class="num">3</div>
-        <h3>Su caja, viva todo el día</h3>
-        <p>Lo que cobró, lo que prestó, lo que gastó y lo que le queda encima. <b>Retiros, gastos y
-        fondo de multas</b> en el mismo lugar — y el administrador lo ve sin llamarlo.</p>
-      </div>
-      <div class="img"><div class="tel"><img src="/pay/img/04-mi-caja.jpg" alt="Mi caja: saldo, fondo de multas y operaciones de retiro, gastos e historial"></div></div>
-    </div>
-
-    <div class="paso">
-      <div class="txt">
-        <div class="num">4</div>
-        <h3>Cierra y cuadra</h3>
-        <p>El sistema dice cuánto debería traer, él cuenta lo que trae y la diferencia queda
-        registrada. <b>Productividad, recaudo y lo que hay que revisar</b>, en una sola pantalla.</p>
-      </div>
-      <div class="img"><div class="tel"><img src="/pay/img/05-resumen.jpg" alt="Resumen diario con productividad, meta del día y qué revisar"></div></div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══ KIWI IA ══ -->
-<section class="ia">
-  <div class="wrap ia-grid">
-    <div>
-      <span class="eyebrow" style="color:var(--kp-primary)">KIWI IA · pregúntale a tu operación</span>
-      <h2 class="ia-h">No busques el dato.<br><span class="v">Pregúntalo.</span></h2>
-      <p class="ia-p">Tu operación genera cientos de movimientos todos los días.
-      <b>KIWI IA los convierte en respuestas.</b></p>
-
-      <div class="burbujas">
-        <span class="bu">¿Cuadra mi caja?</span>
-        <span class="bu">¿Cuánto recaudamos hoy?</span>
-        <span class="bu">¿Quiénes quedaron sin pagar?</span>
-        <span class="bu">¿Qué clientes están atrasados?</span>
-        <span class="bu">¿Cuánto dinero tengo colocado?</span>
-        <span class="bu">¿Qué tengo pendiente mañana?</span>
-        <span class="bu">¿Cómo va mi ruta?</span>
-        <span class="bu bu-mas">…y todo lo que se te ocurra</span>
-      </div>
-
-      <p class="ia-rem"><b>KIWI IA conoce el contexto de tu operación</b> y te ayuda a entender qué
-      está pasando — sin recorrer pantallas, filtros y reportes.</p>
-    </div>
-
-    <div class="ia-foto">
-      <div class="tel"><img src="/pay/img/07-kiwi-ia.jpg" alt="KIWI IA respondiendo preguntas sobre la operación del día"></div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ ORÍGENES DE CARTERA ══ -->
-<section class="orig">
+<section class="orig" id="cartera">
   <div class="wrap">
     <div style="max-width:640px;margin-bottom:52px">
       <span class="eyebrow" style="color:var(--kp-primary)">Cobranza, ventas y servicios</span>
@@ -473,8 +403,82 @@ footer a:hover{color:var(--kp-text-secondary)}
   </div>
 </section>
 
+<!-- ══ KIWI IA ══ -->
+<section class="ia" id="ia">
+  <div class="wrap ia-grid">
+    <div>
+      <span class="eyebrow" style="color:var(--kp-primary)">KIWI IA · pregúntale a tu operación</span>
+      <h2 class="ia-h">No busques el dato.<br><span class="v">Pregúntalo.</span></h2>
+      <p class="ia-p">Tu operación genera cientos de movimientos todos los días.
+      <b>KIWI IA los convierte en respuestas.</b></p>
+
+      <div class="burbujas">
+        <span class="bu">¿Cuadra mi caja?</span>
+        <span class="bu">¿Cuánto recaudamos hoy?</span>
+        <span class="bu">¿Quiénes quedaron sin pagar?</span>
+        <span class="bu">¿Qué clientes están atrasados?</span>
+        <span class="bu">¿Cuánto dinero tengo colocado?</span>
+        <span class="bu">¿Qué tengo pendiente mañana?</span>
+        <span class="bu">¿Cómo va mi ruta?</span>
+        <span class="bu bu-mas">…y todo lo que se te ocurra</span>
+      </div>
+
+      <p class="ia-rem"><b>KIWI IA conoce el contexto de tu operación</b> y te ayuda a entender qué
+      está pasando — sin recorrer pantallas, filtros y reportes.</p>
+    </div>
+
+    <div class="ia-foto">
+      <div class="tel"><img src="/pay/img/07-kiwi-ia.jpg" alt="KIWI IA respondiendo preguntas sobre la operación del día"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ UNA SOLA PLATAFORMA ══ -->
+<section class="claro" id="plataforma">
+  <div class="wrap">
+    <div class="dosc">
+      <div>
+        <span class="eyebrow">Todo lo que tu equipo necesita</span>
+        <h2 class="h2">Una sola plataforma,<br><span class="v">todos los procesos.</span></h2>
+      </div>
+      <p>Desde la ruta del cobrador hasta los reportes del administrador. KIWI PAY conecta tu
+      operación y te da el control que necesitas.</p>
+    </div>
+
+    <p class="sub-calle">No es una pantalla de escritorio encogida. <b>Está hecha para la calle.</b></p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="ci" style="background:#FEE2E2"><svg viewBox="0 0 24 24" stroke="#DC2626"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+        <h3>Cobradores en campo</h3>
+        <p>App móvil para cobrar más y mejor, <b>incluso sin conexión</b>. Rutas, clientes, pagos y seguimiento desde el teléfono.</p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#DCFCE7"><svg viewBox="0 0 24 24" stroke="#16A34A"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></svg></div>
+        <h3>Créditos y pagos</h3>
+        <p>Control de créditos, cuotas, abonos parciales, multas, atrasos, refinanciaciones y liquidaciones.</p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#EDE9FE"><svg viewBox="0 0 24 24" stroke="#7C3AED"><path d="M21 12a9 9 0 0 1-15.5 6.2M3 12A9 9 0 0 1 18.5 5.8"/><path d="M3 4.5V9h4.5M21 19.5V15h-4.5"/></svg></div>
+        <h3>Sincronización total</h3>
+        <p>Lo que se cobra sin señal sube solo al volver el internet. <b>Sin dobles capturas</b> y sin hojas sueltas.</p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#FEF3C7"><svg viewBox="0 0 24 24" stroke="#D97706"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Reportes y cierre</h3>
+        <p>Recaudo del día, metas, mora y cuadre de caja por cobrador. <b>Sabes cuánto trae cada quien sin llamarlo.</b></p>
+      </div>
+      <div class="card">
+        <div class="ci" style="background:#DBEAFE"><svg viewBox="0 0 24 24" stroke="#2563EB"><path d="M12 3l7.5 3.4v5c0 4.5-3.1 8.5-7.5 9.8-4.4-1.3-7.5-5.3-7.5-9.8v-5z"/></svg></div>
+        <h3>Roles y seguridad</h3>
+        <p>Cada quien ve lo suyo: cobrador, supervisor, admin, promotora. Con evidencia de dónde se cobró cada peso.</p>
+      </div>
+    </div>
+
+</section>
+
 <!-- ══ PARA QUIÉN ══ -->
-<section class="claro" id="quien" style="border-radius:var(--kp-radius-xl)">
+<section id="quien" class="quien-sec">
   <div class="wrap">
     <div style="max-width:620px">
       <span class="eyebrow">Antes de que pierdas tiempo</span>
@@ -493,25 +497,18 @@ footer a:hover{color:var(--kp-text-secondary)}
       <p class="nota-no"><b>Y para ser claros:</b> KIWI PAY no es un sistema contable ni de
       facturación, y no decide a quién prestarle — <b>esa decisión siempre es de una persona de tu
       equipo</b>. Si buscas eso, hay herramientas mejores, y preferimos decírtelo antes que después.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ══ CIERRE ══ -->
-<section class="cierre">
-  <div class="wrap">
-    <span class="eyebrow" style="color:var(--kp-primary)">Siguiente paso</span>
-    <h2 class="h2">Pruébalo con tu propia cartera</h2>
-    <p>Te mostramos el sistema con una operación real y respondemos lo que quieras preguntar —
-    incluido qué <b style="color:var(--kp-text-primary)">no</b> hace.</p>
-    <div class="btns" style="justify-content:center">
-      <a class="b1" href="/#franquicias">Solicitar demo →</a>
-      <a class="b2" href="https://app.kiwisystems.mx" target="_blank" rel="noopener">Probar la demo sin registrarte</a>
+      <div class="remate">
+        <h3>Pruébalo con tu propia cartera</h3>
+        <p>Te mostramos el sistema con una operación real y respondemos lo que quieras preguntar.</p>
+        <div class="btns" style="justify-content:center">
+          <a class="b1" href="/#franquicias">Solicitar demo →</a>
+          <a class="b2 b2-claro" href="https://app.kiwisystems.mx" target="_blank" rel="noopener">Probar la demo sin registrarte</a>
+        </div>
+        <p class="ya-cliente">¿Ya eres cliente?
+          <a href="https://app.kiwisystems.mx" target="_blank" rel="noopener">Entra a KIWI PAY →</a></p>
+      </div>
     </div>
-    <p style="margin-top:26px;font-size:13.5px;color:var(--kp-text-muted)">
-      ¿Ya eres cliente? <a href="https://app.kiwisystems.mx" target="_blank" rel="noopener"
-      style="color:var(--kp-primary);font-weight:600">Entra a KIWI PAY →</a>
-    </p>
   </div>
 </section>
 
