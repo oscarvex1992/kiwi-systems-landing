@@ -37,12 +37,17 @@ header{
   border-bottom:1px solid var(--kp-border);
 }
 .hd{height:72px;display:flex;align-items:center;gap:16px}
-.madre{font-size:13.5px;font-weight:600;color:var(--kp-text-muted);letter-spacing:.2px;white-space:nowrap}
-.madre:hover{color:var(--kp-text-secondary)}
-.sep{width:1px;height:20px;background:var(--kp-border)}
-.marca{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15.5px;letter-spacing:-.2px}
-.marca img{width:28px;height:28px;border-radius:8px}
-.marca span{color:var(--kp-primary)}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+/* El logo recupera peso: es el protagonista de esta pagina. */
+.marca img{width:32px;height:32px;border-radius:9px;flex:none}
+.marca-txt{display:flex;flex-direction:column;line-height:1;gap:3px}
+.marca-nom{font-weight:800;font-size:16.5px;letter-spacing:-.3px;white-space:nowrap}
+.marca-nom .v{color:var(--kp-primary)}
+/* La firma es SOLO una firma: la mitad de alto que el nombre y muy apagada.
+   La jerarquia la hace el contraste, no el hecho de estar en otro renglon. */
+.marca-by{font-size:7.5px;font-weight:600;letter-spacing:1.1px;text-transform:uppercase;
+  color:rgba(255,255,255,.30);white-space:nowrap;transition:color .2s}
+.marca:hover .marca-by{color:rgba(255,255,255,.55)}
 .nav{display:flex;gap:26px;margin-left:auto}
 .nav a{font-size:13.5px;font-weight:500;color:var(--kp-text-secondary)}
 .nav a:hover{color:var(--kp-text-primary)}
@@ -174,11 +179,12 @@ footer a:hover{color:var(--kp-text-secondary)}
 <!-- ══ HEADER ══ -->
 <header>
   <div class="wrap hd">
-    <a class="madre" href="/">KIWI SYSTEMS</a>
-    <div class="sep"></div>
     <a class="marca" href="/pay">
       <img src="/pay/img/logo-pay.png" alt="">
-      KIWI <span>PAY</span>
+      <span class="marca-txt">
+        <span class="marca-nom">KIWI <span class="v">PAY</span></span>
+        <span class="marca-by">by Kiwi Systems</span>
+      </span>
     </a>
     <nav class="nav">
       <a href="#plataforma">Plataforma</a>
