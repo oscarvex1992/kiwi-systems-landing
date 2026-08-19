@@ -134,8 +134,18 @@ section{padding:88px 0;position:relative}
 .img .tel{width:100%;max-width:262px;margin:0 auto}
 
 /* para quien */
-.quien{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
-@media(max-width:760px){.quien{grid-template-columns:1fr}}
+.quien{margin-top:40px}
+.qsi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.qsi-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.qsi-grid{grid-template-columns:1fr}}
+.qsi-item{display:flex;gap:11px;align-items:flex-start;background:rgba(99,216,59,.09);
+  border:1px solid rgba(47,174,55,.22);border-radius:var(--kp-radius-md);padding:16px 17px}
+.qsi-item .ck{flex:none;width:19px;height:19px;border-radius:50%;background:var(--kp-primary-dark);
+  color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.qsi-item span{font-size:14.5px;color:#3C4F4A;line-height:1.5}
+.nota-no{margin-top:26px;border-left:3px solid rgba(11,31,26,.16);padding:2px 0 2px 16px;
+  font-size:14px;color:#6B7C77;line-height:1.65;max-width:78ch}
+.nota-no b{color:#3C4F4A;font-weight:600}
 .qb{border-radius:var(--kp-radius-lg);padding:28px 26px}
 .qb h3{font-size:15.5px;font-weight:700;margin-bottom:16px}
 .qb li{list-style:none;font-size:14.5px;padding:7px 0 7px 26px;position:relative;color:var(--kp-text-secondary)}
@@ -334,26 +344,18 @@ footer a:hover{color:var(--kp-text-secondary)}
       <h2 class="h2">Para quién es —<br>y para quién <span class="v">no</span>.</h2>
     </div>
     <div class="quien">
-      <div class="qb qsi" style="background:rgba(99,216,59,.10);border-color:rgba(47,174,55,.28)">
-        <h3 style="color:#0B1F1A">Te va a servir si…</h3>
-        <ul>
-          <li style="color:#3C4F4A">Prestas y cobras en la calle, con cobradores en ruta</li>
-          <li style="color:#3C4F4A">Manejas cobro diario, semanal, quincenal o mensual</li>
-          <li style="color:#3C4F4A">Tienes de uno a varias decenas de cobradores</li>
-          <li style="color:#3C4F4A">Trabajas donde el internet falla</li>
-          <li style="color:#3C4F4A">Entregas comprobante al cobrar</li>
-          <li style="color:#3C4F4A">Quieres saber cuánto trae cada quien sin llamarlo</li>
-        </ul>
+      <div class="qsi-grid">
+        <div class="qsi-item"><span class="ck">✓</span><span>Prestas y cobras en la calle, con cobradores en ruta</span></div>
+        <div class="qsi-item"><span class="ck">✓</span><span>Manejas cobro diario, semanal, quincenal o mensual</span></div>
+        <div class="qsi-item"><span class="ck">✓</span><span>Tienes de uno a varias decenas de cobradores</span></div>
+        <div class="qsi-item"><span class="ck">✓</span><span>Trabajas donde el internet a veces falla</span></div>
+        <div class="qsi-item"><span class="ck">✓</span><span>Entregas comprobante al momento de cobrar</span></div>
+        <div class="qsi-item"><span class="ck">✓</span><span>Quieres saber cuánto trae cada quien sin llamarlo</span></div>
       </div>
-      <div class="qb qno" style="background:#EAEFED;border-color:rgba(11,31,26,.10)">
-        <h3 style="color:#0B1F1A">No es para ti si…</h3>
-        <ul>
-          <li style="color:#5A6D68">Tus clientes pagan solo por transferencia o en sucursal</li>
-          <li style="color:#5A6D68">Buscas un sistema contable o de facturación</li>
-          <li style="color:#5A6D68">Necesitas originar crédito en línea sin visita</li>
-          <li style="color:#5A6D68">Quieres que el software decida a quién prestarle</li>
-        </ul>
-      </div>
+
+      <p class="nota-no"><b>Y para ser claros:</b> KIWI PAY no es un sistema contable ni de
+      facturación, y no decide a quién prestarle — <b>esa decisión siempre es de una persona de tu
+      equipo</b>. Si buscas eso, hay herramientas mejores, y preferimos decírtelo antes que después.</p>
     </div>
   </div>
 </section>
