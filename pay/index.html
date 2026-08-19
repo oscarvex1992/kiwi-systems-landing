@@ -116,7 +116,7 @@ h1 .v{color:var(--kp-primary)}
 @media(max-width:900px){.tira{grid-template-columns:repeat(2,1fr);gap:26px}}
 @media(max-width:520px){.tira{grid-template-columns:1fr;max-width:280px;margin-left:auto;margin-right:auto}}
 .tira figure{margin:0;text-align:center}
-.tira .tel{display:block;border-radius:22px;border:6px solid #10201C;background:#10201C;
+.tira .tel{display:block;position:relative;border-radius:22px;border:6px solid #10201C;background:#10201C;
   box-shadow:0 16px 38px rgba(11,31,26,.18);overflow:hidden}
 .tira .tel img{display:block;width:100%;height:auto}
 .tira figcaption{margin-top:15px;font-size:13.5px;color:#5A6D68;line-height:1.5}
@@ -129,6 +129,25 @@ h1 .v{color:var(--kp-primary)}
 .b2-claro:hover{border-color:rgba(47,174,55,.5);background:rgba(99,216,59,.07)}
 .ya-cliente{margin-top:22px;font-size:13.5px;color:#6B7C77}
 .ya-cliente a{color:var(--kp-primary-dark);font-weight:700;text-decoration:none}
+
+/* visor: tocar una captura la abre en grande */
+.tel{cursor:zoom-in}
+.tel::after{content:'⤢';position:absolute;right:9px;bottom:9px;width:26px;height:26px;
+  border-radius:50%;background:rgba(6,17,15,.72);color:var(--kp-primary);font-size:13px;
+  display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;
+  pointer-events:none;backdrop-filter:blur(4px)}
+.tel:hover::after{opacity:1}
+.visor{position:fixed;inset:0;z-index:900;background:rgba(3,9,8,.92);backdrop-filter:blur(10px);
+  display:none;align-items:center;justify-content:center;padding:26px;cursor:zoom-out}
+.visor.abierto{display:flex}
+.visor img{max-width:min(420px,88vw);max-height:88vh;width:auto;border-radius:22px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);cursor:default}
+.visor-x{position:absolute;top:20px;right:24px;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--kp-border);background:rgba(255,255,255,.06);color:#fff;font-size:20px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.visor-x:hover{background:rgba(255,255,255,.13)}
+.visor-pie{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-size:13.5px;
+  color:var(--kp-text-muted)}
 
 /* ── SECCIONES ── */
 section{padding:88px 0;position:relative}
@@ -523,5 +542,33 @@ footer a:hover{color:var(--kp-text-secondary)}
   </div>
 </footer>
 
+
+<!-- Visor: las capturas son chicas a propósito; quien quiera mirarlas de cerca, las abre -->
+<div class="visor" id="visor" onclick="_vCerrar(event)">
+  <button class="visor-x" onclick="_vCerrar(event,true)" aria-label="Cerrar">×</button>
+  <img id="visor-img" src="" alt="">
+  <div class="visor-pie">Toca fuera o pulsa Esc para cerrar</div>
+</div>
+
+<script>
+(function(){
+  var v = document.getElementById('visor'), vi = document.getElementById('visor-img');
+  document.querySelectorAll('.tel').forEach(function(t){
+    var img = t.querySelector('img'); if (!img) return;
+    t.addEventListener('click', function(){
+      vi.src = img.src; vi.alt = img.alt || '';
+      v.classList.add('abierto'); document.body.style.overflow = 'hidden';
+    });
+  });
+  window._vCerrar = function(e, forzar){
+    // solo cierra si se toca el fondo o la X, no la imagen
+    if (!forzar && e && e.target && e.target.id === 'visor-img') return;
+    v.classList.remove('abierto'); document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') window._vCerrar(null, true);
+  });
+})();
+</script>
 </body>
 </html>
