@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KIWI SYSTEMS — Herramientas para operaciones de campo</title>
 <meta name="description" content="Herramientas que le hacen el trabajo más fácil a quien lo hace: cobranza, agenda comercial, servicios, venta de mercancía y logística. KIWI PAY, KIWI AGENDA MANAGER, KIWI TRACK, KIWI PORTAL y KIWI IA.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBhcmlhLWhpZGRlbj0idHJ1ZSIgc3R5bGU9ImRpc3BsYXk6YmxvY2siPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMCIgZmlsbD0iIzExMTYxRiIvPjxwYXRoIGQ9Ik0xNzAgMTEwIEwxNzAgNDAyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMkY1RjgiIHN0cm9rZS13aWR0aD0iNzIiLz48cGF0aCBkPSJNMTc4IDI1OCBMMzkyIDExMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjJGNUY4IiBzdHJva2Utd2lkdGg9IjY0Ii8+PHBhdGggZD0iTTE3OCAyNTggTDM5NiA0MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0YyRjVGOCIgc3Ryb2tlLXdpZHRoPSI2NCIvPjwvc3ZnPg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -37,7 +38,8 @@ section{padding:100px 7%}
 /* ── NAV ── */
 nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;background:rgba(5,13,24,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
 .logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:17px;letter-spacing:-.3px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
-.logo-mark{width:28px;height:28px;background:linear-gradient(135deg,var(--cyan),var(--indigo));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;letter-spacing:0;flex-shrink:0}
+.logo-mark{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{border-radius:7px}
 .logo em{color:var(--cyan);font-style:normal}
 .nav-links{display:flex;gap:30px;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
@@ -81,7 +83,8 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .eco-card.wide{grid-column:1/-1}
 .eco-card.live::before{opacity:.6}
 .eco-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
-.eco-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.eco-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.eco-icon svg{border-radius:13px}
 .ic-pay{background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.2)}
 .ic-agenda{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.18)}
 .ic-track{background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2)}
@@ -168,7 +171,8 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .rm-track{display:flex;flex-direction:column;gap:0;margin-top:52px;max-width:640px;margin-left:auto;margin-right:auto}
 .rm-item{display:flex;align-items:center;gap:18px;padding:16px 0;border-bottom:1px solid var(--border)}
 .rm-item:last-child{border-bottom:none}
-.rm-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.rm-dot{width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rm-dot svg{border-radius:11px}
 .d-done{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25)}
 .d-wip{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.22)}
 .d-future{background:rgba(255,255,255,.04);border:1px solid var(--border)}
@@ -242,7 +246,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 <!-- NAV -->
 <nav>
   <a class="logo" href="#">
-    <div class="logo-mark">K</div>
+    <div class="logo-mark"><svg width="28" height="28" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#11161F"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A8699" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#F2F5F8" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#F2F5F8" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#F2F5F8" stroke-width="56"/></svg></div>
     KIWI <em>SYSTEMS</em>
   </a>
   <ul class="nav-links">
@@ -307,7 +311,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 
     <div class="eco-card live">
       <div class="eco-top">
-        <div class="eco-icon ic-pay">💳</div>
+        <div class="eco-icon ic-pay"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0A0F08"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1B7A45" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#2BD46B" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#2BD46B" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#2BD46B" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
       </div>
       <div class="eco-name">KIWI PAY</div>
@@ -323,7 +327,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 
     <div class="eco-card live">
       <div class="eco-top">
-        <div class="eco-icon ic-agenda">📅</div>
+        <div class="eco-icon ic-agenda"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#070B14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#0A7A5C" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00E5A0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00E5A0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00E5A0" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
       </div>
       <div class="eco-name">KIWI AGENDA MANAGER</div>
@@ -337,7 +341,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 
     <div class="eco-card live">
       <div class="eco-top">
-        <div class="eco-icon ic-track">📍</div>
+        <div class="eco-icon ic-track"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0B1020"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1F5FA8" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00D4FF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00D4FF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00D4FF" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
       </div>
       <div class="eco-name">KIWI TRACK</div>
@@ -351,7 +355,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 
     <div class="eco-card live">
       <div class="eco-top">
-        <div class="eco-icon ic-portal">🌐</div>
+        <div class="eco-icon ic-portal"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0C0A1A"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#3B3799" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#6366F1" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#6366F1" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#6366F1" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
       </div>
       <div class="eco-name">KIWI PORTAL</div>
@@ -365,7 +369,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 
     <div class="eco-card beta wide">
       <div class="eco-top">
-        <div class="eco-icon ic-ia">🤖</div>
+        <div class="eco-icon ic-ia"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#150B1C"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A3D9E" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#C46BFF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#C46BFF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#C46BFF" stroke-width="56"/></svg></div>
         <span class="eco-badge b-beta">Beta</span>
       </div>
       <div class="eco-name">KIWI IA</div>
@@ -608,15 +612,15 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
   </div>
   <div class="rm-track reveal">
     <div class="rm-item">
-      <div class="rm-dot d-done">✅</div>
+      <div class="rm-dot"><svg width="40" height="40" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0A0F08"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1B7A45" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#2BD46B" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#2BD46B" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#2BD46B" stroke-width="56"/></svg></div>
       <div class="rm-info">
         <div class="rm-name">KIWI PAY</div>
         <div class="rm-sub">Cobranza y crédito en campo</div>
       </div>
-      <span class="rm-badge rb-done">En producción</span>
+      <span class="rm-badge rb-done">En Google Play</span>
     </div>
     <div class="rm-item">
-      <div class="rm-dot d-done">✅</div>
+      <div class="rm-dot"><svg width="40" height="40" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#070B14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#0A7A5C" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00E5A0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00E5A0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00E5A0" stroke-width="56"/></svg></div>
       <div class="rm-info">
         <div class="rm-name">KIWI AGENDA MANAGER</div>
         <div class="rm-sub">Visitas, prospectos y seguimiento</div>
@@ -624,7 +628,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <span class="rm-badge rb-done">En producción</span>
     </div>
     <div class="rm-item">
-      <div class="rm-dot d-done">✅</div>
+      <div class="rm-dot"><svg width="40" height="40" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0B1020"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1F5FA8" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00D4FF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00D4FF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00D4FF" stroke-width="56"/></svg></div>
       <div class="rm-info">
         <div class="rm-name">KIWI TRACK</div>
         <div class="rm-sub">Geoevidencia de cobros y mapa de ruta</div>
@@ -632,7 +636,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <span class="rm-badge rb-done">En producción</span>
     </div>
     <div class="rm-item">
-      <div class="rm-dot d-done">✅</div>
+      <div class="rm-dot"><svg width="40" height="40" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0C0A1A"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#3B3799" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#6366F1" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#6366F1" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#6366F1" stroke-width="56"/></svg></div>
       <div class="rm-info">
         <div class="rm-name">KIWI PORTAL</div>
         <div class="rm-sub">Sitio público por empresa y solicitud en línea</div>
@@ -640,7 +644,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <span class="rm-badge rb-done">En producción</span>
     </div>
     <div class="rm-item">
-      <div class="rm-dot d-wip">🤖</div>
+      <div class="rm-dot"><svg width="40" height="40" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#150B1C"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A3D9E" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#C46BFF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#C46BFF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#C46BFF" stroke-width="56"/></svg></div>
       <div class="rm-info">
         <div class="rm-name">KIWI IA</div>
         <div class="rm-sub">Asistente que responde sobre tu cartera</div>
@@ -668,7 +672,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
   <div class="ft-grid">
     <div>
       <div class="f-logo">
-        <div class="logo-mark" style="width:24px;height:24px;font-size:10px">K</div>
+        <div class="logo-mark"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#11161F"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A8699" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#F2F5F8" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#F2F5F8" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#F2F5F8" stroke-width="56"/></svg></div>
         KIWI <em>SYSTEMS</em>
       </div>
       <div class="f-tag">Herramientas para operaciones de campo: cobranza, agenda comercial, servicios, venta de mercancía y logística. México y Latinoamérica.</div>
@@ -696,9 +700,11 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
     <div class="fc">
       <h4>Legal</h4>
       <ul>
-        <li><a href="https://app.kiwisystems.mx/privacidad" target="_blank" rel="noopener">Aviso de privacidad</a></li>
+        <li><a href="https://app.kiwisystems.mx/privacidad" target="_blank" rel="noopener">Privacidad · KIWI PAY</a></li>
+        <li><a href="https://app.kiwisystems.mx/eliminar-datos" target="_blank" rel="noopener">Eliminar datos · KIWI PAY</a></li>
+        <li><a href="/agenda/privacidad/">Privacidad · KIWI AGENDA</a></li>
+        <li><a href="/agenda/eliminar-datos/">Eliminar datos · KIWI AGENDA</a></li>
         <li><a href="https://app.kiwisystems.mx/terminos" target="_blank" rel="noopener">Términos y condiciones</a></li>
-        <li><a href="https://app.kiwisystems.mx/eliminar-datos" target="_blank" rel="noopener">Eliminar mis datos</a></li>
       </ul>
     </div>
   </div>
