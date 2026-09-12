@@ -44,7 +44,7 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .nav-links{display:flex;gap:30px;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:#fff}
-.btn-nav{background:var(--cyan);color:var(--bg);border:none;border-radius:8px;padding:9px 22px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;cursor:pointer;text-decoration:none;letter-spacing:.3px;transition:opacity .2s}
+.btn-nav{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.28);border-radius:8px;padding:9px 22px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;cursor:pointer;text-decoration:none;letter-spacing:.3px;transition:opacity .2s}
 .btn-nav:hover{opacity:.85}
 .nav-mob{display:none}
 
@@ -61,6 +61,7 @@ nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:cente
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:80px}
 .btn-p{background:linear-gradient(135deg,var(--cyan),#00AACC);color:#050D18;border:none;border-radius:10px;padding:15px 32px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;cursor:pointer;text-decoration:none;letter-spacing:.3px;transition:all .2s;box-shadow:0 0 24px rgba(0,212,255,.2)}
 .btn-p:hover{box-shadow:0 0 36px rgba(0,212,255,.35);transform:translateY(-1px)}
+.hero-nota{font-size:12px;color:rgba(255,255,255,.34);margin-top:14px;font-family:'Inter',sans-serif}
 .btn-o{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:15px 32px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer;text-decoration:none;transition:all .2s}
 .btn-o:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.04)}
 
@@ -261,7 +262,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#franquicias">Franquicias</a></li>
   </ul>
-  <a class="btn-nav" href="#franquicias">Solicitar demo</a>
+  <a class="btn-nav" href="https://app.kiwisystems.mx/?demo=1" target="_blank" rel="noopener">Probar sin registro</a>
 </nav>
 
 <!-- HERO -->
@@ -281,9 +282,10 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
     desde una sola plataforma.
   </p>
   <div class="hero-btns">
-    <a class="btn-p" href="#franquicias">Solicitar demo</a>
-    <a class="btn-o" href="#caso">Ver caso real →</a>
+    <a class="btn-p" href="https://app.kiwisystems.mx/?demo=1" target="_blank" rel="noopener">▶ Probar la demo</a>
+    <a class="btn-o" href="#franquicias">Solicitar demo</a>
   </div>
+  <div class="hero-nota">Cartera de ejemplo · sin registro · sin tarjeta</div>
   <div class="stats-bar">
     <div class="st">
       <div class="st-n">4</div>
