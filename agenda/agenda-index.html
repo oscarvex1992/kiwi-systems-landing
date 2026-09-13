@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KIWI AGENDA MANAGER — Tu agenda de visitas, en tu teléfono.</title>
+<meta name="description" content="Agenda de visitas, prospectos y seguimiento para equipos de campo. Funciona en tu teléfono sin cuenta y sin internet, o en la nube para todo tu equipo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050D18; --bg2:#080F1E; --bg3:#0B1628;
+  --menta:#00E5A0; --menta2:#0A7A5C; --cyan:#00D4FF;
+  --white:#FFFFFF; --muted:rgba(255,255,255,.48);
+  --border:rgba(255,255,255,.07); --border2:rgba(0,229,160,.18);
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--menta);text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 7%}
+h1,h2,h3{font-family:'Montserrat',sans-serif;letter-spacing:-.5px}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:50;background:rgba(5,13,24,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:13px;padding-bottom:13px}
+.brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;letter-spacing:.6px;color:#fff}
+.brand small{display:block;font-size:9.5px;color:var(--muted);letter-spacing:.4px;font-weight:400}
+.nav-links{display:flex;gap:20px;font-size:12.5px}
+.nav-links a{color:rgba(255,255,255,.55)}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:flex;gap:9px;align-items:center}
+.btn{font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:700;padding:9px 17px;border-radius:100px;white-space:nowrap;letter-spacing:.3px;border:1px solid transparent;transition:all .2s}
+.btn-p{background:var(--menta);color:#04150F}
+.btn-p:hover{filter:brightness(1.08)}
+.btn-o{border-color:rgba(255,255,255,.16);color:rgba(255,255,255,.72)}
+.btn-o:hover{border-color:rgba(255,255,255,.34);color:#fff}
+@media(max-width:880px){ .nav-links{display:none} }
+
+/* ── HERO ── */
+header{padding:70px 0 20px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:760px;height:420px;background:radial-gradient(ellipse,rgba(0,229,160,.10),transparent 68%);pointer-events:none}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:11px;border:1px solid var(--border2);background:rgba(0,229,160,.06);color:var(--menta);padding:6px 14px;border-radius:100px;margin-bottom:22px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--menta)}
+h1{font-size:clamp(34px,6.4vw,60px);font-weight:900;line-height:1.06;margin-bottom:20px}
+h1 em{font-style:normal;color:var(--menta)}
+.lead{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,.6);max-width:620px;margin-bottom:30px}
+.hero-btns{display:flex;gap:11px;flex-wrap:wrap;align-items:center}
+.hero-nota{font-size:12px;color:rgba(255,255,255,.34);margin-top:15px}
+
+/* ── DOS MODOS ── */
+.modos{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:56px 0 20px}
+.modo{border:1px solid var(--border);border-radius:20px;padding:30px 28px;background:var(--bg2);position:relative}
+.modo.destacado{border-color:var(--border2);background:linear-gradient(160deg,rgba(0,229,160,.05),rgba(0,212,255,.03))}
+.modo .etq{font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--menta);margin-bottom:11px}
+.modo h3{font-size:20px;font-weight:800;margin-bottom:10px}
+.modo p{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:16px}
+.modo ul{list-style:none;font-size:13.5px;color:rgba(255,255,255,.68)}
+.modo li{padding:5px 0 5px 22px;position:relative}
+.modo li::before{content:'✓';position:absolute;left:0;color:var(--menta);font-weight:700}
+@media(max-width:760px){ .modos{grid-template-columns:1fr} }
+
+/* ── SECCIONES ── */
+section{padding:70px 0;border-top:1px solid var(--border)}
+.eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--menta);margin-bottom:14px}
+h2{font-size:clamp(26px,4.2vw,40px);font-weight:900;line-height:1.13;margin-bottom:18px}
+h2 span{color:rgba(255,255,255,.34)}
+.sec-lead{font-size:15.5px;color:rgba(255,255,255,.6);max-width:640px;margin-bottom:34px}
+
+/* ── CARACTERISTICAS ── */
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.feat{border:1px solid var(--border);border-radius:16px;padding:24px 22px;background:var(--bg2)}
+.feat h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.feat p{font-size:13.5px;color:rgba(255,255,255,.56)}
+
+/* ── PARA QUIEN ── */
+.check{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:11px 26px;margin-bottom:28px}
+.check div{font-size:14.5px;color:rgba(255,255,255,.72);padding-left:26px;position:relative}
+.check div::before{content:'✓';position:absolute;left:0;color:var(--menta);font-weight:700}
+.aviso{border:1px solid var(--border);border-radius:16px;padding:22px 24px;background:var(--bg2);font-size:14px;color:rgba(255,255,255,.58);line-height:1.65}
+.aviso strong{color:#fff}
+
+/* ── CIERRE ── */
+.cierre{text-align:center;border:1px solid var(--border2);border-radius:24px;padding:52px 30px;background:linear-gradient(160deg,rgba(0,229,160,.06),rgba(0,212,255,.03));margin:26px 0}
+.cierre h2{margin-bottom:12px}
+.cierre p{font-size:15px;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 26px}
+.cierre .hero-btns{justify-content:center}
+
+/* ── PIE ── */
+footer{border-top:1px solid var(--border);padding:40px 0 30px;background:rgba(0,0,0,.35);text-align:center}
+footer p{font-size:12.5px;color:rgba(255,255,255,.36);margin-bottom:8px}
+footer .legal{font-size:11.5px;color:rgba(255,255,255,.26)}
+footer .legal a{color:rgba(255,255,255,.42)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg width="30" height="30" viewBox="0 0 512 512" aria-hidden="true" style="display:block;border-radius:7px"><rect width="512" height="512" rx="114" fill="#070B14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#0A7A5C" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00E5A0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00E5A0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00E5A0" stroke-width="56"/></svg>
+      <span>KIWI AGENDA<small>by Kiwi Systems</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#modos">Cómo funciona</a>
+      <a href="#dentro">Qué hace</a>
+      <a href="#quien">Para quién</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-o" href="/#franquicias">Solicitar demo</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="chip"><span class="dot"></span> En producción · operación real desde junio de 2026</div>
+    <h1>Tu agenda de visitas,<br><em>en tu teléfono.</em></h1>
+    <p class="lead">Programa visitas, da seguimiento a prospectos y lleva el control de tu día.
+      Sola en tu teléfono, o compartida con todo tu equipo.</p>
+    <div class="hero-btns">
+      <a class="btn btn-p" href="/#franquicias">Solicitar demo →</a>
+      <a class="btn btn-o" href="#modos">Cómo funciona</a>
+    </div>
+    <div class="hero-nota">Pronto en Google Play · el modo teléfono es gratis y no pide cuenta</div>
+  </div>
+</header>
+
+<section id="modos" style="border-top:none;padding-top:20px">
+  <div class="wrap">
+    <div class="eyebrow">Dos formas de usarla</div>
+    <h2>Empieza solo.<br><span>Crece con tu equipo.</span></h2>
+    <p class="sec-lead">La misma app sirve para una persona y para una empresa. Eliges al abrirla,
+      y puedes cambiar cuando quieras.</p>
+
+    <div class="modos">
+      <div class="modo destacado">
+        <div class="etq">MODO TELÉFONO</div>
+        <h3>Para ti solo</h3>
+        <p>Todo se guarda en tu aparato. Sin cuenta, sin correo, sin internet.</p>
+        <ul>
+          <li>No pide registrarse</li>
+          <li>Funciona sin señal</li>
+          <li>Tus datos no salen del teléfono</li>
+          <li>Copia de seguridad cuando tú quieras</li>
+        </ul>
+      </div>
+      <div class="modo">
+        <div class="etq">MODO EQUIPO</div>
+        <h3>Para tu empresa</h3>
+        <p>Varias personas trabajando sobre la misma agenda, cada quien con su rol.</p>
+        <ul>
+          <li>Promotoras, cobradores y supervisión</li>
+          <li>Cada quien ve lo que le toca</li>
+          <li>Se sincroniza entre todos</li>
+          <li>Reportes de lo programado y lo cumplido</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dentro">
+  <div class="wrap">
+    <div class="eyebrow">Qué hace</div>
+    <h2>Lo que pasa entre<br><span>el prospecto y el cliente.</span></h2>
+    <p class="sec-lead">Antes de que alguien sea cliente, hay visitas, llamadas y seguimiento.
+      Eso es lo que suele vivir en libretas y mensajes sueltos.</p>
+
+    <div class="feats">
+      <div class="feat">
+        <h3>Agenda por día</h3>
+        <p>Qué toca hoy, a qué hora y con quién. Con calendario para ver la semana entera.</p>
+      </div>
+      <div class="feat">
+        <h3>Contactos con su historia</h3>
+        <p>Teléfono, dirección y lo que se habló la última vez. Sin buscar en el chat.</p>
+      </div>
+      <div class="feat">
+        <h3>Estados de la visita</h3>
+        <p>Confirmada, entregada, reprogramada o cancelada. Sabes en qué quedó cada una.</p>
+      </div>
+      <div class="feat">
+        <h3>Equipos y roles</h3>
+        <p>Cada persona ve su agenda; quien supervisa ve la de todos.</p>
+      </div>
+      <div class="feat">
+        <h3>WhatsApp de un toque</h3>
+        <p>Recordar una cita sin copiar el número a mano.</p>
+      </div>
+      <div class="feat">
+        <h3>Totales del periodo</h3>
+        <p>Cuánto se programó, cuánto se cumplió y qué quedó pendiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quien">
+  <div class="wrap">
+    <div class="eyebrow">Antes de que pierdas tiempo</div>
+    <h2>Para quién es —<br><span>y para quién no.</span></h2>
+
+    <div class="check">
+      <div>Visitas clientes o prospectos en la calle</div>
+      <div>Manejas varias citas al día y se te traslapan</div>
+      <div>Trabajas donde el internet a veces falla</div>
+      <div>Quieres dejar de anotar en libreta o en el chat</div>
+      <div>Tienes promotoras o gente en campo que reporta</div>
+      <div>Necesitas saber qué se programó y qué se cumplió</div>
+    </div>
+
+    <div class="aviso">
+      <strong>Y para ser claros:</strong> KIWI AGENDA no cobra, no lleva créditos ni maneja
+      dinero — para eso está <a href="/pay/">KIWI PAY</a>. Esta es la herramienta de lo que pasa
+      <strong>antes</strong>: la visita, el seguimiento y el acuerdo. Si buscas cobranza,
+      preferimos decírtelo ahora.
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding-top:20px">
+  <div class="wrap">
+    <div class="cierre">
+      <h2>Pruébala con tu operación</h2>
+      <p>Te la mostramos funcionando y respondemos lo que quieras preguntar.
+        Si trabajas solo, el modo teléfono es gratis y no pide cuenta.</p>
+      <div class="hero-btns">
+        <a class="btn btn-p" href="/#franquicias">Solicitar demo →</a>
+        <a class="btn btn-o" href="/">Ver el ecosistema</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>KIWI AGENDA MANAGER es un producto de <a href="/">KIWI SYSTEMS</a> · Apodaca, Nuevo León, México 🇲🇽</p>
+    <p class="legal">
+      <a href="/agenda/privacidad/">Privacidad</a> ·
+      <a href="/agenda/eliminar-datos/">Eliminar datos</a> ·
+      <a href="https://app.kiwisystems.mx/terminos" target="_blank" rel="noopener">Términos</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
