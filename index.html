@@ -1,802 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KIWI SYSTEMS — Herramientas para operaciones de campo</title>
-<meta name="description" content="Herramientas que le hacen el trabajo más fácil a quien lo hace: cobranza, agenda comercial, servicios, venta de mercancía y logística. KIWI PAY, KIWI AGENDA MANAGER, KIWI TRACK, KIWI PORTAL y KIWI IA.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBhcmlhLWhpZGRlbj0idHJ1ZSIgc3R5bGU9ImRpc3BsYXk6YmxvY2siPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMCIgZmlsbD0iIzExMTYxRiIvPjxwYXRoIGQ9Ik0xNzAgMTEwIEwxNzAgNDAyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMkY1RjgiIHN0cm9rZS13aWR0aD0iNzIiLz48cGF0aCBkPSJNMTc4IDI1OCBMMzkyIDExMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjJGNUY4IiBzdHJva2Utd2lkdGg9IjY0Ii8+PHBhdGggZD0iTTE3OCAyNTggTDM5NiA0MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0YyRjVGOCIgc3Ryb2tlLXdpZHRoPSI2NCIvPjwvc3ZnPg==">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descargar KIWI PAY Go · Kiwi Systems</title>
+<meta name="description" content="Instala KIWI PAY Go en los teléfonos de tu ruta: cobro con o sin señal, ticket al instante y evidencia de dónde se cobró cada peso.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%20512%20512%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22114%22%20fill%3D%22%230A0F08%22/%3E%3Crect%20x%3D%22109%22%20y%3D%22202%22%20width%3D%22260%22%20height%3D%22170%22%20rx%3D%2240%22%20fill%3D%22none%22%20stroke%3D%22%231B7A45%22%20stroke-width%3D%2236%22/%3E%3Cpath%20d%3D%22M192%20113%20L192%20398%22%20fill%3D%22none%22%20stroke%3D%22%232BD46B%22%20stroke-width%3D%2263%22/%3E%3Cpath%20d%3D%22M200%20260%20L404%20118%22%20fill%3D%22none%22%20stroke%3D%22%232BD46B%22%20stroke-width%3D%2256%22/%3E%3Cpath%20d%3D%22M200%20260%20L406%20393%22%20fill%3D%22none%22%20stroke%3D%22%232BD46B%22%20stroke-width%3D%2256%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:       #050D18;
-  --bg2:      #080F1E;
-  --bg3:      #0B1628;
-  --cyan:     #00D4FF;
-  --indigo:   #6366F1;
-  --cyan-dim: rgba(0,212,255,.08);
-  --ind-dim:  rgba(99,102,241,.1);
-  --gold:     #D4AF37;
-  --white:    #FFFFFF;
-  --muted:    rgba(255,255,255,.48);
-  --border:   rgba(255,255,255,.07);
-  --border2:  rgba(0,212,255,.15);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-/* ── UTILITIES ── */
-.tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;display:block}
-.h2{font-family:'Montserrat',sans-serif;font-size:clamp(28px,3.8vw,48px);font-weight:900;line-height:1.06;letter-spacing:-1px;margin-bottom:16px}
-.sub{font-size:clamp(15px,1.5vw,17px);color:var(--muted);line-height:1.7;max-width:520px}
-.center{text-align:center}.center .sub{margin:0 auto}
-section{padding:100px 7%}
-
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;background:rgba(5,13,24,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:17px;letter-spacing:-.3px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
-.logo-mark{display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo-mark svg{border-radius:7px}
-.logo em{color:var(--cyan);font-style:normal}
-.nav-links{display:flex;gap:30px;list-style:none}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:#fff}
-.btn-nav{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.28);border-radius:8px;padding:9px 22px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;cursor:pointer;text-decoration:none;letter-spacing:.3px;transition:opacity .2s}
-.btn-nav:hover{opacity:.85}
-.nav-mob{display:none}
-
-/* ── HERO ── */
-.hero{min-height:96vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 7% 80px;position:relative;overflow:hidden}
-.hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(0,212,255,.09) 0%,transparent 70%);pointer-events:none}
-.hero-glow2{position:absolute;bottom:-10%;left:30%;width:600px;height:400px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(99,102,241,.07) 0%,transparent 70%);pointer-events:none}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.18);border-radius:100px;padding:6px 18px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:.8px;text-transform:uppercase;margin-bottom:32px}
-.eyebrow-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.hero-h1{font-family:'Montserrat',sans-serif;font-size:clamp(38px,6vw,80px);font-weight:900;line-height:1.0;letter-spacing:-2px;max-width:880px;margin-bottom:26px}
-.hero-h1 .accent{background:linear-gradient(90deg,var(--cyan),var(--indigo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:clamp(16px,1.7vw,19px);color:var(--muted);max-width:560px;margin:0 auto 42px;font-weight:400;line-height:1.7}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:80px}
-.btn-p{background:linear-gradient(135deg,var(--cyan),#00AACC);color:#050D18;border:none;border-radius:10px;padding:15px 32px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;cursor:pointer;text-decoration:none;letter-spacing:.3px;transition:all .2s;box-shadow:0 0 24px rgba(0,212,255,.2)}
-.btn-p:hover{box-shadow:0 0 36px rgba(0,212,255,.35);transform:translateY(-1px)}
-.hero-nota{font-size:12px;color:rgba(255,255,255,.34);margin-top:14px;font-family:'Inter',sans-serif}
-.btn-o{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:15px 32px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;cursor:pointer;text-decoration:none;transition:all .2s}
-.btn-o:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.04)}
-
-/* Stats bar */
-.stats-bar{display:flex;justify-content:center;flex-wrap:wrap;border:1px solid var(--border2);border-radius:16px;background:rgba(0,212,255,.03);max-width:700px;width:100%;backdrop-filter:blur(8px)}
-.st{flex:1;min-width:120px;padding:20px 24px;text-align:center;border-right:1px solid var(--border)}
-.st:last-child{border-right:none}
-.st-n{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:var(--cyan);line-height:1;letter-spacing:-1px}
-.st-l{font-size:11px;color:var(--muted);margin-top:5px;font-weight:500}
-
-/* ── ECOSYSTEM ── */
-.eco{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.eco-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:52px;max-width:900px;margin-left:auto;margin-right:auto}
-.eco-card{border:1px solid var(--border);border-radius:18px;padding:28px 24px;position:relative;transition:all .25s;overflow:hidden;background:rgba(255,255,255,.015)}
-.eco-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s}
-.eco-card:hover{border-color:rgba(0,212,255,.2);transform:translateY(-3px);background:rgba(0,212,255,.02)}
-.eco-card:hover::before{opacity:1}
-.eco-card.live{border-color:rgba(0,212,255,.15);background:rgba(0,212,255,.025)}
-.eco-card.beta{border-color:rgba(212,175,55,.15);background:rgba(212,175,55,.02)}
-.eco-card.wide{grid-column:1/-1}
-.eco-card.live::before{opacity:.6}
-.eco-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
-.eco-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.eco-icon svg{border-radius:13px}
-.ic-pay{background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.2)}
-.ic-agenda{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.18)}
-.ic-track{background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2)}
-.ic-portal{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.18)}
-.ic-ia{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2)}
-.eco-badge{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 10px;border-radius:100px}
-.b-live{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
-.b-soon{background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.08)}
-.b-beta{background:rgba(212,175,55,.1);color:var(--gold);border:1px solid rgba(212,175,55,.2)}
-.eco-name{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;margin-bottom:8px;letter-spacing:-.3px}
-.eco-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:16px}
-.eco-pills{display:flex;flex-wrap:wrap;gap:6px}
-.eco-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-family:'Montserrat',sans-serif;
-  font-size:12px;font-weight:700;color:var(--cyan);text-decoration:none;transition:gap .2s}
-.eco-link:hover{gap:10px}
-.pill{font-size:11px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:100px;padding:3px 10px;font-weight:500}
-
-/* ── EQUIPO ── */
-.equipo{background:var(--bg)}
-.eq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px}
-.eq-card{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:16px;padding:28px 22px;transition:all .25s}
-.eq-card:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);transform:translateY(-3px)}
-.eq-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
-.ico-c{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.15)}
-.ico-s{background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.15)}
-.ico-a{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.15)}
-.ico-d{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.15)}
-.eq-role{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;margin-bottom:8px;letter-spacing:-.2px}
-.eq-desc{font-size:13px;color:var(--muted);line-height:1.65}
-
-/* ── CÓMO FUNCIONA ── */
-.como{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;position:relative;max-width:900px;margin-left:auto;margin-right:auto}
-.steps::before{content:'';position:absolute;top:26px;left:calc(12.5% + 24px);right:calc(12.5% + 24px);height:1px;background:linear-gradient(90deg,var(--cyan),var(--indigo));opacity:.25;z-index:0}
-.step{text-align:center;padding:0 16px;position:relative;z-index:1}
-.origen{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.org-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;max-width:980px;margin:56px auto 0}
-.org-p{font-size:clamp(15px,1.5vw,17px);color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:18px}
-.org-p strong{color:#fff;font-weight:600}
-.org-cierre{font-family:'Montserrat',sans-serif;font-size:clamp(17px,1.9vw,20px);font-weight:700;line-height:1.5;color:#fff;border-left:2px solid var(--cyan);padding-left:20px;margin-top:26px}
-.mv{display:flex;flex-direction:column;gap:20px}
-.mv-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:26px 24px}
-.mv-card .tag{margin-bottom:12px;display:inline-block}
-.mv-card p{font-size:15px;color:rgba(255,255,255,.72);line-height:1.7;margin:0}
-.mv-card p strong{color:#fff;font-weight:600}
-.step-num{width:52px;height:52px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;color:var(--cyan);position:relative}
-.step-num::after{content:'';position:absolute;inset:-4px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%)}
-.step-title{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;margin-bottom:8px;letter-spacing:-.2px}
-.step-desc{font-size:12px;color:var(--muted);line-height:1.6}
-
-/* ── CASO ── */
-.caso{background:var(--bg)}
-.caso-inner{border:1px solid var(--border2);border-radius:22px;padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;margin-top:52px;background:linear-gradient(135deg,rgba(0,212,255,.03),rgba(99,102,241,.03));position:relative;overflow:hidden}
-.caso-inner::before{content:'ABC INVERSIONES';position:absolute;right:-20px;top:-20px;font-family:'Montserrat',sans-serif;font-size:80px;font-weight:900;color:rgba(255,255,255,.02);letter-spacing:-3px;pointer-events:none;line-height:1}
-.caso-quote{font-size:19px;font-style:italic;color:rgba(255,255,255,.82);line-height:1.6;margin-bottom:22px;font-weight:300}
-.caso-quote::before{content:'"';font-family:'Montserrat',sans-serif;font-size:60px;color:var(--cyan);opacity:.3;display:block;line-height:.6;margin-bottom:12px}
-.caso-who{font-size:14px;color:var(--cyan);font-weight:600;font-family:'Montserrat',sans-serif}
-.caso-where{font-size:12px;color:var(--muted);margin-top:5px}
-.cm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cm{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.12);border-radius:14px;padding:20px;text-align:center}
-.cm-n{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:900;color:var(--cyan);line-height:1;letter-spacing:-1px}
-.cm-l{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.45}
-
-/* ── FRANQUICIAS ── */
-.franq{background:linear-gradient(135deg,#040E18 0%,#071A0F 60%,#0A1F14 100%);border-top:1px solid rgba(0,212,255,.08);border-bottom:1px solid rgba(0,212,255,.08)}
-.franq-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
-.franq-list{display:flex;flex-direction:column;gap:20px;margin-top:36px}
-.fi{display:flex;gap:14px;align-items:flex-start}
-.fi-ico{width:40px;height:40px;border-radius:11px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.14);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:17px}
-.fi-t{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;margin-bottom:4px;letter-spacing:-.2px}
-.fi-d{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6}
-.franq-box{background:rgba(5,20,35,.7);border:1px solid rgba(0,212,255,.12);border-radius:20px;padding:36px;backdrop-filter:blur(10px)}
-.franq-box h3{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;margin-bottom:6px;letter-spacing:-.3px}
-.franq-box p{color:var(--muted);font-size:13px;margin-bottom:24px;line-height:1.6}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:11px;color:rgba(255,255,255,.45);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
-.fg input,.fg select{width:100%;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:9px;color:#fff;font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
-.fg input::placeholder{color:rgba(255,255,255,.22)}
-.fg input:focus,.fg select:focus{border-color:var(--cyan);background:rgba(0,212,255,.04)}
-.fg select option{background:#0B1628}
-
-/* ── ROADMAP ── */
-.roadmap{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.rm-track{display:flex;flex-direction:column;gap:0;margin-top:52px;max-width:640px;margin-left:auto;margin-right:auto}
-.rm-item{display:flex;align-items:center;gap:18px;padding:16px 0;border-bottom:1px solid var(--border)}
-.rm-item:last-child{border-bottom:none}
-.rm-dot{width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.rm-dot svg{border-radius:11px}
-.d-done{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25)}
-.d-wip{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.22)}
-.d-future{background:rgba(255,255,255,.04);border:1px solid var(--border)}
-.rm-info{flex:1}
-.rm-name{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;margin-bottom:2px;letter-spacing:-.2px}
-.rm-sub{font-size:12px;color:var(--muted)}
-.rm-badge{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:4px 11px;border-radius:100px;letter-spacing:.4px;white-space:nowrap}
-.rm-cta{display:inline-flex;align-items:center;gap:6px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;padding:7px 14px;border-radius:100px;letter-spacing:.4px;text-decoration:none;white-space:nowrap;transition:all .2s;border:1px solid}
-.cta-demo{background:rgba(0,212,255,.1);color:var(--cyan);border-color:rgba(0,212,255,.28)}
-.cta-demo:hover{background:rgba(0,212,255,.18)}
-.rm-estado{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.rb-done{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
-.rb-wip{background:rgba(212,175,55,.1);color:var(--gold);border:1px solid rgba(212,175,55,.2)}
-.rb-future{background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid var(--border)}
-.rb-beta{background:rgba(212,175,55,.1);color:var(--gold);border:1px solid rgba(212,175,55,.2)}
-
-/* ── CTA FINAL ── */
-.cta-final{background:var(--bg);text-align:center;padding:100px 7%}
-.cta-box{max-width:640px;margin:0 auto;border:1px solid rgba(0,212,255,.15);border-radius:24px;padding:64px 48px;background:linear-gradient(135deg,rgba(0,212,255,.04),rgba(99,102,241,.06));position:relative;overflow:hidden}
-.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
-.cta-h{font-family:'Montserrat',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:900;letter-spacing:-1px;margin-bottom:14px;line-height:1.1}
-.cta-s{color:var(--muted);font-size:16px;margin-bottom:32px;line-height:1.6}
-
-/* ── FOOTER ── */
-footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px 7% 28px}
-.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:40px}
-.f-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.f-logo em{color:var(--cyan);font-style:normal}
-.f-tag{font-size:12px;color:rgba(255,255,255,.38);max-width:220px;line-height:1.65}
-.fc h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.28);margin-bottom:14px;font-family:'Montserrat',sans-serif}
-.fc ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.fc a{font-size:13px;color:rgba(255,255,255,.48);text-decoration:none;transition:color .2s}
-.fc a:hover{color:#fff}
-.ft-bot{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.ft-copy{font-size:12px;color:rgba(255,255,255,.25)}
-
-/* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:960px){
-  .nav-links{display:none}
-  .nav-mob{display:block}
-  .eco-grid{grid-template-columns:1fr}
-  .eq-grid{grid-template-columns:1fr 1fr}
-  .steps{grid-template-columns:1fr 1fr;gap:32px}
-  .org-grid{grid-template-columns:1fr;gap:38px}
-  .steps::before{display:none}
-  .caso-inner{grid-template-columns:1fr;gap:32px}
-  .franq-inner{grid-template-columns:1fr;gap:40px}
-  .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
-}
-@media(max-width:580px){
-  section{padding:72px 5%}
-  .eq-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr}
-  .cm-grid{grid-template-columns:1fr 1fr}
-  .ft-grid{grid-template-columns:1fr}
-  .cta-box{padding:40px 24px}
-  .hero-h1{letter-spacing:-1.2px}
-  .stats-bar{flex-direction:row;flex-wrap:wrap}
-  .st{min-width:50%;border-right:none;border-bottom:1px solid var(--border)}
-  .st:nth-child(odd){border-right:1px solid var(--border)}
-  .st:nth-child(3),.st:nth-child(4){border-bottom:none}
-}
-@media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none}
-  *{animation:none!important;transition:none!important}
-}
+/* ══════════════════════════════════════════════════════════════════════
+   kiwisystems.mx/pay/descarga/ — KIWI PAY Go (3-oct-2026)
+   Diseño aprobado por Oscar en el lienzo («esta bien asi») con la identidad
+   de KIWI PAY: #0A0F08 / #1B7A45 / #2BD46B, Montserrat + Inter.
+   La version, el tamaño, la huella y el enlace del APK salen de version.json
+   (bucket publico `descargas`, lo escribe publicar_campo.ps1): esta pagina
+   NO se vuelve a tocar en cada version.
+   ══════════════════════════════════════════════════════════════════════ */
+:root{--fondo:#0A0F08;--verde:#2BD46B;--verde2:#1B7A45;--claro:#F5F8F6;--txt:#0A0F08;--sub:#3F4D45;--borde:#DCE5DF}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--claro);color:var(--txt);line-height:1.5}
+h1,h2,h3,.marca{font-family:'Montserrat',sans-serif}
+a{color:var(--verde2)} a:hover{color:#14592F}
+.envoltura{max-width:1120px;margin:0 auto;padding:0 24px}
+header{background:var(--fondo);color:#fff}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:18px;padding-bottom:18px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.logo span{display:flex;flex-direction:column;line-height:1.15}
+.logo b{font-family:'Montserrat',sans-serif;font-weight:900;letter-spacing:.02em}
+.logo small{color:#A7C4B2;font-size:.78rem}
+nav{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+nav a{color:#D3E6DA;text-decoration:none;font-weight:600;padding:10px 0}
+nav a.boton-borde{color:#fff;border:1px solid #2E4237;border-radius:12px;padding:10px 16px}
+.heroe{display:flex;flex-wrap:wrap;gap:48px;align-items:center;padding-top:40px;padding-bottom:64px}
+.heroe .texto{flex:1 1 420px;display:flex;flex-direction:column;gap:20px}
+.ceja{color:var(--verde);font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h1{margin:0;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.08;color:#fff;font-weight:800}
+.heroe p{margin:0;font-size:1.15rem;color:#C9DDD0;max-width:560px}
+.accion{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.descargar{display:inline-flex;align-items:center;gap:10px;background:var(--verde);color:var(--fondo);text-decoration:none;font-weight:800;font-size:1.08rem;padding:16px 26px;border-radius:14px;min-height:44px}
+.descargar[aria-disabled="true"]{opacity:.6;pointer-events:none}
+.dato-version{font-size:.92rem;color:#A7C4B2}
+.tarjeta-qr{flex:0 1 320px;background:#fff;border-radius:22px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:12px;margin:0 auto;text-align:center;color:var(--txt)}
+.tarjeta-qr p{margin:0;font-size:.95rem;color:var(--sub)}
+.franja{display:flex;flex-wrap:wrap;gap:16px;padding-top:40px;padding-bottom:8px}
+.dato{flex:1 1 200px;background:#fff;border:1px solid var(--borde);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:4px}
+.dato b{font-size:1.15rem;font-family:'Montserrat',sans-serif} .dato span{color:var(--sub);font-size:.95rem}
+section h2{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800}
+.pasos{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:20px}
+.pasos li{flex:1 1 260px;background:#fff;border:1px solid var(--borde);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.num{width:30px;height:30px;border-radius:15px;background:var(--fondo);color:#fff;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-right:10px}
+.pasos h3{margin:0;font-size:1.15rem;display:flex;align-items:center}
+.pasos p{margin:0;color:var(--sub)}
+.admin{background:var(--fondo);color:#fff;border-radius:22px;padding:32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.admin p{margin:0;color:#C9DDD0}
+.copiar{flex:1 1 320px;display:flex;gap:8px}
+.copiar input{flex:1 1 auto;min-width:0;border:1px solid #2E4237;background:#12201A;color:#fff;border-radius:12px;padding:0 14px;font:inherit;min-height:48px}
+.copiar button{border:0;border-radius:12px;background:var(--verde);color:var(--fondo);font:inherit;font-weight:800;padding:0 18px;min-height:48px;cursor:pointer}
+details{border-bottom:1px solid var(--borde);padding:18px 0}
+summary{cursor:pointer;font-size:1.08rem;font-weight:700}
+details p{margin:10px 0 0;color:var(--sub);max-width:760px}
+footer{background:var(--fondo);color:#C9DDD0;margin-top:24px}
+.pie{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center;padding-top:36px;padding-bottom:36px}
+.pie a.wa{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;border:1px solid #2E4237;border-radius:12px;padding:12px 16px;min-height:44px}
+.legal{flex:1 1 100%;display:flex;flex-direction:column;gap:8px;font-size:.85rem;color:#8FAE9B}
+.legal a{color:#8FAE9B} .huella{word-break:break-all}
+@media (max-width:640px){.tarjeta-qr{display:none}}
 </style>
 </head>
 <body>
+<header>
+  <div class="envoltura barra">
+    <a class="logo" href="/pay/"><svg width="36" height="36" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="114" fill="#0A0F08"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1B7A45" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#2BD46B" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#2BD46B" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#2BD46B" stroke-width="56"/></svg><span><b>KIWI PAY</b><small>by Kiwi Systems</small></span></a>
+    <nav><a href="#pasos">Cómo instalar</a><a href="#preguntas">Preguntas</a><a href="#soporte">Soporte</a><a class="boton-borde" href="https://app.kiwisystems.mx">Entrar a la app</a></nav>
+  </div>
+  <div class="envoltura heroe">
+    <div class="texto">
+      <span class="ceja">KIWI PAY · Cobra más. Controla mejor.</span>
+      <h1>Instala KIWI PAY Go en los teléfonos de tu ruta</h1>
+      <p>No es una pantalla de escritorio encogida: está hecha para la calle. Cobra con o sin señal, imprime el ticket ahí mismo y deja evidencia de dónde se cobró cada peso.</p>
+      <div class="accion">
+        <a id="btnDescargar" class="descargar" href="#" aria-disabled="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>
+          <span id="txtDescargar">Cargando…</span>
+        </a>
+        <span id="datoVersion" class="dato-version">Android 8 o superior</span>
+      </div>
+      <span class="dato-version">¿Usas iPhone? La versión para iOS llega pronto.</span>
+    </div>
+    <div class="tarjeta-qr">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" width="200" height="200" role="img" aria-label="Código QR de kiwisystems.mx/pay/descarga" shape-rendering="crispEdges"><rect width="33" height="33" fill="#fff"/><path d="M2,2h1v1h-1zM3,2h1v1h-1zM4,2h1v1h-1zM5,2h1v1h-1zM6,2h1v1h-1zM7,2h1v1h-1zM8,2h1v1h-1zM10,2h1v1h-1zM15,2h1v1h-1zM17,2h1v1h-1zM19,2h1v1h-1zM20,2h1v1h-1zM21,2h1v1h-1zM24,2h1v1h-1zM25,2h1v1h-1zM26,2h1v1h-1zM27,2h1v1h-1zM28,2h1v1h-1zM29,2h1v1h-1zM30,2h1v1h-1zM2,3h1v1h-1zM8,3h1v1h-1zM10,3h1v1h-1zM12,3h1v1h-1zM13,3h1v1h-1zM14,3h1v1h-1zM15,3h1v1h-1zM18,3h1v1h-1zM20,3h1v1h-1zM22,3h1v1h-1zM24,3h1v1h-1zM30,3h1v1h-1zM2,4h1v1h-1zM4,4h1v1h-1zM5,4h1v1h-1zM6,4h1v1h-1zM8,4h1v1h-1zM11,4h1v1h-1zM13,4h1v1h-1zM17,4h1v1h-1zM20,4h1v1h-1zM21,4h1v1h-1zM24,4h1v1h-1zM26,4h1v1h-1zM27,4h1v1h-1zM28,4h1v1h-1zM30,4h1v1h-1zM2,5h1v1h-1zM4,5h1v1h-1zM5,5h1v1h-1zM6,5h1v1h-1zM8,5h1v1h-1zM10,5h1v1h-1zM12,5h1v1h-1zM13,5h1v1h-1zM14,5h1v1h-1zM16,5h1v1h-1zM19,5h1v1h-1zM21,5h1v1h-1zM22,5h1v1h-1zM24,5h1v1h-1zM26,5h1v1h-1zM27,5h1v1h-1zM28,5h1v1h-1zM30,5h1v1h-1zM2,6h1v1h-1zM4,6h1v1h-1zM5,6h1v1h-1zM6,6h1v1h-1zM8,6h1v1h-1zM11,6h1v1h-1zM14,6h1v1h-1zM16,6h1v1h-1zM17,6h1v1h-1zM19,6h1v1h-1zM20,6h1v1h-1zM21,6h1v1h-1zM24,6h1v1h-1zM26,6h1v1h-1zM27,6h1v1h-1zM28,6h1v1h-1zM30,6h1v1h-1zM2,7h1v1h-1zM8,7h1v1h-1zM11,7h1v1h-1zM12,7h1v1h-1zM13,7h1v1h-1zM14,7h1v1h-1zM15,7h1v1h-1zM21,7h1v1h-1zM22,7h1v1h-1zM24,7h1v1h-1zM30,7h1v1h-1zM2,8h1v1h-1zM3,8h1v1h-1zM4,8h1v1h-1zM5,8h1v1h-1zM6,8h1v1h-1zM7,8h1v1h-1zM8,8h1v1h-1zM10,8h1v1h-1zM12,8h1v1h-1zM14,8h1v1h-1zM16,8h1v1h-1zM18,8h1v1h-1zM20,8h1v1h-1zM22,8h1v1h-1zM24,8h1v1h-1zM25,8h1v1h-1zM26,8h1v1h-1zM27,8h1v1h-1zM28,8h1v1h-1zM29,8h1v1h-1zM30,8h1v1h-1zM10,9h1v1h-1zM11,9h1v1h-1zM14,9h1v1h-1zM19,9h1v1h-1zM2,10h1v1h-1zM4,10h1v1h-1zM5,10h1v1h-1zM7,10h1v1h-1zM8,10h1v1h-1zM9,10h1v1h-1zM11,10h1v1h-1zM15,10h1v1h-1zM18,10h1v1h-1zM19,10h1v1h-1zM20,10h1v1h-1zM24,10h1v1h-1zM27,10h1v1h-1zM29,10h1v1h-1zM30,10h1v1h-1zM3,11h1v1h-1zM4,11h1v1h-1zM5,11h1v1h-1zM13,11h1v1h-1zM14,11h1v1h-1zM15,11h1v1h-1zM16,11h1v1h-1zM18,11h1v1h-1zM20,11h1v1h-1zM21,11h1v1h-1zM22,11h1v1h-1zM24,11h1v1h-1zM25,11h1v1h-1zM26,11h1v1h-1zM30,11h1v1h-1zM3,12h1v1h-1zM4,12h1v1h-1zM6,12h1v1h-1zM7,12h1v1h-1zM8,12h1v1h-1zM9,12h1v1h-1zM11,12h1v1h-1zM14,12h1v1h-1zM15,12h1v1h-1zM18,12h1v1h-1zM19,12h1v1h-1zM22,12h1v1h-1zM28,12h1v1h-1zM29,12h1v1h-1zM3,13h1v1h-1zM4,13h1v1h-1zM9,13h1v1h-1zM11,13h1v1h-1zM12,13h1v1h-1zM13,13h1v1h-1zM14,13h1v1h-1zM17,13h1v1h-1zM20,13h1v1h-1zM22,13h1v1h-1zM23,13h1v1h-1zM26,13h1v1h-1zM30,13h1v1h-1zM5,14h1v1h-1zM8,14h1v1h-1zM10,14h1v1h-1zM11,14h1v1h-1zM12,14h1v1h-1zM14,14h1v1h-1zM16,14h1v1h-1zM17,14h1v1h-1zM19,14h1v1h-1zM21,14h1v1h-1zM27,14h1v1h-1zM28,14h1v1h-1zM5,15h1v1h-1zM7,15h1v1h-1zM9,15h1v1h-1zM13,15h1v1h-1zM14,15h1v1h-1zM16,15h1v1h-1zM17,15h1v1h-1zM18,15h1v1h-1zM20,15h1v1h-1zM21,15h1v1h-1zM22,15h1v1h-1zM23,15h1v1h-1zM24,15h1v1h-1zM28,15h1v1h-1zM29,15h1v1h-1zM30,15h1v1h-1zM2,16h1v1h-1zM6,16h1v1h-1zM8,16h1v1h-1zM9,16h1v1h-1zM10,16h1v1h-1zM11,16h1v1h-1zM12,16h1v1h-1zM13,16h1v1h-1zM14,16h1v1h-1zM15,16h1v1h-1zM18,16h1v1h-1zM21,16h1v1h-1zM22,16h1v1h-1zM25,16h1v1h-1zM26,16h1v1h-1zM28,16h1v1h-1zM29,16h1v1h-1zM30,16h1v1h-1zM2,17h1v1h-1zM4,17h1v1h-1zM5,17h1v1h-1zM6,17h1v1h-1zM10,17h1v1h-1zM11,17h1v1h-1zM14,17h1v1h-1zM16,17h1v1h-1zM21,17h1v1h-1zM25,17h1v1h-1zM26,17h1v1h-1zM29,17h1v1h-1zM2,18h1v1h-1zM4,18h1v1h-1zM8,18h1v1h-1zM9,18h1v1h-1zM11,18h1v1h-1zM13,18h1v1h-1zM16,18h1v1h-1zM18,18h1v1h-1zM23,18h1v1h-1zM26,18h1v1h-1zM27,18h1v1h-1zM29,18h1v1h-1zM6,19h1v1h-1zM7,19h1v1h-1zM9,19h1v1h-1zM11,19h1v1h-1zM12,19h1v1h-1zM14,19h1v1h-1zM16,19h1v1h-1zM17,19h1v1h-1zM19,19h1v1h-1zM22,19h1v1h-1zM23,19h1v1h-1zM25,19h1v1h-1zM27,19h1v1h-1zM28,19h1v1h-1zM29,19h1v1h-1zM2,20h1v1h-1zM4,20h1v1h-1zM8,20h1v1h-1zM10,20h1v1h-1zM13,20h1v1h-1zM15,20h1v1h-1zM16,20h1v1h-1zM17,20h1v1h-1zM18,20h1v1h-1zM19,20h1v1h-1zM22,20h1v1h-1zM23,20h1v1h-1zM25,20h1v1h-1zM26,20h1v1h-1zM28,20h1v1h-1zM6,21h1v1h-1zM7,21h1v1h-1zM10,21h1v1h-1zM11,21h1v1h-1zM12,21h1v1h-1zM15,21h1v1h-1zM16,21h1v1h-1zM19,21h1v1h-1zM20,21h1v1h-1zM23,21h1v1h-1zM24,21h1v1h-1zM25,21h1v1h-1zM26,21h1v1h-1zM28,21h1v1h-1zM3,22h1v1h-1zM4,22h1v1h-1zM5,22h1v1h-1zM6,22h1v1h-1zM7,22h1v1h-1zM8,22h1v1h-1zM13,22h1v1h-1zM14,22h1v1h-1zM15,22h1v1h-1zM16,22h1v1h-1zM18,22h1v1h-1zM19,22h1v1h-1zM20,22h1v1h-1zM22,22h1v1h-1zM23,22h1v1h-1zM24,22h1v1h-1zM25,22h1v1h-1zM26,22h1v1h-1zM27,22h1v1h-1zM28,22h1v1h-1zM10,23h1v1h-1zM13,23h1v1h-1zM18,23h1v1h-1zM20,23h1v1h-1zM22,23h1v1h-1zM26,23h1v1h-1zM27,23h1v1h-1zM28,23h1v1h-1zM29,23h1v1h-1zM30,23h1v1h-1zM2,24h1v1h-1zM3,24h1v1h-1zM4,24h1v1h-1zM5,24h1v1h-1zM6,24h1v1h-1zM7,24h1v1h-1zM8,24h1v1h-1zM10,24h1v1h-1zM11,24h1v1h-1zM12,24h1v1h-1zM14,24h1v1h-1zM16,24h1v1h-1zM18,24h1v1h-1zM19,24h1v1h-1zM20,24h1v1h-1zM21,24h1v1h-1zM22,24h1v1h-1zM24,24h1v1h-1zM26,24h1v1h-1zM27,24h1v1h-1zM29,24h1v1h-1zM2,25h1v1h-1zM8,25h1v1h-1zM10,25h1v1h-1zM11,25h1v1h-1zM12,25h1v1h-1zM13,25h1v1h-1zM15,25h1v1h-1zM16,25h1v1h-1zM17,25h1v1h-1zM18,25h1v1h-1zM22,25h1v1h-1zM26,25h1v1h-1zM27,25h1v1h-1zM30,25h1v1h-1zM2,26h1v1h-1zM4,26h1v1h-1zM5,26h1v1h-1zM6,26h1v1h-1zM8,26h1v1h-1zM13,26h1v1h-1zM14,26h1v1h-1zM17,26h1v1h-1zM19,26h1v1h-1zM22,26h1v1h-1zM23,26h1v1h-1zM24,26h1v1h-1zM25,26h1v1h-1zM26,26h1v1h-1zM28,26h1v1h-1zM2,27h1v1h-1zM4,27h1v1h-1zM5,27h1v1h-1zM6,27h1v1h-1zM8,27h1v1h-1zM10,27h1v1h-1zM12,27h1v1h-1zM13,27h1v1h-1zM15,27h1v1h-1zM17,27h1v1h-1zM18,27h1v1h-1zM19,27h1v1h-1zM21,27h1v1h-1zM22,27h1v1h-1zM23,27h1v1h-1zM25,27h1v1h-1zM26,27h1v1h-1zM27,27h1v1h-1zM30,27h1v1h-1zM2,28h1v1h-1zM4,28h1v1h-1zM5,28h1v1h-1zM6,28h1v1h-1zM8,28h1v1h-1zM10,28h1v1h-1zM11,28h1v1h-1zM13,28h1v1h-1zM15,28h1v1h-1zM16,28h1v1h-1zM20,28h1v1h-1zM23,28h1v1h-1zM25,28h1v1h-1zM28,28h1v1h-1zM30,28h1v1h-1zM2,29h1v1h-1zM8,29h1v1h-1zM14,29h1v1h-1zM22,29h1v1h-1zM25,29h1v1h-1zM27,29h1v1h-1zM29,29h1v1h-1zM2,30h1v1h-1zM3,30h1v1h-1zM4,30h1v1h-1zM5,30h1v1h-1zM6,30h1v1h-1zM7,30h1v1h-1zM8,30h1v1h-1zM10,30h1v1h-1zM11,30h1v1h-1zM13,30h1v1h-1zM14,30h1v1h-1zM18,30h1v1h-1zM20,30h1v1h-1zM21,30h1v1h-1zM22,30h1v1h-1zM25,30h1v1h-1zM26,30h1v1h-1zM29,30h1v1h-1z" fill="#0A0F08"/></svg>
+      <b>¿Estás en una computadora?</b>
+      <p>Escanea el código con la cámara del teléfono donde vas a instalar la app.</p>
+    </div>
+  </div>
+</header>
 
-<!-- NAV -->
-<nav>
-  <a class="logo" href="#">
-    <div class="logo-mark"><svg width="28" height="28" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#11161F"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A8699" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#F2F5F8" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#F2F5F8" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#F2F5F8" stroke-width="56"/></svg></div>
-    KIWI <em>SYSTEMS</em>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#ecosistema">Productos</a></li>
-    <li><a href="#equipo">Para tu equipo</a></li>
-    <li><a href="#como">Cómo funciona</a></li>
-    <li><a href="#caso">Caso real</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#franquicias">Franquicias</a></li>
-  </ul>
-  <a class="btn-nav" href="https://app.kiwisystems.mx/?demo=1" target="_blank" rel="noopener">Probar sin registro</a>
-</nav>
+<main>
+  <div class="envoltura franja">
+    <div class="dato"><b>Con o sin señal</b><span>La ruta vive en el teléfono</span></div>
+    <div class="dato"><b>Ticket al instante</b><span>Impresora térmica o WhatsApp</span></div>
+    <div class="dato"><b>Se actualiza sola</b><span>Te avisa cuando hay versión nueva</span></div>
+    <div class="dato"><b>Evidencia en campo</b><span>Dónde se cobró cada peso</span></div>
+  </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="eyebrow">
-    <span class="eyebrow-dot"></span>
-    Ecosistema tecnológico · México
-  </div>
-  <h1 class="hero-h1">
-    De papel y Excel<br>
-    a control en <span class="accent">tiempo real</span>
-  </h1>
-  <p class="hero-sub">
-    Administra clientes, créditos, pagos, seguimiento y reportes
-    desde una sola plataforma.
-  </p>
-  <div class="hero-btns">
-    <a class="btn-p" href="https://app.kiwisystems.mx/?demo=1" target="_blank" rel="noopener">▶ Probar la demo</a>
-    <a class="btn-o" href="#franquicias">Solicitar demo</a>
-  </div>
-  <div class="hero-nota">Cartera de ejemplo · sin registro · sin tarjeta</div>
-  <div class="stats-bar">
-    <div class="st">
-      <div class="st-n">4</div>
-      <div class="st-l">Productos integrados</div>
-    </div>
-    <div class="st">
-      <div class="st-n">100%</div>
-      <div class="st-l">En la nube</div>
-    </div>
-    <div class="st">
-      <div class="st-n">SaaS</div>
-      <div class="st-l">Franquiciable</div>
-    </div>
-    <div class="st">
-      <div class="st-n">MX</div>
-      <div class="st-l">Hecho en México</div>
-    </div>
-  </div>
-</section>
+  <section id="pasos" class="envoltura" style="padding-top:48px;padding-bottom:48px">
+    <h2>Cómo instalarla</h2>
+    <p style="margin:0 0 28px;color:var(--sub)">Tres pasos, una sola vez. Después se actualiza sola.</p>
+    <ol class="pasos">
+      <li><h3><span class="num">1</span>Descarga</h3><p>Toca «Descargar para Android». Cuando termine, toca «Abrir» en el aviso de descarga.</p></li>
+      <li><h3><span class="num">2</span>Permite la instalación</h3><p>La primera vez, Android pregunta si tu navegador puede instalar apps. Toca «Configuración», activa «Permitir de esta fuente» y regresa.</p></li>
+      <li><h3><span class="num">3</span>Entra con tu usuario</h3><p>Abre KIWI PAY Go e ingresa con el correo y la contraseña que te dio tu administrador.</p></li>
+    </ol>
+  </section>
 
-<!-- ECOSISTEMA -->
-<section class="eco" id="ecosistema">
-  <div class="center reveal">
-    <span class="tag">Ecosistema KIWI SYSTEMS</span>
-    <h2 class="h2">Una plataforma.<br>Cinco productos.</h2>
-    <p class="sub" style="margin:0 auto">Cada producto funciona de manera independiente o integrada dentro del ecosistema. Tú decides qué activar.</p>
-  </div>
-  <div class="eco-grid reveal">
+  <section class="envoltura" style="padding-bottom:48px">
+    <div class="admin">
+      <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:8px">
+        <h2 style="font-size:1.5rem;margin:0">¿Eres administrador?</h2>
+        <p>Comparte este enlace con tu equipo por WhatsApp. Cada quien lo abre en su teléfono y sigue los tres pasos.</p>
+      </div>
+      <div class="copiar">
+        <label for="enlace" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Enlace de descarga</label>
+        <input id="enlace" type="text" readonly value="kiwisystems.mx/pay/descarga">
+        <button type="button" id="btnCopiar">Copiar</button>
+      </div>
+    </div>
+  </section>
 
-    <div class="eco-card live">
-      <div class="eco-top">
-        <div class="eco-icon ic-pay"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0A0F08"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1B7A45" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#2BD46B" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#2BD46B" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#2BD46B" stroke-width="56"/></svg></div>
-        <span class="eco-badge b-live">● Disponible</span>
-      </div>
-      <div class="eco-name">KIWI PAY</div>
-      <div class="eco-desc">Sistema de cobranza y crédito en campo. Tu equipo cobra con o sin señal: la app guarda todo en el teléfono y sincroniza al volver la conexión.</div>
-      <div class="eco-pills">
-        <span class="pill">Gestión de créditos</span>
-        <span class="pill">Control de cartera</span>
-        <span class="pill">Funciona sin internet</span>
-        <span class="pill">Comprobantes impresos</span>
-      </div>
-      <a class="eco-link" href="/pay/">Conocer KIWI PAY →</a>
-    </div>
+  <section id="preguntas" class="envoltura" style="padding-bottom:48px">
+    <h2>Preguntas frecuentes</h2>
+    <details open><summary>¿Por qué no se descarga desde Google Play?</summary><p>En Google Play está KIWI PAY para consultar y administrar. KIWI PAY Go —la versión de ruta, con la ubicación precisa del domicilio y de cada cobro— la distribuye Kiwi Systems directamente a sus empresas cliente.</p></details>
+    <details><summary>¿Es segura?</summary><p>Sí. Cada versión va firmada por Kiwi Systems y Android no deja instalar encima una copia alterada. Descárgala solo desde esta página. La primera vez Android puede mostrar un aviso porque la app no viene de la tienda; es normal.</p></details>
+    <details><summary>¿Cómo se actualiza?</summary><p>Al abrirla, la app revisa si hay versión nueva y te ofrece actualizar con un toque. También puedes buscarla en Ajustes → Aplicación → Buscar actualización. No tienes que volver a esta página.</p></details>
+    <details><summary>Ya tengo la KIWI PAY anterior en mi teléfono. ¿Qué hago?</summary><p>1) Abre la anterior con señal y revisa en Bitácora que no quede nada pendiente por subir. 2) Instala KIWI PAY Go y descarga tu ruta. 3) Haz un cobro de prueba. 4) Desinstala la anterior, para no abrir la equivocada.</p></details>
+    <details><summary>¿Mi impresora funciona?</summary><p>Sí: imprime en las impresoras térmicas Bluetooth que ya usa tu equipo. Se configura una vez desde Ajustes → Impresora.</p></details>
+  </section>
+</main>
 
-    <div class="eco-card live">
-      <div class="eco-top">
-        <div class="eco-icon ic-agenda"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#070B14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#0A7A5C" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00E5A0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00E5A0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00E5A0" stroke-width="56"/></svg></div>
-        <span class="eco-badge b-live">● Disponible</span>
-      </div>
-      <div class="eco-name">KIWI AGENDA MANAGER</div>
-      <div class="eco-desc">Seguimiento de visitas, prospectos y programación de actividades para tu equipo en campo. Todo sincronizado en tiempo real.</div>
-      <div class="eco-pills">
-        <span class="pill">Calendario de visitas</span>
-        <span class="pill">Seguimiento de prospectos</span>
-        <span class="pill">WhatsApp integrado</span>
-      </div>
+<footer id="soporte">
+  <div class="envoltura pie">
+    <div style="display:flex;flex-direction:column;gap:6px"><b style="color:#fff">¿Te atoraste instalando?</b><span>Escríbenos y te ayudamos.</span></div>
+    <a class="wa" href="https://wa.me/528124804827?text=Hola%2C%20necesito%20ayuda%20para%20instalar%20KIWI%20PAY%20Go" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2BD46B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+      <span>WhatsApp de soporte</span></a>
+    <div class="legal">
+      <span>KIWI PAY es un producto de <a href="https://kiwisystems.mx/" style="color:#D3E6DA">KIWI SYSTEMS</a> · Apodaca, Nuevo León, México</span>
+      <span style="display:flex;flex-wrap:wrap;gap:14px"><a href="https://app.kiwisystems.mx/privacidad">Privacidad</a><a href="https://app.kiwisystems.mx/terminos">Términos</a><a href="https://app.kiwisystems.mx/eliminar-datos">Eliminar datos</a></span>
+      <span id="datoHuella" class="huella"></span>
     </div>
-
-    <div class="eco-card live">
-      <div class="eco-top">
-        <div class="eco-icon ic-track"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0B1020"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1F5FA8" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00D4FF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00D4FF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00D4FF" stroke-width="56"/></svg></div>
-        <span class="eco-badge b-live">● Disponible</span>
-      </div>
-      <div class="eco-name">KIWI TRACK</div>
-      <div class="eco-desc">Cada cobro queda marcado con el lugar donde ocurrió, y el mapa del día muestra por dónde anduvo cada cobrador. Deja de ser tu palabra contra la suya.</div>
-      <div class="eco-pills">
-        <span class="pill">Geoevidencia de cada cobro</span>
-        <span class="pill">Mapa del día por cobrador</span>
-        <span class="pill">Última posición del equipo</span>
-      </div>
-    </div>
-
-    <div class="eco-card live">
-      <div class="eco-top">
-        <div class="eco-icon ic-portal"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#100A1E"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#4C2D91" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#A06BFF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#A06BFF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#A06BFF" stroke-width="56"/></svg></div>
-        <span class="eco-badge b-live">● Disponible</span>
-      </div>
-      <div class="eco-name">KIWI PORTAL</div>
-      <div class="eco-desc">Cada empresa con su propio sitio web, administrado por ella misma. Un prospecto solicita su crédito en línea y un cliente consulta su saldo e historial sin llamarle a nadie.</div>
-      <div class="eco-pills">
-        <span class="pill">Sitio propio por empresa</span>
-        <span class="pill">Solicitud de crédito en línea</span>
-        <span class="pill">Consulta de saldo e historial</span>
-      </div>
-    </div>
-
-    <div class="eco-card beta wide">
-      <div class="eco-top">
-        <div class="eco-icon ic-ia"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#1A0A14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#9E3D6E" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#FF6BB0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#FF6BB0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#FF6BB0" stroke-width="56"/></svg></div>
-        <span class="eco-badge b-beta">Beta</span>
-      </div>
-      <div class="eco-name">KIWI IA</div>
-      <div class="eco-desc">Pregúntale a tu cartera en palabras normales. «¿Quién no ha pagado esta semana?», «¿cómo va la ruta de Juárez?» — y responde con los datos de tu operación, no con generalidades.</div>
-      <div class="eco-pills">
-        <span class="pill">Preguntas en lenguaje natural</span>
-        <span class="pill">Responde con tus datos</span>
-        <span class="pill">Disponible por voz</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PARA TU EQUIPO -->
-<section class="equipo" id="equipo">
-  <div class="center reveal">
-    <span class="tag">Diseñado para todos</span>
-    <h2 class="h2">Una plataforma para<br>todo tu equipo</h2>
-    <p class="sub" style="margin:0 auto 0">Cada persona en tu empresa tiene una experiencia adaptada a su función, sin complejidad innecesaria.</p>
-  </div>
-  <div class="eq-grid reveal">
-    <div class="eq-card">
-      <div class="eq-ico ico-c">👤</div>
-      <div class="eq-role">Cobradores</div>
-      <div class="eq-desc">Registran pagos y visitas desde su celular. Sin papel, sin cuadernos, sin errores. Información en tiempo real.</div>
-    </div>
-    <div class="eq-card">
-      <div class="eq-ico ico-s">👥</div>
-      <div class="eq-role">Supervisores</div>
-      <div class="eq-desc">Gestionan equipos, asignan actividades y supervisan la productividad del campo desde cualquier dispositivo.</div>
-    </div>
-    <div class="eq-card">
-      <div class="eq-ico ico-a">🏢</div>
-      <div class="eq-role">Administradores</div>
-      <div class="eq-desc">Control operativo completo: cartera, clientes y actividad diaria con visibilidad total del negocio.</div>
-    </div>
-    <div class="eq-card">
-      <div class="eq-ico ico-d">📊</div>
-      <div class="eq-role">Dirección</div>
-      <div class="eq-desc">Indicadores financieros, rentabilidad y crecimiento del negocio en un solo panel ejecutivo.</div>
-    </div>
-  </div>
-</section>
-
-<!-- CÓMO FUNCIONA -->
-<section class="como" id="como">
-  <div class="center reveal">
-    <span class="tag">Simple por diseño</span>
-    <h2 class="h2">Cómo funciona</h2>
-    <p class="sub" style="margin:0 auto">Cuatro pasos para digitalizar y escalar tu operación de cobranza.</p>
-  </div>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Registra clientes</div>
-      <div class="step-desc">Crea perfiles completos con datos de contacto, domicilio y referencias.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">Crea créditos</div>
-      <div class="step-desc">Define monto, plazo e interés. El sistema calcula y programa automáticamente.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">Gestiona cobranza</div>
-      <div class="step-desc">Tu equipo registra pagos en campo, genera comprobantes y reporta en tiempo real.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-title">Toma decisiones</div>
-      <div class="step-desc">Accede a indicadores de cartera, productividad y finanzas desde cualquier lugar.</div>
-    </div>
-  </div>
-</section>
-
-<!-- CASO REAL -->
-<section class="caso" id="caso">
-  <div class="center reveal">
-    <span class="tag">Caso de uso real</span>
-    <h2 class="h2">En operación real,<br>desde Nuevo León</h2>
-  </div>
-  <div class="caso-inner reveal">
-    <div>
-      <div class="caso-quote">Pasamos de cuadernos y Excel a tener todo en tiempo real. El equipo registra pagos desde el celular y yo veo el avance de la cartera al instante.</div>
-      <div class="caso-who">Oscar — Fundador, ABC Inversiones</div>
-      <div class="caso-where">Empresa de crédito y cobranza · Apodaca, Nuevo León</div>
-    </div>
-    <div class="cm-grid">
-      <div class="cm">
-        <div class="cm-n">100%</div>
-        <div class="cm-l">Operación digital desde el día 1</div>
-      </div>
-      <div class="cm">
-        <div class="cm-n">0</div>
-        <div class="cm-l">Cuadernos de papel en uso</div>
-      </div>
-      <div class="cm">
-        <div class="cm-n">&lt;1s</div>
-        <div class="cm-l">Tiempo de registro de pago</div>
-      </div>
-      <div class="cm">
-        <div class="cm-n">24h</div>
-        <div class="cm-l">Para migrar desde Excel</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUIENES SOMOS -->
-<section class="origen" id="nosotros">
-  <div class="center reveal">
-    <span class="tag">Quiénes somos</span>
-    <h2 class="h2">Nace en la calle, no en una oficina</h2>
-    <p class="sub" style="margin:0 auto">Cada función de este ecosistema fue antes un problema real de alguien haciendo su trabajo.</p>
-  </div>
-  <div class="org-grid reveal">
-    <div>
-      <p class="org-p">Un cobrador sin señal a media ruta. Un ticket que no imprimía. Un cierre de caja
-        que no cuadraba a las ocho de la noche. <strong>Ninguna de esas funciones salió de un brief:
-        salieron de un día de trabajo.</strong></p>
-      <p class="org-p">Empezamos en cobranza porque ahí estábamos. Hoy el mismo núcleo mueve
-        agenda comercial, logística y lo que venga después — y todo se prueba igual:
-        <strong>donde se trabaja, con la operación andando</strong> y con gente que no puede
-        esperar a que se arregle mañana.</p>
-      <p class="org-cierre">No vendemos una promesa de transformación digital.<br>
-        Vendemos herramientas que aguantan un día de trabajo.</p>
-    </div>
-    <div class="mv">
-      <div class="mv-card">
-        <span class="tag">Misión</span>
-        <p>Desarrollar herramientas que <strong>le hagan el trabajo más fácil a quien lo hace</strong>.
-          Que quiten pasos en vez de agregarlos, que funcionen donde se trabaja —con o sin señal— y
-          que dejen constancia de lo que pasó sin pedirle a nadie que lo escriba dos veces.</p>
-      </div>
-      <div class="mv-card">
-        <span class="tag">Visión</span>
-        <p>Un ecosistema donde cualquier operación —cobranza, agenda, logística o la que siga—
-          trabaje sobre un mismo núcleo y lo haga suyo: su vocabulario, sus reglas y sus políticas.
-          <strong>Nosotros construimos la herramienta; cada empresa decide cómo la usa.</strong></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FRANQUICIAS -->
-<section class="franq" id="franquicias">
-  <div class="franq-inner">
-    <div class="reveal">
-      <span class="tag">Modelo de negocio</span>
-      <h2 class="h2">Franquicia tu operación<br>de cobranza</h2>
-      <p class="sub" style="margin-bottom:0">Tú pones el negocio.<br>Nosotros ponemos la tecnología.</p>
-      <div class="franq-list">
-        <div class="fi">
-          <div class="fi-ico">🚀</div>
-          <div>
-            <div class="fi-t">Plataforma lista desde el día 1</div>
-            <div class="fi-d">Sin desarrollo, sin configuración compleja. Tu operación corre desde el primer día.</div>
-          </div>
-        </div>
-        <div class="fi">
-          <div class="fi-ico">🏷️</div>
-          <div>
-            <div class="fi-t">Tu marca, tu identidad</div>
-            <div class="fi-d">Nombre, colores y configuración personalizable. Tus clientes no ven KIWI — ven tu empresa.</div>
-          </div>
-        </div>
-        <div class="fi">
-          <div class="fi-ico">📈</div>
-          <div>
-            <div class="fi-t">Escalabilidad sin límites</div>
-            <div class="fi-d">Diseñado para crecer. Desde 1 cobrador hasta cientos, sin cambiar nada de infraestructura.</div>
-          </div>
-        </div>
-        <div class="fi">
-          <div class="fi-ico">🎓</div>
-          <div>
-            <div class="fi-t">Capacitación y procesos incluidos</div>
-            <div class="fi-d">Acompañamiento en onboarding, procesos operativos y mejores prácticas del sector.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="franq-box">
-        <h3>Solicita información</h3>
-        <p>Cuéntanos sobre tu negocio y te contactamos en menos de 24 horas.</p>
-        <div id="form-success" style="display:none;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:12px;padding:20px;text-align:center;margin-bottom:16px">
-          <div style="font-size:28px;margin-bottom:8px">✅</div>
-          <div style="font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:4px">¡Mensaje enviado!</div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Te contactamos en menos de 24 horas.</div>
-          <a id="wa-btn-success" href="#" target="_blank"
-            style="display:none;padding:11px 22px;background:#25D366;color:white;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.2px">
-            📲 Continuar por WhatsApp
-          </a>
-        </div>
-        <div id="form-fields">
-          <div class="fg">
-            <label>Nombre completo</label>
-            <input id="f-nombre" type="text" placeholder="Tu nombre">
-          </div>
-          <div class="fg">
-            <label>Correo electrónico</label>
-            <input id="f-correo" type="email" placeholder="correo@empresa.com">
-          </div>
-          <div class="fg">
-            <label>WhatsApp</label>
-            <input id="f-whatsapp" type="tel" placeholder="+52 81 0000 0000">
-          </div>
-          <div class="fg">
-            <label>Ciudad</label>
-            <input id="f-ciudad" type="text" placeholder="Monterrey, NL">
-          </div>
-          <div class="fg">
-            <label>¿Cuántos cobradores tienes?</label>
-            <select id="f-cobradores">
-              <option value="">Seleccionar</option>
-              <option>1 — 5</option>
-              <option>6 — 15</option>
-              <option>16 — 50</option>
-              <option>Más de 50</option>
-            </select>
-          </div>
-          <div id="form-error" style="display:none;color:#ff6b6b;font-size:12px;margin-bottom:10px;text-align:center"></div>
-          <button onclick="window._enviarContacto()" class="btn-p" style="width:100%;text-align:center;margin-top:6px;border:none;cursor:pointer">
-            Enviar solicitud →
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ROADMAP -->
-<section class="roadmap" id="roadmap">
-  <div class="center reveal">
-    <span class="tag">Dónde estamos</span>
-    <h2 class="h2">Ecosistema KIWI<br>hoy</h2>
-    <p class="sub" style="margin:0 auto">Cinco productos sobre un mismo núcleo: cobranza, agenda comercial, servicios y venta de mercancía, logística — y lo que siga.</p>
-  </div>
-  <div class="rm-track reveal">
-    <div class="rm-item">
-      <div class="rm-dot"><svg width="44" height="44" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0A0F08"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1B7A45" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#2BD46B" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#2BD46B" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#2BD46B" stroke-width="56"/></svg></div>
-      <div class="rm-info">
-        <div class="rm-name">KIWI PAY</div>
-        <div class="rm-sub">Cobranza y crédito en campo</div>
-      </div>
-      <div class="rm-estado">
-        <span class="rm-badge rb-done">En Google Play</span>
-        <a class="rm-cta cta-demo" href="https://app.kiwisystems.mx/?demo=1" target="_blank" rel="noopener">Probar sin registrarse</a>
-      </div>
-    </div>
-    <div class="rm-item">
-      <div class="rm-dot"><svg width="44" height="44" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#070B14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#0A7A5C" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00E5A0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00E5A0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00E5A0" stroke-width="56"/></svg></div>
-      <div class="rm-info">
-        <div class="rm-name">KIWI AGENDA MANAGER</div>
-        <div class="rm-sub">Visitas, prospectos y seguimiento</div>
-      </div>
-      <span class="rm-badge rb-done">En producción</span>
-    </div>
-    <div class="rm-item">
-      <div class="rm-dot"><svg width="44" height="44" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0B1020"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1F5FA8" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00D4FF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00D4FF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00D4FF" stroke-width="56"/></svg></div>
-      <div class="rm-info">
-        <div class="rm-name">KIWI TRACK</div>
-        <div class="rm-sub">Geoevidencia de cobros y mapa de ruta</div>
-      </div>
-      <span class="rm-badge rb-done">En producción</span>
-    </div>
-    <div class="rm-item">
-      <div class="rm-dot"><svg width="44" height="44" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#100A1E"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#4C2D91" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#A06BFF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#A06BFF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#A06BFF" stroke-width="56"/></svg></div>
-      <div class="rm-info">
-        <div class="rm-name">KIWI PORTAL</div>
-        <div class="rm-sub">Sitio público por empresa y solicitud en línea</div>
-      </div>
-      <span class="rm-badge rb-done">En producción</span>
-    </div>
-    <div class="rm-item">
-      <div class="rm-dot"><svg width="44" height="44" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#1A0A14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#9E3D6E" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#FF6BB0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#FF6BB0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#FF6BB0" stroke-width="56"/></svg></div>
-      <div class="rm-info">
-        <div class="rm-name">KIWI IA</div>
-        <div class="rm-sub">Asistente que responde sobre tu cartera</div>
-      </div>
-      <span class="rm-badge rb-beta">Beta</span>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="cta-final">
-  <div class="cta-box reveal">
-    <span class="tag" style="margin-bottom:18px">¿Listo para digitalizarte?</span>
-    <div class="cta-h">Tu negocio de cobranza,<br>en la palma de tu mano</div>
-    <p class="cta-s">Únete a las empresas que ya digitalizaron su operación con KIWI SYSTEMS. Sin cuadernos. Sin Excel. Sin excusas.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a class="btn-p" href="#franquicias">Solicitar demo gratuita</a>
-      <a class="btn-o" href="#ecosistema">Ver productos →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="ft-grid">
-    <div>
-      <div class="f-logo">
-        <div class="logo-mark"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#11161F"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A8699" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#F2F5F8" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#F2F5F8" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#F2F5F8" stroke-width="56"/></svg></div>
-        KIWI <em>SYSTEMS</em>
-      </div>
-      <div class="f-tag">Herramientas para operaciones de campo: cobranza, agenda comercial, servicios, venta de mercancía y logística. México y Latinoamérica.</div>
-    </div>
-    <div class="fc">
-      <h4>Productos</h4>
-      <ul>
-        <li><a href="#ecosistema">KIWI PAY</a></li>
-        <li><a href="#ecosistema">KIWI AGENDA MANAGER</a></li>
-        <li><a href="#ecosistema">KIWI TRACK</a></li>
-        <li><a href="#ecosistema">KIWI PORTAL</a></li>
-        <li><a href="#ecosistema">KIWI IA</a></li>
-      </ul>
-    </div>
-    <div class="fc">
-      <h4>Empresa</h4>
-      <ul>
-        <li><a href="#ecosistema">Productos</a></li>
-        <li><a href="#franquicias">Franquicias</a></li>
-        <li><a href="#caso">Caso real</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#franquicias">Contacto</a></li>
-      </ul>
-    </div>
-    <div class="fc">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="https://app.kiwisystems.mx/privacidad" target="_blank" rel="noopener">Privacidad · KIWI PAY</a></li>
-        <li><a href="https://app.kiwisystems.mx/eliminar-datos" target="_blank" rel="noopener">Eliminar datos · KIWI PAY</a></li>
-        <li><a href="/agenda/privacidad/">Privacidad · KIWI AGENDA</a></li>
-        <li><a href="/agenda/eliminar-datos/">Eliminar datos · KIWI AGENDA</a></li>
-        <li><a href="https://app.kiwisystems.mx/terminos" target="_blank" rel="noopener">Términos y condiciones</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="ft-bot">
-    <div class="ft-copy">© 2026 KIWI SYSTEMS — Todos los derechos reservados</div>
-    <div class="ft-copy">Hecho en Apodaca, Nuevo León, México 🇲🇽</div>
   </div>
 </footer>
 
 <script>
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'))
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }) }
-  })
-})
-
-// Formspree + WhatsApp
-window._enviarContacto = async function() {
-  const nombre    = document.getElementById('f-nombre')?.value.trim()
-  const correo    = document.getElementById('f-correo')?.value.trim()
-  const whatsapp  = document.getElementById('f-whatsapp')?.value.trim()
-  const ciudad    = document.getElementById('f-ciudad')?.value.trim()
-  const cobradores= document.getElementById('f-cobradores')?.value
-  const errEl     = document.getElementById('form-error')
-  const btn       = document.querySelector('[onclick="_enviarContacto()"]') ||
-                    document.querySelector('button[onclick="window._enviarContacto()"]')
-
-  errEl.style.display = 'none'
-
-  if (!nombre || !correo || !whatsapp) {
-    errEl.textContent = 'Por favor completa nombre, correo y WhatsApp.'
-    errEl.style.display = 'block'
-    return
-  }
-
-  if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true }
-
-  try {
-    const res = await fetch('https://formspree.io/f/meewyzgy', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ nombre, email: correo, whatsapp, ciudad, cobradores })
+// La version publicada: el boton siempre baja la ULTIMA, sin volver a tocar esta pagina.
+(function () {
+  var URL_VERSION = 'https://hdkncsakshhzsyoenbpd.supabase.co/storage/v1/object/public/descargas/campo/version.json'
+  var btn = document.getElementById('btnDescargar')
+  var txt = document.getElementById('txtDescargar')
+  var dato = document.getElementById('datoVersion')
+  var huella = document.getElementById('datoHuella')
+  fetch(URL_VERSION + '?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json() })
+    .then(function (v) {
+      if (!v || !v.url) throw new Error('sin url')
+      btn.href = v.url
+      btn.setAttribute('aria-disabled', 'false')
+      txt.textContent = 'Descargar para Android'
+      dato.textContent = 'Versión ' + v.versionName + (v.tamanoMB ? ' · ' + v.tamanoMB + ' MB' : '') + ' · Android 8 o superior'
+      if (v.sha256) huella.textContent = 'SHA-256 del archivo: ' + v.sha256
     })
-
-    if (res.ok) {
-      // Mostrar éxito
-      document.getElementById('form-fields').style.display = 'none'
-      document.getElementById('form-success').style.display = 'block'
-      // Abrir WhatsApp con los datos
-      const msg = encodeURIComponent(
-        '¡Hola! Me interesa KIWI SYSTEMS.\n\n' +
-        '👤 Nombre: ' + nombre + '\n' +
-        '📧 Correo: ' + correo + '\n' +
-        '📍 Ciudad: ' + (ciudad || '—') + '\n' +
-        '👥 Cobradores: ' + (cobradores || '—')
-      )
-      const waBtn = document.getElementById('wa-btn-success')
-      if (waBtn) { waBtn.href = 'https://wa.me/528124804827?text=' + msg; waBtn.style.display = 'inline-block' }
-    } else {
-      errEl.textContent = 'Error al enviar. Intenta de nuevo.'
-      errEl.style.display = 'block'
-      if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
-    }
-  } catch(e) {
-    errEl.textContent = 'Sin conexión. Intenta de nuevo.'
-    errEl.style.display = 'block'
-    if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
-  }
-}
-
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80)
-      observer.unobserve(entry.target)
-    }
+    .catch(function () {
+      txt.textContent = 'No se pudo cargar: escríbenos'
+      btn.href = 'https://wa.me/528124804827?text=No%20me%20carga%20la%20descarga%20de%20KIWI%20PAY%20Go'
+      btn.setAttribute('aria-disabled', 'false')
+    })
+  document.getElementById('btnCopiar').addEventListener('click', function () {
+    var t = 'https://kiwisystems.mx/pay/descarga'
+    var b = this
+    function listo () { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar' }, 2000) }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).then(listo, function () { document.getElementById('enlace').select(); listo() }) }
+    else { document.getElementById('enlace').select(); try { document.execCommand('copy') } catch (e) {} listo() }
   })
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+})()
 </script>
 </body>
 </html>
