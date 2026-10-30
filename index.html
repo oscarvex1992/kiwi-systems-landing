@@ -599,6 +599,8 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
               <option>Más de 50</option>
             </select>
           </div>
+          <!-- KWLANDING_BUZON_V1 · trampa para bots: una persona no ve ni llena este campo -->
+          <input id="f-web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div id="form-error" style="display:none;color:#ff6b6b;font-size:12px;margin-bottom:10px;text-align:center"></div>
           <button onclick="window._enviarContacto()" class="btn-p" style="width:100%;text-align:center;margin-top:6px;border:none;cursor:pointer">
             Enviar solicitud →
@@ -732,58 +734,94 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   })
 })
 
-// Formspree + WhatsApp
+// ══════════════════════════════════════════════════════════════════════════
+//  KWLANDING_BUZON_V1 · 29-oct-2026 · [stated] Oscar: «mandé una solicitud pero nunca
+//  llegó al dashboard, al correo sí». MEDIDO: este formulario solo iba a Formspree (el
+//  correo); nunca escribía en `solicitudes_contacto`, que es lo que lee el Buzón de
+//  KIWI MASTER. Ahora va a los DOS: al Buzón (insert público de la base de KIWI PAY, el
+//  mismo que usa el login de Pay; la base valida nombre, WhatsApp y correo y pone un
+//  tope contra spam) y al correo. Con que llegue a uno, la persona ve «enviado».
+//  Los dos WhatsApp de KIWI SYSTEMS son válidos ([stated] Oscar): aquí se queda el de ventas.
+// ══════════════════════════════════════════════════════════════════════════
+const KW_BUZON_URL  = 'https://hdkncsakshhzsyoenbpd.supabase.co/rest/v1/solicitudes_contacto'
+const KW_BUZON_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhka25jc2Frc2hoenN5b2VuYnBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwNTkxNzAsImV4cCI6MjA5NDYzNTE3MH0.0x3yZ_MGw6bZOMMt1HV1Yr61V59J3BrusEgEIlpPoc4'   // llave PÚBLICA (anon): solo permite dejar el mensaje
+const KW_WA_VENTAS  = '528124804827'
+const _kwFormAbierto = Date.now()
+
+async function _kwAlBuzon (r) {
+  try {
+    const res = await fetch(KW_BUZON_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': KW_BUZON_ANON, 'Authorization': 'Bearer ' + KW_BUZON_ANON, 'Prefer': 'return=minimal' },
+      body: JSON.stringify(r)
+    })
+    if (res.ok) return { ok: true }
+    const t = await res.text().catch(() => '')
+    return { ok: false, tope: /KW_CONTACTO_TOPE/.test(t), invalido: /KW_CONTACTO_INVALIDO/.test(t) }
+  } catch (e) { return { ok: false } }
+}
+
+async function _kwAlCorreo (datos) {
+  try {
+    const res = await fetch('https://formspree.io/f/meewyzgy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(datos)
+    })
+    return res.ok
+  } catch (e) { return false }
+}
+
 window._enviarContacto = async function() {
   const nombre    = document.getElementById('f-nombre')?.value.trim()
   const correo    = document.getElementById('f-correo')?.value.trim()
   const whatsapp  = document.getElementById('f-whatsapp')?.value.trim()
   const ciudad    = document.getElementById('f-ciudad')?.value.trim()
   const cobradores= document.getElementById('f-cobradores')?.value
+  const trampa    = document.getElementById('f-web')?.value
   const errEl     = document.getElementById('form-error')
   const btn       = document.querySelector('[onclick="_enviarContacto()"]') ||
                     document.querySelector('button[onclick="window._enviarContacto()"]')
+  const error = t => { errEl.textContent = t; errEl.style.display = 'block'; if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false } }
 
   errEl.style.display = 'none'
 
-  if (!nombre || !correo || !whatsapp) {
-    errEl.textContent = 'Por favor completa nombre, correo y WhatsApp.'
-    errEl.style.display = 'block'
-    return
-  }
+  if (!nombre || !correo || !whatsapp) return error('Por favor completa nombre, correo y WhatsApp.')
+  //  Las mismas reglas que la base (kw_contacto_filtro), para avisar antes de enviar
+  if (nombre.length < 2 || nombre.length > 80) return error('Revisa tu nombre.')
+  const dig = whatsapp.replace(/\D/g, '')
+  if (dig.length < 10 || dig.length > 13) return error('Revisa tu WhatsApp: 10 dígitos, con lada.')
+  if (!/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(correo)) return error('Ese correo no parece válido.')
 
   if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true }
 
-  try {
-    const res = await fetch('https://formspree.io/f/meewyzgy', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ nombre, email: correo, whatsapp, ciudad, cobradores })
-    })
-
-    if (res.ok) {
-      // Mostrar éxito
-      document.getElementById('form-fields').style.display = 'none'
-      document.getElementById('form-success').style.display = 'block'
-      // Abrir WhatsApp con los datos
-      const msg = encodeURIComponent(
-        '¡Hola! Me interesa KIWI SYSTEMS.\n\n' +
-        '👤 Nombre: ' + nombre + '\n' +
-        '📧 Correo: ' + correo + '\n' +
-        '📍 Ciudad: ' + (ciudad || '—') + '\n' +
-        '👥 Cobradores: ' + (cobradores || '—')
-      )
-      const waBtn = document.getElementById('wa-btn-success')
-      if (waBtn) { waBtn.href = 'https://wa.me/528124804827?text=' + msg; waBtn.style.display = 'inline-block' }
-    } else {
-      errEl.textContent = 'Error al enviar. Intenta de nuevo.'
-      errEl.style.display = 'block'
-      if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
-    }
-  } catch(e) {
-    errEl.textContent = 'Sin conexión. Intenta de nuevo.'
-    errEl.style.display = 'block'
-    if (btn) { btn.textContent = 'Enviar solicitud →'; btn.disabled = false }
+  const exito = () => {
+    document.getElementById('form-fields').style.display = 'none'
+    document.getElementById('form-success').style.display = 'block'
+    const msg = encodeURIComponent(
+      '¡Hola! Me interesa KIWI SYSTEMS.\n\n' +
+      '👤 Nombre: ' + nombre + '\n' +
+      '📧 Correo: ' + correo + '\n' +
+      '📍 Ciudad: ' + (ciudad || '—') + '\n' +
+      '👥 Cobradores: ' + (cobradores || '—')
+    )
+    const waBtn = document.getElementById('wa-btn-success')
+    if (waBtn) { waBtn.href = 'https://wa.me/' + KW_WA_VENTAS + '?text=' + msg; waBtn.style.display = 'inline-block' }
   }
+
+  //  Un bot (llenó la trampa o mandó en menos de 3 s) ve «enviado» y no se guarda nada
+  if (trampa || Date.now() - _kwFormAbierto < 3000) return exito()
+
+  const [buzon, correoOk] = await Promise.all([
+    _kwAlBuzon({ tipo: 'contratar', nombre, telefono: whatsapp, correo,
+      mensaje: 'Ciudad: ' + (ciudad || '—') + ' · Cobradores: ' + (cobradores || '—'),
+      empresa_origen: 'Página kiwisystems.mx', estado: 'nuevo' }),
+    _kwAlCorreo({ nombre, email: correo, whatsapp, ciudad, cobradores })
+  ])
+  if (buzon.ok || correoOk) return exito()
+  if (buzon.tope) return error('Ya recibimos tus mensajes. Te contactamos por WhatsApp.')
+  if (buzon.invalido) return error('Revisa tus datos: nombre, WhatsApp y correo.')
+  error('No se pudo enviar. Revisa tu conexión e intenta de nuevo.')
 }
 
 // Scroll reveal
