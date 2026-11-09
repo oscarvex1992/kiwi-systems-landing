@@ -95,6 +95,13 @@ h1 .v{color:var(--kp-primary)}
 .b2{border:1px solid var(--kp-border);color:var(--kp-text-primary);font-weight:600;font-size:14.5px;
   padding:15px 28px;border-radius:var(--kp-radius-md);display:inline-flex;align-items:center;gap:10px;transition:all .2s}
 .b2:hover{border-color:rgba(99,216,59,.4);background:var(--kp-surface-hover)}
+/* KWLANDING_PLAY_V1 · 9-nov-2026 · KIWI PAY ya está publicado en Google Play. Va como enlace de texto (sin el logo
+   de Google: sus reglas piden la insignia oficial sin cambios). La llamada principal sigue siendo la demo:
+   la app pide la cuenta que da la empresa, así que bajarla sola no sirve para conocerla. */
+.en-play{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:13px;color:var(--kp-text-secondary);text-decoration:none}
+.en-play b{color:var(--kp-text-primary);font-weight:700}
+.en-play:hover b{color:var(--kp-primary)}
+.en-play svg{width:16px;height:16px;fill:none;stroke:var(--kp-primary);stroke-width:1.8}
 
 /* teléfonos */
 .fotos{position:relative;display:flex;justify-content:center;align-items:flex-end;min-height:560px}
@@ -324,7 +331,7 @@ footer a:hover{color:var(--kp-text-secondary)}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="pill"><span class="pt"></span> En producción · operación real desde junio de 2026</span>
+      <span class="pill"><span class="pt"></span> En producción · en Google Play · operación real desde junio de 2026</span>
       <h1>Cobra más.<br><span class="v">Controla mejor.</span></h1>
       <p class="lead">La plataforma de gestión de cobranza y crédito que conecta tu operación de
       campo con el control administrativo en una sola plataforma.</p>
@@ -352,6 +359,11 @@ footer a:hover{color:var(--kp-text-secondary)}
         <a class="b1" href="/#franquicias">Solicitar demo →</a>
         <a class="b2" href="#cartera">Conocer KIWI PAY</a>
       </div>
+      <!-- KWLANDING_PLAY_V1 -->
+      <a class="en-play" href="https://play.google.com/store/apps/details?id=mx.kiwisystems.pay" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>
+        <span>Disponible en <b>Google Play</b> · Android</span>
+      </a>
 
     <!-- Hechos verificables arriba: credibilidad en los primeros segundos -->
     <div class="hechos hechos-hero">
@@ -525,7 +537,8 @@ footer a:hover{color:var(--kp-text-secondary)}
           <a class="b2 b2-claro" href="https://app.kiwisystems.mx" target="_blank" rel="noopener">Probar la demo sin registrarte</a>
         </div>
         <p class="ya-cliente">¿Ya eres cliente?
-          <a href="https://app.kiwisystems.mx" target="_blank" rel="noopener">Entra a KIWI PAY →</a></p>
+          <a href="https://app.kiwisystems.mx" target="_blank" rel="noopener">Entra a KIWI PAY →</a>
+          · <a style="white-space:nowrap" href="https://play.google.com/store/apps/details?id=mx.kiwisystems.pay" target="_blank" rel="noopener">Descarga la app en Google Play →</a></p>
       </div>
     </div>
   </div>
