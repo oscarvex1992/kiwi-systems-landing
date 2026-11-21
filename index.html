@@ -249,11 +249,174 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
   .reveal{opacity:1;transform:none}
   *{animation:none!important;transition:none!important}
 }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   KWLANDING_PRO_V1 · 20-nov-2026 · [stated] Oscar: «un ambiente más pro y con emoción … que tenga movimiento …
+   efectos, animaciones, que sea armonioso y profesional a la vez».
+   Reglas del movimiento: UNA curva (--ease) y UN ritmo (--t1 rápido para lo que se toca, --t2 para lo que entra,
+   --t3 lento para el fondo). Cada animación cuenta algo del ecosistema (datos que llegan al núcleo, cobros que se
+   registran); nada decorativo porque sí. Con «reducir movimiento» del sistema, todo queda quieto y legible.
+   ══════════════════════════════════════════════════════════════════════════════ */
+:root{--ease:cubic-bezier(.22,1,.36,1);--t1:.35s;--t2:.9s;--t3:18s;
+  --c-pay:#2BD46B;--c-agenda:#00E5A0;--c-track:#00D4FF;--c-portal:#A06BFF;--c-ia:#FF6BB0}
+
+/* barra de avance de lectura */
+.kw-prog{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);z-index:400;
+  background:linear-gradient(90deg,var(--cyan),var(--indigo),var(--c-ia));pointer-events:none}
+
+/* fondo vivo del hero: rejilla en perspectiva + auroras lentas */
+.hero{overflow:hidden;isolation:isolate}
+.hero-grid{position:absolute;inset:-40% -20% 0;z-index:-2;pointer-events:none;
+  background-image:linear-gradient(rgba(0,212,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.07) 1px,transparent 1px);
+  background-size:56px 56px;transform:perspective(900px) rotateX(62deg) translateY(var(--gy,0));transform-origin:50% 100%;
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 70%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 70%,#000 20%,transparent 75%);
+  animation:kwGrid var(--t3) linear infinite}
+@keyframes kwGrid{to{background-position:0 56px,0 0}}
+.aurora{position:absolute;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;mix-blend-mode:screen}
+.aurora.a1{width:520px;height:420px;left:-120px;top:8%;background:radial-gradient(circle,rgba(0,212,255,.35),transparent 65%);animation:kwFloat1 22s var(--ease) infinite alternate}
+.aurora.a2{width:560px;height:460px;right:-140px;top:28%;background:radial-gradient(circle,rgba(99,102,241,.38),transparent 65%);animation:kwFloat2 26s var(--ease) infinite alternate}
+.aurora.a3{width:380px;height:320px;left:38%;bottom:-120px;background:radial-gradient(circle,rgba(255,107,176,.22),transparent 65%);animation:kwFloat1 30s var(--ease) infinite alternate-reverse}
+@keyframes kwFloat1{to{transform:translate(90px,60px) scale(1.12)}}
+@keyframes kwFloat2{to{transform:translate(-80px,-50px) scale(1.08)}}
+.spot{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity var(--t2) var(--ease);
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,40%),rgba(0,212,255,.08),transparent 60%)}
+.hero:hover .spot{opacity:1}
+
+/* el hero en dos columnas: el mensaje y el ecosistema vivo */
+.hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%;max-width:1180px}
+.hero-copy{text-align:left}
+.hero-copy .hero-sub{margin:0 0 38px}
+.hero-copy .hero-btns{justify-content:flex-start;margin-bottom:18px}
+.hero-copy .hero-nota{margin:0 0 46px}
+.hero-copy .stats-bar{max-width:620px}
+.hero-h1 .w{display:inline-block;opacity:0;transform:translateY(.42em);filter:blur(6px);transition:opacity var(--t2) var(--ease),transform var(--t2) var(--ease),filter var(--t2) var(--ease)}
+.hero.on .hero-h1 .w{opacity:1;transform:none;filter:none}
+.hero-h1 .accent{background:linear-gradient(90deg,var(--cyan),var(--indigo),var(--c-ia),var(--cyan));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:kwSheen 9s linear infinite}
+@keyframes kwSheen{to{background-position:300% 0}}
+.hero .eyebrow,.hero .hero-sub,.hero .hero-btns,.hero .hero-nota,.hero .stats-bar{opacity:0;transform:translateY(14px);transition:opacity var(--t2) var(--ease),transform var(--t2) var(--ease)}
+.hero.on .eyebrow{opacity:1;transform:none;transition-delay:.05s}
+.hero.on .hero-sub{opacity:1;transform:none;transition-delay:.55s}
+.hero.on .hero-btns{opacity:1;transform:none;transition-delay:.7s}
+.hero.on .hero-nota{opacity:1;transform:none;transition-delay:.8s}
+.hero.on .stats-bar{opacity:1;transform:none;transition-delay:.95s}
+
+/* botones: brillo que cruza y un leve imán */
+.btn-p{position:relative;overflow:hidden;transition:transform var(--t1) var(--ease),box-shadow var(--t1) var(--ease)}
+.btn-p::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:kwShine 4.5s var(--ease) infinite}
+@keyframes kwShine{0%,70%{left:-60%}100%{left:130%}}
+.btn-o,.btn-nav{transition:transform var(--t1) var(--ease),background var(--t1) var(--ease),border-color var(--t1) var(--ease)}
+
+/* el ecosistema vivo */
+.eco-vivo{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;margin:0 auto}
+.eco-vivo svg.lienzo{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.anillo{fill:none;stroke:rgba(255,255,255,.07);stroke-width:1}
+.anillo.d{stroke:rgba(0,212,255,.16);stroke-dasharray:2 10;transform-origin:260px 260px;animation:kwGiro 60s linear infinite}
+.anillo.d2{stroke:rgba(99,102,241,.16);stroke-dasharray:1 14;transform-origin:260px 260px;animation:kwGiro 90s linear infinite reverse}
+@keyframes kwGiro{to{transform:rotate(360deg)}}
+.nucleo{position:absolute;left:50%;top:50%;width:21%;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:24%;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 60px rgba(0,212,255,.25);animation:kwLatido 3.2s var(--ease) infinite}
+.nucleo svg{width:100%;height:100%;display:block;border-radius:24%}
+.nucleo::after{content:'';position:absolute;inset:-14px;border-radius:30%;border:1px solid rgba(0,212,255,.35);opacity:0;animation:kwOnda 3.2s var(--ease) infinite}
+@keyframes kwLatido{0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 50px rgba(0,212,255,.2)}50%{box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 80px rgba(0,212,255,.38)}}
+@keyframes kwOnda{0%{opacity:.7;transform:scale(.85)}100%{opacity:0;transform:scale(1.5)}}
+.nodo{position:absolute;width:13%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:6px;will-change:left,top}
+.nodo .ic{width:100%;aspect-ratio:1/1;border-radius:26%;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 8px 30px -8px var(--c);transition:transform var(--t1) var(--ease)}
+.nodo .ic svg{width:100%;height:100%;display:block}
+.nodo b{font-family:'Montserrat',sans-serif;font-size:clamp(8px,1.05vw,10px);font-weight:800;letter-spacing:.8px;color:var(--c);white-space:nowrap;text-shadow:0 0 12px rgba(0,0,0,.8)}
+.nodo.pulso .ic{transform:scale(1.14)}
+.evento{position:absolute;left:50%;transform:translate(-50%,8px);opacity:0;white-space:nowrap;pointer-events:none;
+  font-size:12px;font-weight:600;color:#E6F6FF;padding:7px 12px;border-radius:999px;background:rgba(8,15,30,.82);
+  border:1px solid color-mix(in srgb,var(--c) 45%,transparent);box-shadow:0 10px 30px -10px var(--c);backdrop-filter:blur(8px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.evento i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c);margin-right:8px;box-shadow:0 0 10px var(--c)}
+.evento.on{opacity:1;transform:translate(-50%,0)}
+
+/* franja que corre: lo que el ecosistema hace, sin cifras inventadas */
+.franja{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg);padding:18px 0;position:relative}
+.franja::before,.franja::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:1;pointer-events:none}
+.franja::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.franja::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.franja-in{display:flex;gap:48px;width:max-content;animation:kwFranja 38s linear infinite}
+.franja:hover .franja-in{animation-play-state:paused}
+.franja span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:48px;white-space:nowrap}
+.franja span::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+@keyframes kwFranja{to{transform:translateX(-50%)}}
+
+/* entradas al hacer scroll: suben, enfocan y llegan en cascada */
+.reveal{opacity:0;transform:translateY(26px);filter:blur(6px);transition:opacity var(--t2) var(--ease),transform var(--t2) var(--ease),filter var(--t2) var(--ease)}
+.reveal.visible{opacity:1;transform:none;filter:none}
+.cascada>*{opacity:0;transform:translateY(22px);transition:opacity var(--t2) var(--ease),transform var(--t2) var(--ease)}
+.cascada.visible>*{opacity:1;transform:none}
+.cascada.visible>*:nth-child(2){transition-delay:.08s}.cascada.visible>*:nth-child(3){transition-delay:.16s}
+.cascada.visible>*:nth-child(4){transition-delay:.24s}.cascada.visible>*:nth-child(5){transition-delay:.32s}
+
+/* tarjetas de producto: cada una en SU color, con luz que sigue al cursor y una leve inclinación */
+.eco-card{--c:var(--cyan);transform-style:preserve-3d;transition:transform var(--t1) var(--ease),border-color var(--t1) var(--ease),box-shadow var(--t1) var(--ease)!important}
+.eco-card.p-pay{--c:var(--c-pay)}.eco-card.p-agenda{--c:var(--c-agenda)}.eco-card.p-track{--c:var(--c-track)}.eco-card.p-portal{--c:var(--c-portal)}.eco-card.p-ia{--c:var(--c-ia)}
+.eco-card::before{background:linear-gradient(90deg,transparent,var(--c),transparent)!important}
+.eco-card::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity var(--t1) var(--ease);
+  background:radial-gradient(360px circle at var(--px,50%) var(--py,0%),color-mix(in srgb,var(--c) 14%,transparent),transparent 60%)}
+.eco-card:hover::after{opacity:1}
+.eco-card:hover{border-color:color-mix(in srgb,var(--c) 40%,transparent)!important;box-shadow:0 24px 60px -30px var(--c)}
+.eco-card .eco-icon{background:color-mix(in srgb,var(--c) 12%,transparent)!important;border:1px solid color-mix(in srgb,var(--c) 28%,transparent)!important;border-radius:14px;transition:transform var(--t1) var(--ease)}
+.eco-card:hover .eco-icon{transform:translateY(-3px) rotate(-4deg)}
+.eco-card .eco-name{transition:color var(--t1) var(--ease)}
+.eco-card:hover .eco-name{color:var(--c)}
+.eco-card .b-live{background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c);border-color:color-mix(in srgb,var(--c) 28%,transparent)}
+.eco-card .eco-link{color:var(--c)}
+
+/* cómo funciona: la línea se llena y cada paso se enciende en su turno */
+.steps::after{content:'';position:absolute;top:26px;left:calc(12.5% + 24px);right:calc(12.5% + 24px);height:2px;z-index:0;
+  background:linear-gradient(90deg,var(--cyan),var(--indigo));transform-origin:0 50%;transform:scaleX(0);transition:transform 1.6s var(--ease);box-shadow:0 0 14px rgba(0,212,255,.5)}
+.steps.visible::after{transform:scaleX(1)}
+.steps .step-num{transition:border-color .5s var(--ease),box-shadow .5s var(--ease),color .5s var(--ease)}
+.steps.visible .step:nth-child(1) .step-num{transition-delay:.1s}.steps.visible .step:nth-child(2) .step-num{transition-delay:.5s}
+.steps.visible .step:nth-child(3) .step-num{transition-delay:.9s}.steps.visible .step:nth-child(4) .step-num{transition-delay:1.3s}
+.steps.visible .step-num{border-color:var(--cyan);box-shadow:0 0 0 6px rgba(0,212,255,.08),0 0 24px rgba(0,212,255,.35)}
+
+/* nosotros: la frase de cierre se enciende palabra por palabra al leerla */
+.org-cierre .pw{opacity:.18;transition:opacity .4s var(--ease)}
+.org-cierre .pw.on{opacity:1}
+
+/* tarjetas del equipo y misión: elevación suave */
+.eq-card,.mv-card,.rm-item{transition:transform var(--t1) var(--ease),border-color var(--t1) var(--ease),background var(--t1) var(--ease)!important}
+
+/* cierre: aurora detrás del llamado final */
+.cta-final{position:relative;overflow:hidden;isolation:isolate}
+.cta-final::before{content:'';position:absolute;inset:-30%;z-index:-1;pointer-events:none;opacity:.6;
+  background:conic-gradient(from var(--ang,0deg) at 50% 50%,rgba(0,212,255,.18),rgba(99,102,241,.16),rgba(255,107,176,.12),rgba(43,212,107,.12),rgba(0,212,255,.18));
+  filter:blur(80px);animation:kwAurora 24s linear infinite}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes kwAurora{to{--ang:360deg}}
+
+@media(max-width:980px){
+  .hero-in{grid-template-columns:1fr;gap:12px}
+  .hero-copy{text-align:center}
+  .hero-copy .hero-sub{margin:0 auto 34px}
+  .hero-copy .hero-btns{justify-content:center}
+  .hero-copy .hero-nota{margin:0 auto 34px}
+  .hero-copy .stats-bar{margin:0 auto}
+  .eco-vivo{max-width:360px;margin-top:28px}
+  .evento{font-size:11px;padding:6px 10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-h1 .w,.hero .eyebrow,.hero .hero-sub,.hero .hero-btns,.hero .hero-nota,.hero .stats-bar,.reveal,.cascada>*{opacity:1!important;transform:none!important;filter:none!important}
+  .org-cierre .pw{opacity:1}
+  .steps::after{transform:scaleX(1)}
+  .kw-prog{display:none}
+  .btn-p::after,.nucleo::after,.cta-final::before{animation:none}
+  .btn-p::after,.nucleo::after{display:none}
+}
+
+/* KWLANDING_PRO_V1 · en celular la fila del roadmap se acomoda en dos renglones (antes empujaba la página a lo ancho) */
+@media(max-width:520px){.rm-item{flex-wrap:wrap}.rm-info{min-width:0;flex:1 1 calc(100% - 62px)}.rm-estado{flex-wrap:wrap;margin-left:62px}}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
+<div class="kw-prog" aria-hidden="true"></div><!-- KWLANDING_PRO_V1 -->
 <nav>
   <a class="logo" href="#">
     <div class="logo-mark"><svg width="28" height="28" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#11161F"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A8699" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#F2F5F8" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#F2F5F8" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#F2F5F8" stroke-width="56"/></svg></div>
@@ -271,9 +434,12 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
+<section class="hero"><!-- KWLANDING_PRO_V1 · el mensaje a la izquierda y el ecosistema vivo a la derecha -->
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="aurora a1" aria-hidden="true"></div><div class="aurora a2" aria-hidden="true"></div><div class="aurora a3" aria-hidden="true"></div>
+  <div class="spot" aria-hidden="true"></div>
+  <div class="hero-in">
+  <div class="hero-copy">
   <div class="eyebrow">
     <span class="eyebrow-dot"></span>
     Ecosistema tecnológico · México
@@ -309,7 +475,16 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <div class="st-l">Hecho en México</div>
     </div>
   </div>
+  </div>
+  <div class="eco-vivo" role="img" aria-label="El núcleo de KIWI SYSTEMS con sus cinco productos: PAY, AGENDA, TRACK, PORTAL e IA">
+    <svg class="lienzo" viewBox="0 0 520 520" aria-hidden="true"><circle class="anillo" cx="260" cy="260" r="190"/><circle class="anillo d" cx="260" cy="260" r="226"/><circle class="anillo d2" cx="260" cy="260" r="120"/></svg>
+    <div class="nucleo"><svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="114" fill="#11161F"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#7A8699" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#F2F5F8" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#F2F5F8" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#F2F5F8" stroke-width="56"/></svg></div>
+  </div>
+  </div>
 </section>
+
+<!-- KWLANDING_PRO_V1 · lo que el ecosistema hace, corriendo (sin cifras inventadas) -->
+<div class="franja" aria-hidden="true"><div class="franja-in"><span>Cobra con o sin señal</span><span>Ticket al instante</span><span>Cierre diario</span><span>Geoevidencia de cada cobro</span><span>Tu marca, tu identidad</span><span>Pregúntale a tu cartera</span><span>Hecho en México</span><span>Cobra con o sin señal</span><span>Ticket al instante</span><span>Cierre diario</span><span>Geoevidencia de cada cobro</span><span>Tu marca, tu identidad</span><span>Pregúntale a tu cartera</span><span>Hecho en México</span></div></div>
 
 <!-- ECOSISTEMA -->
 <section class="eco" id="ecosistema">
@@ -318,9 +493,9 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
     <h2 class="h2">Una plataforma.<br>Cinco productos.</h2>
     <p class="sub" style="margin:0 auto">Cada producto funciona de manera independiente o integrada dentro del ecosistema. Tú decides qué activar.</p>
   </div>
-  <div class="eco-grid reveal">
+  <div class="eco-grid cascada">
 
-    <div class="eco-card live">
+    <div class="eco-card live p-pay">
       <div class="eco-top">
         <div class="eco-icon ic-pay"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0A0F08"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1B7A45" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#2BD46B" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#2BD46B" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#2BD46B" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
@@ -337,7 +512,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       <a class="eco-link" href="/pay/">Conocer KIWI PAY →</a>
     </div>
 
-    <div class="eco-card live">
+    <div class="eco-card live p-agenda">
       <div class="eco-top">
         <div class="eco-icon ic-agenda"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#070B14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#0A7A5C" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00E5A0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00E5A0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00E5A0" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
@@ -351,7 +526,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       </div>
     </div>
 
-    <div class="eco-card live">
+    <div class="eco-card live p-track">
       <div class="eco-top">
         <div class="eco-icon ic-track"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#0B1020"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#1F5FA8" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#00D4FF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#00D4FF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#00D4FF" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
@@ -365,7 +540,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       </div>
     </div>
 
-    <div class="eco-card live">
+    <div class="eco-card live p-portal">
       <div class="eco-top">
         <div class="eco-icon ic-portal"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#100A1E"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#4C2D91" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#A06BFF" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#A06BFF" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#A06BFF" stroke-width="56"/></svg></div>
         <span class="eco-badge b-live">● Disponible</span>
@@ -379,7 +554,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
       </div>
     </div>
 
-    <div class="eco-card beta wide">
+    <div class="eco-card beta wide p-ia">
       <div class="eco-top">
         <div class="eco-icon ic-ia"><svg width="48" height="48" viewBox="0 0 512 512" aria-hidden="true" style="display:block"><rect width="512" height="512" rx="114" fill="#1A0A14"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="#9E3D6E" stroke-width="36"/><path d="M192 113 L192 398" fill="none" stroke="#FF6BB0" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="#FF6BB0" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="#FF6BB0" stroke-width="56"/></svg></div>
         <span class="eco-badge b-beta">Beta</span>
@@ -403,7 +578,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid var(--border);padding:52px
     <h2 class="h2">Una plataforma para<br>todo tu equipo</h2>
     <p class="sub" style="margin:0 auto 0">Cada persona en tu empresa tiene una experiencia adaptada a su función, sin complejidad innecesaria.</p>
   </div>
-  <div class="eq-grid reveal">
+  <div class="eq-grid cascada">
     <div class="eq-card">
       <div class="eq-ico ico-c">👤</div>
       <div class="eq-role">Cobradores</div>
@@ -840,7 +1015,7 @@ const observer = new IntersectionObserver(entries => {
   })
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+document.querySelectorAll('.reveal,.cascada').forEach(el => observer.observe(el))   // KWLANDING_PRO_V1 · + las rejillas en cascada
 </script>
 <script>/* KWLANDING_PLAY_APP_V1 · 9-nov-2026 · en Android, los enlaces a la ficha abren la app de Play Store (no la página web) */
 (function(){var ua=navigator.userAgent||'';if(!/Android/i.test(ua))return;
@@ -848,6 +1023,187 @@ var id='mx.kiwisystems.pay',web='https://play.google.com/store/apps/details?id='
 var dentro=/FBAN|FBAV|FB_IAB|Instagram|Line\/|; wv\)/i.test(ua);
 var url=dentro?'market://details?id='+id:'intent://details?id='+id+'#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url='+encodeURIComponent(web)+';end';
 document.querySelectorAll('a[href="'+web+'"]').forEach(function(a){a.href=url;a.removeAttribute('target')});})();
+</script>
+<script>
+// ══════════════════════════════════════════════════════════════════════════════
+//  KWLANDING_PRO_V1 · 20-nov-2026 · el movimiento de la landing (ver la nota en el <style>).
+//  Todo se calcula en un solo cuadro por vuelta (requestAnimationFrame), se detiene cuando no se ve
+//  (pestaña oculta o hero fuera de pantalla) y no corre con «reducir movimiento».
+// ══════════════════════════════════════════════════════════════════════════════
+(function () {
+  var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  var $ = function (s, r) { return (r || document).querySelector(s) }
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)) }
+
+  // ── 1 · el titular entra palabra por palabra ─────────────────────────────────
+  var h1 = $('.hero-h1'), hero = $('.hero')
+  if (h1) {
+    var n = 0
+    var partir = function (nodo) {
+      Array.prototype.slice.call(nodo.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var f = document.createDocumentFragment()
+          c.textContent.split(/(\s+)/).forEach(function (p) {
+            if (!p) return
+            if (/^\s+$/.test(p)) { f.appendChild(document.createTextNode(p)); return }
+            var s = document.createElement('span'); s.className = 'w'; s.textContent = p
+            s.style.transitionDelay = (0.12 + n++ * 0.07) + 's'; f.appendChild(s)
+          })
+          nodo.replaceChild(f, c)
+        } else if (c.nodeType === 1 && c.tagName !== 'BR') {
+          if (c.classList.contains('accent')) { c.classList.add('w'); c.style.transitionDelay = (0.12 + n++ * 0.07) + 's' } else partir(c)
+        }
+      })
+    }
+    partir(h1)
+  }
+  requestAnimationFrame(function () { requestAnimationFrame(function () { if (hero) hero.classList.add('on') }) })
+
+  // ── 2 · los números del hero cuentan al aparecer (solo los que son número) ─────
+  $$('.st-n').forEach(function (el) {
+    var m = /^(\d+)(%?)$/.exec(el.textContent.trim())
+    if (!m || quieto) return
+    var fin = +m[1], suf = m[2], t0 = null
+    el.textContent = '0' + suf
+    var paso = function (t) {
+      if (!t0) t0 = t
+      var k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 4)
+      el.textContent = Math.round(fin * e) + suf
+      if (k < 1) requestAnimationFrame(paso)
+    }
+    setTimeout(function () { requestAnimationFrame(paso) }, 1000)
+  })
+
+  // ── 3 · el ecosistema vivo: el núcleo y los cinco productos que le mandan datos ──
+  var P = [
+    { k: 'PAY', c: '#2BD46B', bg: '#0A0F08', st: '#1B7A45', ev: ['Cobro registrado ✓', 'Ticket impreso', 'Cobro guardado sin señal'] },
+    { k: 'AGENDA', c: '#00E5A0', bg: '#070B14', st: '#0A7A5C', ev: ['Visita agendada · 10:30', 'Prospecto en seguimiento'] },
+    { k: 'TRACK', c: '#00D4FF', bg: '#0B1020', st: '#1F5FA8', ev: ['Cobro con su ubicación', 'Mapa del día listo'] },
+    { k: 'PORTAL', c: '#A06BFF', bg: '#100A1E', st: '#4C2D91', ev: ['Solicitud de crédito recibida', 'Cliente consultó su saldo'] },
+    { k: 'IA', c: '#FF6BB0', bg: '#1A0A14', st: '#9E3D6E', ev: ['«¿Quién no pagó esta semana?»', 'Respondido con tus datos'] }]
+  var icono = function (p) {
+    return '<svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="114" fill="' + p.bg + '"/><rect x="109" y="202" width="260" height="170" rx="40" fill="none" stroke="' + p.st + '" stroke-width="36"/>' +
+      '<path d="M192 113 L192 398" fill="none" stroke="' + p.c + '" stroke-width="63"/><path d="M200 260 L404 118" fill="none" stroke="' + p.c + '" stroke-width="56"/><path d="M200 260 L406 393" fill="none" stroke="' + p.c + '" stroke-width="56"/></svg>'
+  }
+  var viv = $('.eco-vivo')
+  if (viv) {
+    var NS = 'http://www.w3.org/2000/svg', C = 260, R = 190
+    var svg = viv.querySelector('svg.lienzo')
+    var lineas = P.map(function (p) {
+      var l = document.createElementNS(NS, 'line'); l.setAttribute('stroke', p.c); l.setAttribute('stroke-opacity', '.22'); l.setAttribute('stroke-width', '1'); svg.appendChild(l); return l
+    })
+    var nodos = P.map(function (p) {
+      var d = document.createElement('div'); d.className = 'nodo'; d.style.setProperty('--c', p.c)
+      d.innerHTML = '<div class="ic">' + icono(p) + '</div><b>' + p.k + '</b>'; viv.appendChild(d); return d
+    })
+    var ev = document.createElement('div'); ev.className = 'evento'; viv.appendChild(ev)
+    var paquetes = []   // { i, t } un dato que viaja del producto al núcleo
+    var giro = 0, ultimo = 0, corre = true, enVista = true, sig = 0, turno = 0
+    var pos = function (i) { var a = giro + i * (Math.PI * 2 / P.length) - Math.PI / 2; return { x: C + Math.cos(a) * R, y: C + Math.sin(a) * R } }
+    var puntos = []
+    var cuadro = function (t) {
+      if (!corre || !enVista) { ultimo = t; requestAnimationFrame(cuadro); return }
+      var dt = ultimo ? Math.min(64, t - ultimo) : 16; ultimo = t
+      giro += dt * 0.00006
+      for (var i = 0; i < P.length; i++) {
+        var q = pos(i)
+        nodos[i].style.left = (q.x / 520 * 100) + '%'; nodos[i].style.top = (q.y / 520 * 100) + '%'
+        lineas[i].setAttribute('x1', q.x); lineas[i].setAttribute('y1', q.y); lineas[i].setAttribute('x2', C); lineas[i].setAttribute('y2', C)
+      }
+      //  cada ~1.8 s un producto le manda algo al núcleo, y se dice qué fue
+      if (t > sig) {
+        sig = t + 1800
+        var i2 = turno++ % P.length, p = P[i2]
+        paquetes.push({ i: i2, k: 0 })
+        nodos[i2].classList.add('pulso'); setTimeout(function () { nodos[i2].classList.remove('pulso') }, 380)
+        ev.classList.remove('on')
+        setTimeout(function () {
+          var q2 = pos(i2)
+          ev.style.setProperty('--c', p.c)
+          ev.innerHTML = '<i></i>' + p.ev[Math.floor(turno / P.length) % p.ev.length]
+          ev.style.top = (q2.y < C ? (q2.y / 520 * 100 + 11) : (q2.y / 520 * 100 - 19)) + '%'
+          ev.classList.add('on')
+        }, 160)
+      }
+      paquetes = paquetes.filter(function (k) { return k.k < 1 })
+      while (puntos.length < paquetes.length) { var c0 = document.createElementNS(NS, 'circle'); c0.setAttribute('r', '4'); svg.appendChild(c0); puntos.push(c0) }
+      puntos.forEach(function (c1, j) {
+        var k = paquetes[j]
+        if (!k) { c1.setAttribute('opacity', '0'); return }
+        k.k += dt / 1100
+        var q3 = pos(k.i), e = k.k * k.k * (3 - 2 * k.k)
+        c1.setAttribute('cx', q3.x + (C - q3.x) * e); c1.setAttribute('cy', q3.y + (C - q3.y) * e)
+        c1.setAttribute('fill', P[k.i].c); c1.setAttribute('opacity', String(1 - k.k * 0.6))
+        c1.setAttribute('style', 'filter:drop-shadow(0 0 6px ' + P[k.i].c + ')')
+      })
+      requestAnimationFrame(cuadro)
+    }
+    if (quieto) { for (var i3 = 0; i3 < P.length; i3++) { var q4 = pos(i3); nodos[i3].style.left = (q4.x / 520 * 100) + '%'; nodos[i3].style.top = (q4.y / 520 * 100) + '%'; lineas[i3].setAttribute('x1', q4.x); lineas[i3].setAttribute('y1', q4.y); lineas[i3].setAttribute('x2', C); lineas[i3].setAttribute('y2', C) } }
+    else {
+      requestAnimationFrame(cuadro)
+      document.addEventListener('visibilitychange', function () { corre = !document.hidden })
+      if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { enVista = e[0].isIntersecting }).observe(viv)
+    }
+  }
+
+  if (quieto) return
+
+  // ── 4 · la luz del hero sigue al cursor; la rejilla avanza un poco con el scroll ──
+  if (hero) {
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect()
+      hero.style.setProperty('--mx', (e.clientX - r.left) + 'px'); hero.style.setProperty('--my', (e.clientY - r.top) + 'px')
+    })
+  }
+  // ── 5 · tarjetas: la luz sigue al cursor y se inclinan apenas (solo con mouse) ──
+  var fino = window.matchMedia && window.matchMedia('(pointer: fine)').matches
+  $$('.eco-card').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height
+      c.style.setProperty('--px', (x * 100) + '%'); c.style.setProperty('--py', (y * 100) + '%')
+      if (fino) c.style.transform = 'perspective(900px) rotateX(' + ((0.5 - y) * 4).toFixed(2) + 'deg) rotateY(' + ((x - 0.5) * 5).toFixed(2) + 'deg) translateY(-4px)'
+    })
+    c.addEventListener('pointerleave', function () { c.style.transform = '' })
+  })
+  // ── 6 · botones con un leve imán (solo con mouse) ─────────────────────────────
+  if (fino) $$('.btn-p,.btn-o,.btn-nav').forEach(function (b) {
+    b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * 0.12).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * 0.18).toFixed(1) + 'px)' })
+    b.addEventListener('pointerleave', function () { b.style.transform = '' })
+  })
+
+  // ── 7 · scroll: la barra de avance, la rejilla y la frase de «Nosotros» ───────
+  var prog = $('.kw-prog'), grid = $('.hero-grid'), cierre = $('.org-cierre'), pw = []
+  if (cierre) {
+    var partir2 = function (nodo) {
+      Array.prototype.slice.call(nodo.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var f = document.createDocumentFragment()
+          c.textContent.split(/(\s+)/).forEach(function (p) {
+            if (!p) return
+            if (/^\s+$/.test(p)) { f.appendChild(document.createTextNode(p)); return }
+            var s = document.createElement('span'); s.className = 'pw'; s.textContent = p; pw.push(s); f.appendChild(s)
+          })
+          nodo.replaceChild(f, c)
+        } else if (c.nodeType === 1) partir2(c)
+      })
+    }
+    partir2(cierre)
+  }
+  var pide = false
+  var alScroll = function () {
+    pide = false
+    var y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight
+    if (prog) prog.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')'
+    if (grid) grid.style.setProperty('--gy', (y * 0.15) + 'px')
+    if (cierre && pw.length) {
+      var r = cierre.getBoundingClientRect(), k = (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35)
+      var hasta = Math.floor(Math.max(0, Math.min(1, k)) * pw.length)
+      for (var i = 0; i < pw.length; i++) pw[i].classList.toggle('on', i < hasta)
+    }
+  }
+  window.addEventListener('scroll', function () { if (!pide) { pide = true; requestAnimationFrame(alScroll) } }, { passive: true })
+  alScroll()
+})()
 </script>
 </body>
 </html>
