@@ -1,5 +1,5 @@
 {
   "redirects": [
-    { "source": "/PAY/:codigo([2-9][0-9A-HJKMNP-TV-Z]{7})", "destination": "https://app.kiwisystems.mx/p/:codigo", "permanent": false }
+    { "source": "/PAY/:codigo([2-9][0-9A-HJKMNP-TV-Z]{7})", "destination": "https://app.kiwisystems.mx/portal?c=:codigo", "permanent": false }
   ]
 }
